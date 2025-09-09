@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@layer utilities {
+    @keyframes ripple {
+        0% {
+            transform: scale(0);
+            opacity: 0.6;
+        }
+        100% {
+            transform: scale(2.2);
+            opacity: 0;
+        }
+    }
+
+    .animate-ripple {
+        animation: ripple 0.4s linear;
+    }
+}
+
+@-moz-document url-prefix() {
+    .scrollable {
+        scrollbar-width: thin;
+        scrollbar-color: #888 #e5e7eb;
+    }
+}
+.scrollable::-webkit-scrollbar {
+    width: 12px !important;
+    scrollbar-width: 12px !important;
+    scrollbar-color: auto !important;
+    border-radius: 9999px !important;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: #e5e7eb;
+}
