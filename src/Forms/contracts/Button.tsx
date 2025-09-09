@@ -28,8 +28,12 @@ const IconGenerator: FC<{ role: Role }> = ({ role }) =>
         <PaperAirplaneIcon {...props} rotate={45} />
     );
 
-const colorGenerator = (role: Role) =>
-    role === "add" ? "blue" : role === "delete" ? "red" : "orange";
+const classGenerator = (role: Role) =>
+    role === "add"
+        ? "bg-blue-500 hover:bg-blue-700"
+        : role === "delete"
+        ? "bg-red-500 hover:bg-red-700"
+        : "bg-orange-500 hover:bg-orange-700";
 
 const Button: FC<Props> = ({
     title,
@@ -41,8 +45,7 @@ const Button: FC<Props> = ({
     <button
         className={clsx(
             "flex cursor-pointer mb-2 duration-200 text-white p-2 rounded items-center",
-            `bg-${colorGenerator(role)}-500`,
-            `hover:bg-${colorGenerator(role)}-700`,
+            classGenerator(role),
             className
         )}
         type={type}

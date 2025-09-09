@@ -18,9 +18,8 @@ interface SubItemProps {
 const SidebarSubItemComponent: FC<SubItemProps> = memo(({ close, items }) => (
     <>
         {items.map(({ title, Icon, rightElement, href, id }) => (
-            <Link onClick={close} to={href}>
+            <Link key={id} onClick={close} to={href}>
                 <ListItem
-                    key={id}
                     className="pl-5 block"
                     title={title}
                     LeftIcon={Icon}
