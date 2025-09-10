@@ -22,7 +22,7 @@ const App: FC = () => {
                     show={showSidebar || windowWidth >= 640}
                     close={() => setShowSidebar(false)}
                 />
-                <div className="w-full min-h-screen sm:w-1/2 md:w-2/3 xl:w-3/4 px-4 sm:pr-0">
+                <div className="w-full sm:w-1/2 md:w-2/3 xl:w-3/4 px-4 sm:pr-0">
                     <Routing />
                 </div>
             </div>

@@ -14,7 +14,6 @@ import {
     MegaphoneIcon,
     PlusCircleIcon,
     ShoppingBagIcon,
-    Squares2X2Icon,
     TagIcon,
 } from "@heroicons/react/24/outline";
 
@@ -43,9 +42,8 @@ const sidebarItems: SidebarItem[] = [
             },
             {
                 id: "JxSJK7YQKrdRZQTy5Rg3x",
-                title: "Product Categories",
-                Icon: Squares2X2Icon,
-                href: "/products",
+                title: "Categories List",
+                href: "/categories",
             },
             {
                 id: "Xj_G6cT9l6SyLD7xkfzFE",
