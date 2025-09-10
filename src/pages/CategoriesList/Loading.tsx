@@ -1,17 +1,14 @@
 import type { FC } from "react";
 
-const rowClass = "flex-1 pl-3 h-10 text-end";
-const rowItemClass = "w-20 h-2 rounded bg-gray-500";
-
 const Row = (_: any, i: number) => (
     <tr key={i} className="border border-gray-300 w-full">
-        <td className={rowClass}>
-            <div className={rowItemClass} />
+        <td className="table-row-item">
+            <div className="loading-table-row-item" />
         </td>
-        <td className={rowClass}>
-            <div className={rowItemClass} />
+        <td className="table-row-item hidden md:table-cell">
+            <div className="loading-table-row-item" />
         </td>
-        <td className={rowClass} />
+        <td className="table-row-item" />
     </tr>
 );
 const arr = [1, 2, 3, 4, 5, 6];

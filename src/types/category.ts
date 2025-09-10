@@ -16,7 +16,10 @@ export interface FormCategoryValues {
 type ID = { _id: string };
 
 export type CategoryAttr = FormCategoryAttr & ID;
-export type CategoryGroup = FormCategoryGroup & ID;
+export interface CategoryGroup extends FormCategoryGroup {
+    attrs: CategoryAttr[];
+    _id: string;
+}
 export interface Category extends FormCategoryValues {
     _id: string;
     totalProducts: number;

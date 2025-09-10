@@ -1,4 +1,4 @@
-import { useReducer, type FC } from "react";
+import { useEffect, useReducer, type FC } from "react";
 import { useNavigate } from "react-router";
 
 import { categoriesApi } from "@/api";
@@ -54,6 +54,10 @@ const NewCategory: FC = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        dispatch(close);
+        return () => dispatch(close);
+    }, []);
     const handleSubmit = async (values: FormCategoryValues) => {
         const { ok, data, problem } = await categoriesApi.postCategory(values);
         dispatch(
@@ -80,7 +84,7 @@ const NewCategory: FC = () => {
                         : state.error
                 }
             />
-            <h1 className="text-xl font-bold pb-4">New Category</h1>
+            <h1 className="pb-4">New Category</h1>
             <AddCategoryLogic handleSubmit={handleSubmit} />
         </div>
     );

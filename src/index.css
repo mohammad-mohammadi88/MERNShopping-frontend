@@ -17,6 +17,17 @@
     }
 }
 
+h1 {
+    @apply font-bold text-2xl truncate;
+}
+.table-row-item {
+    @apply pl-3 h-10 text-start;
+}
+
+.loading-table-row-item {
+    @apply w-20 h-2 rounded bg-gray-500;
+}
+
 @-moz-document url-prefix() {
     .scrollable {
         scrollbar-width: thin;

@@ -23,7 +23,7 @@ const AppDisclosure: FC<Props> = ({ children, className, title, Icon }) => (
         <DisclosurePanel
             transition
             className={clsx(
-                "transition duration-200 ease-outdata-closed:max-h-0 data-closed:-translate-y-6 data-closed:opacity-0",
+                "transition duration-200 ease-out data-closed:-translate-y-6 data-closed:opacity-0",
                 "w-full origin-top max-h-auto",
                 className
             )}
