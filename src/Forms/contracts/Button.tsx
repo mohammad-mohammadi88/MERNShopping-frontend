@@ -6,6 +6,8 @@ import {
 import clsx from "clsx";
 import type { FC } from "react";
 
+import { RippleBtn } from "@AppComponents";
+
 type Role = "add" | "delete" | "send";
 interface Props {
     title: string;
@@ -44,15 +46,17 @@ const Button: FC<Props> = ({
 }) => (
     <button
         className={clsx(
-            "flex cursor-pointer mb-2 duration-200 text-white p-2 rounded items-center",
+            "cursor-pointer mb-2 duration-200 text-white rounded",
             classGenerator(role),
             className
         )}
         type={type}
         onClick={onClick}
     >
-        <IconGenerator role={role} /> {role[0].toUpperCase() + role.slice(1)}{" "}
-        {title}
+        <RippleBtn className="flex hover:bg-transparent p-2 items-center">
+            <IconGenerator role={role} />{" "}
+            {role[0].toUpperCase() + role.slice(1)} {title}
+        </RippleBtn>
     </button>
 );
 

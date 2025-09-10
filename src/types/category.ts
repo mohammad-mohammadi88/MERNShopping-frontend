@@ -1,14 +1,24 @@
-export interface CategoryAttr {
+export interface FormCategoryAttr {
     title: string;
     description: string;
-    isMultiple?: boolean;
+    hasPrice?: boolean;
     filterable?: boolean;
 }
-export interface CategoryGroup {
+export interface FormCategoryGroup {
     title: string;
-    attrs: CategoryAttr[];
+    attrs: FormCategoryAttr[];
 }
-export interface CategoryValues {
+export interface FormCategoryValues {
     title: string;
+    attrGroups: FormCategoryGroup[];
+}
+
+type ID = { _id: string };
+
+export type CategoryAttr = FormCategoryAttr & ID;
+export type CategoryGroup = FormCategoryGroup & ID;
+export interface Category extends FormCategoryValues {
+    _id: string;
+    totalProducts: number;
     attrGroups: CategoryGroup[];
 }

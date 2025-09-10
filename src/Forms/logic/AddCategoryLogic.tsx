@@ -1,17 +1,17 @@
 import { FieldArray, Form, Formik } from "formik";
 import type { FC } from "react";
 
-import type { CategoryValues } from "@/types";
+import type { FormCategoryValues } from "@Types";
 import { AttributeGroup, Button, Field } from "../contracts";
 import { postValidationSchema } from "../validation/category";
 
-const initialValues: CategoryValues = {
+const initialValues: FormCategoryValues = {
     title: "",
     attrGroups: [],
 };
 
 interface Props {
-    handleSubmit: (values: CategoryValues) => void;
+    handleSubmit: (values: FormCategoryValues) => void;
 }
 
 const AddCategoryLogic: FC<Props> = ({ handleSubmit }) => (

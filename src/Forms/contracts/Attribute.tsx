@@ -23,7 +23,7 @@ const Attribute: FC<Props> = ({ baseName, removeAttr }) => (
                 label="Attribute description"
             />
             <Switch title="Filterable" name={`${baseName}.filterable`} />
-            <Switch title="IsMultiple" name={`${baseName}.isMultiple`} />
+            <Switch title="Has Price" name={`${baseName}.hasPrice`} />
         </div>
         <Button
             title="Attribute"

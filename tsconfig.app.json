@@ -25,6 +25,7 @@
       "@AppComponents": [
         "src/Components/AppComponents/index.ts"
       ],
+      "@Forms": ["src/Forms/index.ts"],
       "@Components": [
         "src/Components/index.ts"
       ],

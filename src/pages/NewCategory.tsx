@@ -1,10 +1,10 @@
 import { useReducer, type FC } from "react";
-
-import { apiClient } from "@/api";
-import { AlertModal } from "@/Components";
-import AddCategoryLogic from "@/Forms/logic/AddCategoryLogic";
-import type { CategoryValues } from "@/types";
 import { useNavigate } from "react-router";
+
+import { categoriesApi } from "@/api";
+import { AlertModal } from "@Components";
+import { AddCategoryLogic } from "@Forms";
+import type { FormCategoryValues } from "@Types";
 
 type AlertModalState =
     | {
@@ -32,7 +32,7 @@ const error: (payload: string) => Action = (payload) => ({
 });
 
 const reducer = (state: AlertModalState, action: Action): AlertModalState => {
-    switch (action.type) {
+    switch (action?.type) {
         case "close":
             return initialState;
         case "success":
@@ -54,11 +54,8 @@ const NewCategory: FC = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
-    const handleSubmit = async (values: CategoryValues) => {
-        const { ok, data, problem } = await apiClient.post(
-            "categories",
-            values
-        );
+    const handleSubmit = async (values: FormCategoryValues) => {
+        const { ok, data, problem } = await categoriesApi.postCategory(values);
         dispatch(
             ok ? success : error(typeof data === "string" ? data : problem)
         );

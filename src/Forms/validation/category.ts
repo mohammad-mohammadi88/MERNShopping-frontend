@@ -7,7 +7,7 @@ const attrSchema = Yup.object().shape({
     title: string.label("Attribute title"),
     description: string.label("Attribute description"),
     filterable: booleanSchema,
-    isMultiple: booleanSchema,
+    hasPrice: booleanSchema,
 });
 
 const attrGroupSchema = Yup.object().shape({

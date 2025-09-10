@@ -1,11 +1,11 @@
 import { FieldArray } from "formik";
 import { memo, type FC } from "react";
 
-import type { CategoryGroup } from "@/types";
+import type { FormCategoryGroup } from "@Types";
 import { Attribute, Button, Field } from ".";
 
 interface Props {
-    group: CategoryGroup;
+    group: FormCategoryGroup;
     baseName: string;
     remove: () => void;
 }
