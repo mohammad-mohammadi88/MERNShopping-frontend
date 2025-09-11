@@ -57,8 +57,12 @@ const CategoriesList: FC = () => {
                 />
                 <tbody>
                     {data?.ok &&
-                        data.data?.map((category) => (
-                            <CategoryItem key={category._id} {...category} />
+                        data.data?.map((category, i, array) => (
+                            <CategoryItem
+                                key={category._id}
+                                isLast={i === array.length - 1}
+                                {...category}
+                            />
                         ))}
                 </tbody>
             </table>
