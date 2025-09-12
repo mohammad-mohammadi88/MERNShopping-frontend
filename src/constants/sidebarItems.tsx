@@ -27,7 +27,7 @@ const sidebarItems: SidebarItem[] = [
                 id: "FRS7ibZHC-0cCBKfWoI_G",
                 title: "New Product",
                 Icon: PlusCircleIcon,
-                href: "/products",
+                href: "/new-product",
             },
             {
                 id: "ObHi-BWOtXXtHG2cpDjPk",

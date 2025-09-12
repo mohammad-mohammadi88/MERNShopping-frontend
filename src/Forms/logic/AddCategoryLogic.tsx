@@ -44,7 +44,6 @@ const AddCategoryLogic: FC<Props> = ({ handleSubmit }) => (
                 </FieldArray>
 
                 <Button
-                    type="submit"
                     onClick={handleSubmit}
                     role="send"
                     title="New Category"

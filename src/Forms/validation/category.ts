@@ -1,14 +1,6 @@
 import * as Yup from "yup";
 
-const booleanSchema = Yup.boolean();
-const string = Yup.string().required();
-
-const attrSchema = Yup.object().shape({
-    title: string.label("Attribute title"),
-    description: string.label("Attribute description"),
-    filterable: booleanSchema,
-    hasPrice: booleanSchema,
-});
+import { attrSchema, string } from "./globals";
 
 const attrGroupSchema = Yup.object().shape({
     title: string.label("Attribute group title"),

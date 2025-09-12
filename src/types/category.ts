@@ -1,21 +1,15 @@
-export interface FormCategoryAttr {
-    title: string;
-    description: string;
-    hasPrice?: boolean;
-    filterable?: boolean;
-}
+import type { FormAttribute, ID } from "./globals";
+
 export interface FormCategoryGroup {
     title: string;
-    attrs: FormCategoryAttr[];
+    attrs: FormAttribute[];
 }
 export interface FormCategoryValues {
     title: string;
     attrGroups: FormCategoryGroup[];
 }
 
-type ID = { _id: string };
-
-export type CategoryAttr = FormCategoryAttr & ID;
+export type CategoryAttr = FormAttribute & ID;
 export interface CategoryGroup extends FormCategoryGroup {
     attrs: CategoryAttr[];
     _id: string;

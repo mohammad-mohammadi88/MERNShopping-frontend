@@ -14,7 +14,6 @@ interface Props {
     role?: Role;
     className?: string;
     onClick: () => void;
-    type?: "button" | "submit";
 }
 
 const props = {
@@ -37,20 +36,14 @@ const classGenerator = (role: Role) =>
         ? "bg-red-500 hover:bg-red-700"
         : "bg-orange-500 hover:bg-orange-700";
 
-const Button: FC<Props> = ({
-    title,
-    className,
-    role = "add",
-    type = "button",
-    onClick,
-}) => (
+const Button: FC<Props> = ({ title, className, role = "add", onClick }) => (
     <button
         className={clsx(
             "cursor-pointer mb-2 duration-200 text-white rounded",
             classGenerator(role),
             className
         )}
-        type={type}
+        type={role === "send" ? "submit" : "button"}
         onClick={onClick}
     >
         <RippleBtn className="flex hover:bg-transparent p-2 items-center">
