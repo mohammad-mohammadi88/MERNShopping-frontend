@@ -9,7 +9,7 @@ interface Props {
 
 const Attribute: FC<Props> = ({ baseName, removeAttr }) => (
     <div className="border-b p-2 mt-2 items-center flex flex-col xl:flex-row">
-        <div className="flex-1 space-x-3 w-full space-y-3  flex flex-col xl:flex-row items-start">
+        <div className="flex-1 space-x-3 w-full space-y-3 flex flex-col xl:flex-row items-start">
             <Field
                 className="w-full xl:w-auto"
                 name={`${baseName}.title`}

@@ -3,7 +3,14 @@ import { FieldArray, Form, Formik } from "formik";
 import type { FC } from "react";
 
 import type { Category, FormProductValue } from "@Types";
-import { Attribute, Button, Field, Select, type Option } from "../contracts";
+import {
+    Attribute,
+    Button,
+    Field,
+    FormImageInput,
+    Select,
+    type Option,
+} from "../contracts";
 import { postProductSchema } from "../validation/products";
 
 interface Props {
@@ -13,11 +20,11 @@ interface Props {
 
 const initialValues: FormProductValue = {
     attrs: [],
-    // TODO add gallery field
     gallery: [],
-    price: 0,
+    // to show an empty field
+    price: "" as unknown as number,
     productCategory: "",
-    thumbnail: "",
+    thumbnail: [],
     title: "",
 };
 
@@ -34,8 +41,9 @@ const AddProductLogic: FC<Props> = ({ handleSubmit, categories }) => (
     >
         {({ values, handleSubmit }) => (
             <Form className="space-y-4">
+                <FormImageInput name="thumbnail" maxGalleryImageCount={1} />
+
                 <Field name="title" label="Title" className="w-full" />
-                <Field name="thumbnail" label="Thumbnail" className="w-full" />
                 <Field
                     name="price"
                     type="number"
@@ -47,12 +55,11 @@ const AddProductLogic: FC<Props> = ({ handleSubmit, categories }) => (
                     name="productCategory"
                     options={formatCategories(categories)}
                 />
+                <FormImageInput name="gallery" />
                 <FieldArray name="attrs">
                     {({ push, remove }) => (
                         <div className="w-full">
-                            <h2 className="text-xl font-semibold">
-                                Attributes
-                            </h2>
+                            <h2 className="field-label !mb-0">Attributes</h2>
                             {values.attrs.map((_, i) => (
                                 <Attribute
                                     key={i}
@@ -61,7 +68,7 @@ const AddProductLogic: FC<Props> = ({ handleSubmit, categories }) => (
                                 />
                             ))}
                             <Button
-                                className="mt-4"
+                                className="mt-3"
                                 onClick={() =>
                                     push({
                                         title: "",

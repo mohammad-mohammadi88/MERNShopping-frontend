@@ -1,19 +1,20 @@
-import { ImageInputList } from "@/Components";
-import { useState, type FC } from "react";
+import { Progress } from "@/Components";
+import { useEffect, useState, type FC } from "react";
 
 const Index: FC = () => {
-    const [images, setImages] = useState<File[]>([]);
-    const onAdd = (img: File) => setImages((c) => [...c, img]);
-    const onRemove = (img: File) =>
-        setImages((c) => c.filter((a) => a !== img));
+    const [progress, setProgress] = useState<number>(0);
+    useEffect(() => {
+        if (progress >= 1) return;
+        const timer = setTimeout(() => {
+            setProgress((c) => c + 0.01);
+        }, 100);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [progress]);
     return (
-        <div className="bg-white p-10">
-            <ImageInputList
-                images={images}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                maxImageCount={3}
-            />
+        <div className="bg-white w-full p-10">
+            <Progress progress={progress} />
         </div>
     );
 };

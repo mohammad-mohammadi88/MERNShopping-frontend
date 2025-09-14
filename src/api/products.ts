@@ -1,15 +1,23 @@
-import type {
-    FormProductValue,
-    Pagination,
-    PaginationProducts,
-    Product,
-} from "@Types";
+import type { Dispatch, SetStateAction } from "react";
+
+import type { Pagination, PaginationProducts, Product } from "@Types";
 import apiClient from "./client";
 
 const endpoint = "products";
 
-const addProduct = (data: FormProductValue) =>
-    apiClient.post<Product, string>(endpoint, data);
+const addProduct = (
+    data: FormData,
+    setProgress: Dispatch<SetStateAction<number>>
+) =>
+    apiClient.post<Product, string | { errors: string[] }>(endpoint, data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: ({ progress, total, loaded }) =>
+            setProgress(
+                Math.min(progress || (total ? loaded / total : 0.5), 0.95)
+            ),
+    });
 
 const getProductsWithPagination = (pagination?: Pagination) =>
     apiClient.get<PaginationProducts, string>(endpoint, pagination);

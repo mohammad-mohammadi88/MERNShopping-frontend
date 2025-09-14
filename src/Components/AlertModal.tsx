@@ -1,6 +1,6 @@
 import { Description, DialogPanel, DialogTitle } from "@headlessui/react";
 import clsx from "clsx";
-import type { FC } from "react";
+import { Fragment, type FC } from "react";
 
 import { Modal } from "@AppComponents";
 
@@ -35,7 +35,12 @@ const ConfirmDialog: FC<Props> = ({
                     {title}
                 </DialogTitle>
                 <Description className="mt-2 text-sm text-gray-600">
-                    {description}
+                    {description.split("\n").map((val, i, array) => (
+                        <Fragment key={i}>
+                            {val}
+                            {i < array.length - 1 && <br />}
+                        </Fragment>
+                    ))}
                 </Description>
 
                 <div className="mt-4 flex justify-end gap-2">

@@ -2,7 +2,7 @@ import { CameraIcon } from "@heroicons/react/16/solid";
 import clsx from "clsx";
 import { memo, useEffect, useRef, useState, type FC } from "react";
 
-import { AlertModal } from ".";
+import { AlertModal } from "..";
 
 interface Props {
     image?: File;
@@ -53,7 +53,12 @@ const ImageInput: FC<Props> = ({ image, onChangeImage }) => {
                 onClose={onClose}
                 onConfirm={() => {
                     onClose();
-                    if (image) onChangeImage(image);
+                    if (image) {
+                        const timer = setTimeout(() => {
+                            onChangeImage(image);
+                            clearTimeout(timer);
+                        }, 200);
+                    }
                 }}
                 title="Delete"
                 role="confirm"

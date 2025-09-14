@@ -1,4 +1,3 @@
-"use client";
 import { memo, useEffect, useRef, type FC } from "react";
 
 import { ImageInput } from ".";
@@ -29,8 +28,8 @@ const ImageInputList: FC<Props> = ({
             ref={containerRef}
             className="flex overflow-x-scroll pb-3 snap-x snap-mandatory scroll-container scrollbar-hide"
         >
-            {images.map((file) => (
-                <div key={file.name} className="mr-2.5">
+            {images.map((file, i) => (
+                <div key={i} className="mr-2.5">
                     <ImageInput onChangeImage={onRemove} image={file} />
                 </div>
             ))}
