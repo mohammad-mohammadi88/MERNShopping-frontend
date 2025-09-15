@@ -1,26 +1,17 @@
 import type { ApiOkResponse } from "apisauce";
 import type { FC } from "react";
 
-import type { AddProductValue, Category } from "@Types";
+import type { AddProductValue, Category, EditProductValue } from "@Types";
 import Product from "../contracts/Product";
 
 interface Props {
     handleSubmit: (values: AddProductValue) => void;
     categories: ApiOkResponse<Category[]>;
+    initialValues: EditProductValue;
 }
 
-const initialValues: AddProductValue = {
-    attrs: [],
-    gallery: [],
-    // to show an empty field
-    price: "" as unknown as number,
-    productCategory: "",
-    thumbnail: [],
-    title: "",
-};
-
 const AddProductLogic: FC<Props> = (props) => (
-    <Product {...props} initialValues={initialValues} />
+    <Product {...props} role="edit" />
 );
 
 export default AddProductLogic;
