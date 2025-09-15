@@ -1,11 +1,11 @@
-import * as Yup from "yup";
+import { boolean, object, string } from "yup";
 
-const booleanSchema = Yup.boolean();
-export const string = Yup.string().required();
+const booleanSchema = boolean();
+export const String = string().required();
 
-export const attrSchema = Yup.object().shape({
-    title: string.label("Attribute title"),
-    description: string.label("Attribute description"),
+export const attrSchema = object().shape({
+    title: String.label("Attribute title"),
+    description: String.label("Attribute description"),
     filterable: booleanSchema,
     hasPrice: booleanSchema,
 });

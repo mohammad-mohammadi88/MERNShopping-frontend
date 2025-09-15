@@ -2,7 +2,7 @@ import type { ApiOkResponse } from "apisauce";
 import type { FC } from "react";
 
 import type { AddProductValue, Category } from "@Types";
-import Product from "../contracts/Product";
+import ProductLogic from "../contracts/ProductLogic";
 
 interface Props {
     handleSubmit: (values: AddProductValue) => void;
@@ -20,7 +20,7 @@ const initialValues: AddProductValue = {
 };
 
 const AddProductLogic: FC<Props> = (props) => (
-    <Product {...props} initialValues={initialValues} />
+    <ProductLogic {...props} initialValues={initialValues} />
 );
 
 export default AddProductLogic;

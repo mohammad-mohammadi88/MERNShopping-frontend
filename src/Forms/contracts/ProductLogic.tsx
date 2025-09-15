@@ -12,7 +12,7 @@ import {
     FormImageInput,
     Select,
     type Option,
-} from "../contracts";
+} from ".";
 import { editProductSchema, postProductSchema } from "../validation/products";
 
 const formatCategories = (categories: ApiOkResponse<Category[]>) =>
@@ -23,15 +23,16 @@ const formatCategories = (categories: ApiOkResponse<Category[]>) =>
 
 type ProductRole =
     | {
+          handleSubmit: (values: AddProductValue) => void;
           initialValues: AddProductValue;
           role?: "add";
       }
     | {
+          handleSubmit: (values: EditProductValue) => void;
           initialValues: EditProductValue;
           role: "edit";
       };
 interface Props {
-    handleSubmit: (values: AddProductValue) => void;
     categories: ApiOkResponse<Category[]>;
 }
 
@@ -41,13 +42,14 @@ const productStatusOptions: Option[] = Object.keys(productStatus).map(
         value: String(productStatus[key as ProductStatusKeys]),
     })
 );
-const Product: FC<Props & ProductRole> = ({
+const ProductLogic: FC<Props & ProductRole> = ({
     handleSubmit,
     categories,
     role = "add",
     initialValues,
 }) => (
     <Formik
+        // @ts-ignore
         onSubmit={handleSubmit}
         validationSchema={
             role === "add" ? postProductSchema : editProductSchema
@@ -70,8 +72,8 @@ const Product: FC<Props & ProductRole> = ({
                     <>
                         <Field
                             name="salePrice"
-                            label="Sale Price"
                             type="number"
+                            label="Sale Price"
                             className="w-full"
                         />
                         <Select
@@ -123,4 +125,4 @@ const Product: FC<Props & ProductRole> = ({
     </Formik>
 );
 
-export default Product;
+export default ProductLogic;

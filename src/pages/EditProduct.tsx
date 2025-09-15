@@ -1,18 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState, type FC } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState, type FC } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import { categoriesApi, productsApi } from "@/api";
 import useModalReducer from "@/hooks/useModalReducer";
+import { queryClient } from "@/main";
 import setProductBody from "@/utils/setProductBody";
 import { AlertModal, Loading, ProgressModal } from "@Components";
-import { AddProductLogic } from "@Forms";
-import type { AddProductValue } from "@Types";
+import { EditProductLogic } from "@Forms";
+import type { EditProductValue } from "@Types";
 
-const NewProduct: FC = () => {
+const EditProduct: FC = () => {
+    const productId = useParams().id!;
     const [state, dispatch] = useModalReducer();
-    const navigate = useNavigate();
     const [progress, setProgress] = useState<number>(0);
+    const navigate = useNavigate();
 
     const { data, isLoading } = useQuery({
         queryKey: ["categories"],
@@ -21,8 +23,18 @@ const NewProduct: FC = () => {
         staleTime: 3_600_000,
     });
 
-    const handleSubmit = async (values: AddProductValue) => {
-        const { ok, data, problem } = await productsApi.addProduct(
+    useEffect(() => {
+        queryClient.invalidateQueries({ queryKey: ["product", productId] });
+    }, []);
+    const { data: prevProduct, isLoading: isProductLoading } = useQuery({
+        queryKey: ["product", productId],
+        queryFn: () => productsApi.getProductById(productId),
+        // one hour
+        staleTime: 3_600_000,
+    });
+    const handleSubmit = async (values: EditProductValue) => {
+        const { ok, data, problem } = await productsApi.editProduct(
+            productId,
             setProductBody(values),
             setProgress
         );
@@ -42,6 +54,12 @@ const NewProduct: FC = () => {
                   )
         );
     };
+    const isReady = !isLoading && !isProductLoading;
+    const error = !data?.ok
+        ? data?.data || data?.problem
+        : !prevProduct?.ok
+        ? prevProduct?.data || prevProduct?.problem
+        : undefined;
     return (
         <div className="bg-white p-4 rounded border">
             <ProgressModal progress={progress} />
@@ -54,25 +72,31 @@ const NewProduct: FC = () => {
                 role={state.isSuccess ? "success" : "error"}
                 title={
                     state.isSuccess
-                        ? "New Product added Successfully"
+                        ? "Product edited Successfully"
                         : "There is an Error"
                 }
                 description={
                     state.isSuccess !== false
-                        ? "New Product is now available"
+                        ? "Edited Product is now available"
                         : state.error
                 }
             />
-            <h1 className="pb-4">New Product</h1>
-            <Loading loading={isLoading} />
-            {!isLoading && data?.ok && (
-                <AddProductLogic
+            <h1 className="pb-4">Edit Product</h1>
+            <Loading loading={!isReady} />
+            {isReady && data?.ok && prevProduct?.ok && (
+                <EditProductLogic
+                    initialValues={prevProduct}
                     handleSubmit={handleSubmit}
                     categories={data}
                 />
+            )}
+            {isReady && error && (
+                <h2 className="w-full h-12 text-red-500 flex justify-center items-center">
+                    {error}
+                </h2>
             )}
         </div>
     );
 };
 
-export default NewProduct;
+export default EditProduct;

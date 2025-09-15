@@ -1,15 +1,13 @@
-import * as Yup from "yup";
+import { array, object } from "yup";
 
-import { attrSchema, string } from "./globals";
+import { attrSchema, String } from "./globals";
 
-const attrGroupSchema = Yup.object().shape({
-    title: string.label("Attribute group title"),
-    attrs: Yup.array().of(attrSchema).label("Category attributes"),
+const attrGroupSchema = object().shape({
+    title: String.label("Attribute group title"),
+    attrs: array().of(attrSchema).label("Category attributes"),
 });
 
-export const postValidationSchema = Yup.object().shape({
-    title: string.label("Category title"),
-    attrGroups: Yup.array()
-        .of(attrGroupSchema)
-        .label("Attribute group attributes"),
+export const postValidationSchema = object().shape({
+    title: String.label("Category title"),
+    attrGroups: array().of(attrGroupSchema).label("Attribute group attributes"),
 });

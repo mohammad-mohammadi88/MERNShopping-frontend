@@ -1,19 +1,16 @@
-import type { FormProductValue } from "@Types";
+import type { AddProductValue, EditProductValue } from "@Types";
 
 export default ({
-    attrs,
     gallery,
-    price,
-    productCategory,
     thumbnail,
-    title,
-}: FormProductValue): FormData => {
+    ...others
+}: EditProductValue | AddProductValue): FormData => {
     const data = new FormData();
-    data.append("title", title);
-    data.append("price", JSON.stringify(price));
-    data.append("attrs", JSON.stringify(attrs));
-    data.append("productCategory", productCategory);
+    Object.keys(others).forEach((key) =>
+        data.append(key, JSON.stringify(others[key as keyof typeof others]))
+    );
     data.append("thumbnail", thumbnail[0] as File);
     gallery.forEach((item) => data.append("gallery", item));
+
     return data;
 };
