@@ -61,13 +61,9 @@ const ProductLogic: FC<Props & ProductRole> = ({
                 {/* {role === "edit" && values.attrs} */}
                 <FormImageInput name="thumbnail" maxGalleryImageCount={1} />
 
-                <Field name="title" label="Title" className="w-full" />
-                <Field
-                    name="price"
-                    type="number"
-                    label="Price"
-                    className="w-full"
-                />
+                <Field name="title" className="w-full" />
+                <Field name="price" type="number" className="w-full" />
+                <Field name="quantity" type="number" className="w-full" />
                 {role === "edit" && (
                     <>
                         <Field

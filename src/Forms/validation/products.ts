@@ -10,7 +10,16 @@ const productBaseSchema = {
     thumbnail: array()
         .of(fileSchema.label("Thumbnail"))
         .min(1, "Thumbnail is required"),
-    price: number().required().positive().label("Price"),
+    price: number()
+        .typeError("price must be a number")
+        .required()
+        .positive()
+        .label("Price"),
+    quantity: number()
+        .typeError("quantity must be a number")
+        .integer("quantity must be an integer")
+        .min(0, "quantity cannot be negative")
+        .optional(),
     productCategory: String.label("Product Category"),
     attrs: array().of(attrSchema).label("Product Attributes"),
     gallery: array()
@@ -24,7 +33,10 @@ const productBaseSchema = {
 export const postProductSchema = object().shape(productBaseSchema);
 export const editProductSchema = object().shape({
     ...productBaseSchema,
-    salePrice: number().positive().label("Sale Price"),
+    salePrice: number()
+        .typeError("Sale Price must be a number")
+        .positive()
+        .label("Sale Price"),
     status: number()
         .required()
         .test("isValidStatus", "${path} is not valid", (val) =>

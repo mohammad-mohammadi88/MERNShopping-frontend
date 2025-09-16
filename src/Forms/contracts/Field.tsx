@@ -1,11 +1,13 @@
+import capitalize from "@/utils/capitalize";
 import { Field, Input, Label, type InputProps } from "@headlessui/react";
 import clsx from "clsx";
 import { useField } from "formik";
 import type { FC } from "react";
+
 import { ErrorMessage } from ".";
 
 interface Props extends InputProps {
-    label: string;
+    label?: string;
     containerClassName?: string;
     name: string;
 }
@@ -21,7 +23,7 @@ const AppField: FC<Props> = ({
 
     return (
         <Field className={containerClassName}>
-            <Label className="field-label">{label}</Label>
+            <Label className="field-label">{label ?? capitalize(name)}</Label>
             <Input
                 className={clsx(
                     "outline my-2 outline-gray-700 p-1 text-gray-900 rounded block",
