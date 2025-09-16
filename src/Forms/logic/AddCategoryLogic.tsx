@@ -22,7 +22,12 @@ const AddCategoryLogic: FC<Props> = ({ handleSubmit }) => (
     >
         {({ values, handleSubmit }) => (
             <Form className="space-y-4">
-                <Field name="title" className="w-full" label="Category title" />
+                <Field
+                    name="title"
+                    autoFocus
+                    className="w-full"
+                    label="Category title"
+                />
 
                 <FieldArray name="attrGroups">
                     {({ push, remove }) => (

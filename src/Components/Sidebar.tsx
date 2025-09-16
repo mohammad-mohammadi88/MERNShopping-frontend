@@ -36,7 +36,7 @@ interface Props {
 }
 const Sidebar: FC<Props> = ({ close, show }) => (
     <Transition show={show}>
-        <div className="sm:max-h-screen top-0 bottom-0 left-0 right-0 absolute sm:static pb-6 w-screen sm:w-1/2 md:w-1/3 xl:w-1/4">
+        <div className="sm:max-h-screen top-0 bottom-0 left-0 right-0 fixed z-2000 overflow-y-hidden sm:static pb-6 w-screen sm:w-1/2 md:w-1/3 xl:w-1/4">
             <TransitionChild
                 as={"div"}
                 className={clsx(

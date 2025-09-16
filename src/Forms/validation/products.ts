@@ -1,8 +1,21 @@
 import { array, mixed, number, object } from "yup";
 
-import constants from "@/constants";
-import { productStatus } from "@/constants/products";
-import { attrSchema, String } from "./globals";
+import constants, { productStatus } from "@/constants";
+import { String } from "./globals";
+
+const productAttrSchema = object().shape({
+    title: String.label("Attribute title"),
+    description: String.label("Attribute description"),
+});
+const productColorSchema = object().shape({
+    title: String.label("Color name"),
+    color: String.label("Color"),
+    priceEffect: number()
+        .typeError("Price Effect must be a number")
+        .optional()
+        .min(0, "Price Effect cannot be negative")
+        .label("Price Effect"),
+});
 
 const fileSchema = mixed().required();
 const productBaseSchema = {
@@ -20,8 +33,9 @@ const productBaseSchema = {
         .integer("quantity must be an integer")
         .min(0, "quantity cannot be negative")
         .optional(),
+    attrs: array().of(productAttrSchema).label("Product Attributes"),
     productCategory: String.label("Product Category"),
-    attrs: array().of(attrSchema).label("Product Attributes"),
+    colors: array().of(productColorSchema).label("Product Colors"),
     gallery: array()
         .of(fileSchema)
         .label("Gallery")

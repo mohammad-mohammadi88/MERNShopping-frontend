@@ -2,7 +2,7 @@ import { FieldArray } from "formik";
 import { memo, type FC } from "react";
 
 import type { FormCategoryGroup } from "@Types";
-import { Attribute, Button, Field } from ".";
+import { Button, CategoryAttribute, Field } from ".";
 
 interface Props {
     group: FormCategoryGroup;
@@ -18,25 +18,18 @@ const AttributeGroup: FC<Props> = ({ group, baseName, remove }) => (
         />
 
         <FieldArray name={`${baseName}.attrs`}>
-            {({ push: pushAttr, remove: removeAttr }) => (
+            {({ push, remove }) => (
                 <div className="w-full">
                     {group.attrs.map((_, j) => (
-                        <Attribute
+                        <CategoryAttribute
                             key={j}
-                            baseName={`${baseName}.attrs[${j}]`}
-                            removeAttr={() => removeAttr(j)}
+                            name={`${baseName}.attrs[${j}]`}
+                            remove={() => remove(j)}
                         />
                     ))}
                     <Button
                         className="mt-4"
-                        onClick={() =>
-                            pushAttr({
-                                title: "",
-                                description: "",
-                                filterable: false,
-                                isMultiple: false,
-                            })
-                        }
+                        onClick={() => push("")}
                         title="Attribute"
                     />
                 </div>

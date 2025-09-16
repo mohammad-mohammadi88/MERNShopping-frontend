@@ -6,10 +6,11 @@ import { productStatus, type ProductStatusKeys } from "@/constants/products";
 import capitalize from "@/utils/capitalize";
 import type { AddProductValue, Category, EditProductValue } from "@Types";
 import {
-    Attribute,
     Button,
     Field,
     FormImageInput,
+    ProductAttribute,
+    ProductColor,
     Select,
     type Option,
 } from ".";
@@ -58,7 +59,6 @@ const ProductLogic: FC<Props & ProductRole> = ({
     >
         {({ values, handleSubmit }) => (
             <Form className="space-y-4">
-                {/* {role === "edit" && values.attrs} */}
                 <FormImageInput name="thumbnail" maxGalleryImageCount={1} />
 
                 <Field name="title" className="w-full" />
@@ -85,15 +85,40 @@ const ProductLogic: FC<Props & ProductRole> = ({
                     options={formatCategories(categories)}
                 />
                 <FormImageInput name="gallery" />
+                <FieldArray name="colors">
+                    {({ push: pushColor, remove }) => (
+                        <div className="w-full">
+                            <h2 className="field-label !mb-0">Colors</h2>
+                            {values.colors.map((_, i) => (
+                                <ProductColor
+                                    key={i}
+                                    baseName={`colors[${i}]`}
+                                    remove={() => remove(i)}
+                                />
+                            ))}
+                            <Button
+                                className="mt-3"
+                                onClick={() =>
+                                    pushColor({
+                                        title: "",
+                                        color: "",
+                                        priceEffect: "",
+                                    })
+                                }
+                                title="Color"
+                            />
+                        </div>
+                    )}
+                </FieldArray>
                 <FieldArray name="attrs">
                     {({ push, remove }) => (
                         <div className="w-full">
                             <h2 className="field-label !mb-0">Attributes</h2>
                             {values.attrs.map((_, i) => (
-                                <Attribute
+                                <ProductAttribute
                                     key={i}
                                     baseName={`attrs[${i}]`}
-                                    removeAttr={() => remove(i)}
+                                    remove={() => remove(i)}
                                 />
                             ))}
                             <Button
@@ -102,8 +127,7 @@ const ProductLogic: FC<Props & ProductRole> = ({
                                     push({
                                         title: "",
                                         description: "",
-                                        filterable: false,
-                                        isMultiple: false,
+                                        priceEffect: "",
                                     })
                                 }
                                 title="Attribute"

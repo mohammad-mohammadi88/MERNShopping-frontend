@@ -1,10 +1,12 @@
 import { array, object } from "yup";
 
-import { attrSchema, String } from "./globals";
+import { String } from "./globals";
 
 const attrGroupSchema = object().shape({
     title: String.label("Attribute group title"),
-    attrs: array().of(attrSchema).label("Category attributes"),
+    attrs: array()
+        .of(String.label("Attribute name"))
+        .label("Category attributes"),
 });
 
 export const postValidationSchema = object().shape({

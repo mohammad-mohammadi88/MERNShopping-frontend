@@ -17,6 +17,7 @@ const initialValues: AddProductValue = {
     productCategory: "",
     thumbnail: [],
     title: "",
+    colors: [],
 };
 
 const AddProductLogic: FC<Props> = (props) => (
