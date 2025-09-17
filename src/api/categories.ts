@@ -1,7 +1,7 @@
 import type { Category, FormCategoryValues } from "@Types";
-import apiClient from "./client";
+import apiClient, { endpointGenerator } from "./client";
 
-const endpoint = "categories";
+const { endpoint, addParam } = endpointGenerator("categories");
 
 const postCategory = (values: FormCategoryValues) =>
     apiClient.post<Category, string>(endpoint, values);
@@ -9,7 +9,7 @@ const postCategory = (values: FormCategoryValues) =>
 const getCategories = () => apiClient.get<Category[], string>(endpoint);
 
 const getCategoryById = (id: string) =>
-    apiClient.get<Category, string>(`${endpoint}/${id}`);
+    apiClient.get<Category, string>(addParam(id));
 
 export default {
     postCategory,

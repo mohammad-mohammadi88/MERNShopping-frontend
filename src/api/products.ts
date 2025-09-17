@@ -1,9 +1,9 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import type { Pagination, PaginationProducts, Product } from "@Types";
-import apiClient from "./client";
+import apiClient, { endpointGenerator } from "./client";
 
-const endpoint = "products/";
+const { endpoint, addParam } = endpointGenerator("products");
 
 const addProduct = (
     data: FormData,
@@ -24,7 +24,7 @@ const editProduct = (
     data: FormData,
     setProgress: Dispatch<SetStateAction<number>>
 ) =>
-    apiClient.put<Product, string | { errors: string[] }>(endpoint + id, data, {
+    apiClient.put<Product, string | { errors: string[] }>(addParam(id), data, {
         headers: {
             "Content-Type": "multipart/form-data",
         },
@@ -38,10 +38,14 @@ const getProductsWithPagination = (pagination?: Pagination) =>
     apiClient.get<PaginationProducts, string>(endpoint, pagination);
 
 const getProductById = (id: string) =>
-    apiClient.get<Product, string>(endpoint + id);
+    apiClient.get<Product, string>(addParam(id));
+
+const deleteProductById = (id: string) =>
+    apiClient.delete<string>(addParam(id));
 
 export default {
     addProduct,
+    deleteProductById,
     editProduct,
     getProductById,
     getProductsWithPagination,

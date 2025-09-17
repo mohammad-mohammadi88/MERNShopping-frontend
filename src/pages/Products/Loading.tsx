@@ -1,32 +1,41 @@
-import { Fragment, type FC } from "react";
-
-const Line = (_: any, i: number) => (
-    <div key={i} className="my-3 px-4 w-full">
-        <div className="h-2 w-full rounded bg-gray-300" />
-    </div>
+const Line = () => <div className="loading-table-row-item" />;
+const Icon = () => (
+    <td className="size-10 items-center flex justify-center">
+        <div className="rounded-full size-6 bg-gray-500" />
+    </td>
 );
-const Icon = (_: any, i: number) => (
-    <div key={i} className="size-6 rounded-full bg-gray-300" />
-);
-const arr = [1, 2, 3, 4, 5, 6];
+const arr = [1, 2, 3, 4, 5];
 
-const ProductsLoader: FC = () => (
-    <div className="space-y-4 animate-pulse mt-8">
-        <div className="flex flex-row justify-around items-center">
-            {arr.map(Icon)}
-        </div>
-
+const ProductsLoader = () => (
+    <tbody className="animate-pulse">
         {arr.map((_, i) => (
-            <Fragment key={i}>
-                <div className="flex flex-row justify-around items-center">
-                    {arr.map(Line)}
-                </div>
-                {i < arr.length - 1 && (
-                    <div className="h-px w-full bg-gray-300" />
-                )}
-            </Fragment>
+            <tr key={i} className="border border-gray-300">
+                <Icon />
+                <td className="flex-1 border border-gray-300 truncate table-row-item">
+                    <Line />
+                </td>
+
+                <td className="flex-1 border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                    <Line />
+                </td>
+                <td className="flex-1 border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                    <Line />
+                </td>
+                <td className="flex-1 border border-gray-300 hidden xl:table-cell truncate table-row-item">
+                    <Line />
+                </td>
+                <td className="table-row-item sm:hidden md:table-cell border border-r-0 border-gray-300">
+                    <Line />
+                </td>
+                <td
+                    className="max-w-10 truncate table-row-item invisible"
+                    aria-hidden="true"
+                >
+                    open
+                </td>
+            </tr>
         ))}
-    </div>
+    </tbody>
 );
 
 export default ProductsLoader;
