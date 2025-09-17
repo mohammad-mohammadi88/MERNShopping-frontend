@@ -1,9 +1,3 @@
-export interface FormAttribute {
-    title: string;
-    description: string;
-    hasPrice?: boolean;
-    filterable?: boolean;
-}
 export interface ID {
     _id: string;
 }

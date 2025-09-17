@@ -1,18 +1,25 @@
 import type { productStatus } from "@/constants/products";
-import type { FormAttribute, ID } from "./globals";
+import type { ID } from "./globals";
 
-export interface ProductColor {
+export interface FormProductAttribute {
+    title: string;
+    description: string;
+}
+export interface FormProductColor {
     title: string;
     color: `#${string}`;
     priceEffect: number;
 }
+export type ProductColor = FormProductColor & ID;
+export type ProductAttribute = FormProductAttribute & ID;
 export interface AddProductValue {
     title: string;
     thumbnail: [File?];
     price: number;
-    colors: ProductColor[];
+    quantity: number;
+    colors: FormProductColor[];
     productCategory: string;
-    attrs: FormAttribute[];
+    attrs: FormProductAttribute[];
     gallery: File[];
 }
 export interface EditProductValue extends AddProductValue {
