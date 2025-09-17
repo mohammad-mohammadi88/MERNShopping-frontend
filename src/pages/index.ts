@@ -3,4 +3,4 @@ export { default as EditProduct } from "./EditProduct";
 export { default as Index } from "./Index";
 export { default as NewCategory } from "./NewCategory";
 export { default as NewProduct } from "./NewProduct";
-export { default as Products } from "./Products";
+export { default as ProductsList } from "./ProductsList";

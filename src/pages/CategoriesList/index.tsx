@@ -4,8 +4,8 @@ import { categoriesApi } from "@/api";
 import { AlertModal } from "@/Components";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import CategoryItem from "./CategoryItem";
 import CategoriesListLoading from "./Loading";
+import CategoryItem from "./CategoryItem";
 
 const CategoriesList: FC = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
@@ -41,14 +41,14 @@ const CategoriesList: FC = () => {
                 {isCategoriesExists && (
                     <thead className="w-full">
                         <tr className="w-full">
-                            <th className="flex-1 truncate pb-3 table-row-item">
+                            <th className="flex-1 pb-3 table-row-item-no-border">
                                 Product title
                             </th>
-                            <th className="flex-1 hidden md:table-cell truncate pb-3 table-row-item">
+                            <th className="flex-1 hidden md:table-cell pb-3 table-row-item-no-border">
                                 Product Count
                             </th>
                             <th
-                                className="flex-1 truncate table-row-item invisible"
+                                className="flex-1 table-row-item-no-border invisible"
                                 aria-hidden="true"
                             >
                                 open btn col

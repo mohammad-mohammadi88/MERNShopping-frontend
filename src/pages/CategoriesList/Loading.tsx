@@ -5,10 +5,10 @@ const Row = (_: any, i: number) => (
         <td className="table-row-item">
             <div className="loading-table-row-item" />
         </td>
-        <td className="table-row-item hidden md:table-cell">
+        <td className="table-row-item-no-border hidden md:table-cell">
             <div className="loading-table-row-item" />
         </td>
-        <td className="table-row-item" />
+        <td className="table-row-item-no-border" />
     </tr>
 );
 const arr = [1, 2, 3, 4, 5, 6];

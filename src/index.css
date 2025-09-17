@@ -23,8 +23,11 @@
 h1 {
     @apply font-bold text-2xl truncate;
 }
-.table-row-item {
+.table-row-item-no-border {
     @apply px-3 truncate h-10 text-start;
+}
+.table-row-item {
+    @apply px-3 truncate h-10 text-start border border-gray-300;
 }
 
 .loading-table-row-item {

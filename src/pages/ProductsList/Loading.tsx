@@ -1,4 +1,6 @@
-const Line = () => <div className="loading-table-row-item" />;
+const Line = () => (
+    <div className="loading-table-row-item sm:hidden md:table-cell" />
+);
 const Icon = () => (
     <td className="size-16 items-center flex justify-center">
         <div className="rounded-full size-12 bg-gray-500" />
@@ -11,24 +13,24 @@ const ProductsLoader = () => (
         {arr.map((_, i) => (
             <tr key={i} className="border border-gray-300">
                 <Icon />
-                <td className="border border-gray-300 truncate table-row-item">
+                <td className="table-row-item">
                     <Line />
                 </td>
 
-                <td className="border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                <td className="hidden lg:table-cell table-row-item">
                     <Line />
                 </td>
-                <td className="border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                <td className="hidden lg:table-cell table-row-item">
                     <Line />
                 </td>
-                <td className="border border-gray-300 hidden xl:table-cell truncate table-row-item">
+                <td className="hidden xl:table-cell table-row-item">
                     <Line />
                 </td>
-                <td className="table-row-item sm:hidden md:table-cell border border-r-0 border-gray-300">
+                <td className="table-row-item sm:hidden md:table-cell !border-r-0">
                     <Line />
                 </td>
                 <td
-                    className="max-w-10 truncate table-row-item invisible"
+                    className="max-w-10 table-row-item-no-border invisible"
                     aria-hidden="true"
                 >
                     open

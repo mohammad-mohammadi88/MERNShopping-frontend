@@ -29,6 +29,8 @@ export interface EditProductValue extends AddProductValue {
 export interface Product
     extends ID,
         Omit<EditProductValue, "gallery" | "thumbnail"> {
+    attrs: ProductAttribute[];
+    colors: ProductColor[];
     thumbnail: string;
     gallery: string[];
 }

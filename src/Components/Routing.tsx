@@ -7,13 +7,13 @@ import {
     Index,
     NewCategory,
     NewProduct,
-    Products,
+    ProductsList,
 } from "@Pages";
 
 const Routing: FC = () => (
     <Routes>
         <Route path="/" Component={Index} />
-        <Route path="/products" Component={Products} />
+        <Route path="/products" Component={ProductsList} />
         <Route path="/categories" Component={CategoriesList} />
         <Route path="/new-category" Component={NewCategory} />
         <Route path="/new-product" Component={NewProduct} />

@@ -42,27 +42,27 @@ const Products = () => {
                 <thead>
                     <tr>
                         <th
-                            className="flex-1 !w-10 truncate table-row-item invisible"
+                            className="flex-1 !w-10 sm:hidden md:table-cell table-row-item-no-border invisible"
                             aria-hidden="true"
                         />
-                        <th className="flex-1 truncate table-row-item">
+                        <th className="flex-1 table-row-item-no-border">
                             Title
                         </th>
 
-                        <th className="flex-1 hidden lg:table-cell truncate table-row-item">
+                        <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
                             Quantity
                         </th>
-                        <th className="flex-1 hidden lg:table-cell truncate table-row-item">
+                        <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
                             Status
                         </th>
-                        <th className="flex-1 hidden xl:table-cell truncate table-row-item">
+                        <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
                             Exact Price
                         </th>
-                        <th className="flex-1 sm:hidden md:table-cell truncate table-row-item">
+                        <th className="flex-1 sm:hidden md:table-cell table-row-item-no-border">
                             Sale Price
                         </th>
                         <th
-                            className="max-w-10 truncate table-row-item invisible"
+                            className="max-w-10 table-row-item-no-border invisible"
                             aria-hidden="true"
                         >
                             open
@@ -81,7 +81,7 @@ const Products = () => {
                         navigate("/");
                     }}
                 />
-                <tbody>
+                <tbody className="w-full">
                     {isProductsExists &&
                         data.data?.products.map((product, i, array) => (
                             <ProductItem
