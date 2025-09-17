@@ -7,35 +7,58 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
+import { productStatus, type ProductStatusKeys } from "@/constants";
 import useWindowWidth from "@/hooks";
-import type { Category } from "@Types";
+import capitalize from "@/utils/capitalize";
+import type { Product } from "@Types";
 
-interface Props extends Category {
+interface Props extends Product {
     isLast: boolean;
 }
-const CategoryItem: FC<Props> = ({
-    attrGroups,
+const ProductItem: FC<Props> = ({
+    price,
+    salePrice,
+    thumbnail,
+    quantity,
+    status,
     title,
     isLast,
-    totalProducts,
 }) => {
     const windowWidth = useWindowWidth();
+    const statusName = capitalize(
+        Object.keys(productStatus)
+            .find((c) => productStatus[c as ProductStatusKeys] === status)
+            ?.toLowerCase() as string
+    );
     return (
         <Disclosure>
             <DisclosureButton
                 as={"tr"}
                 className="border group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full"
             >
-                <td className="table-row-item md:border-r md:border-r-gray-300">
+                <td className="size-16 items-center flex justify-center">
+                    <img src={thumbnail} className="size-12 rounded-full" />
+                </td>
+                <td className="border border-gray-300 truncate table-row-item">
                     {title}
                 </td>
-                <td className="table-row-item hidden md:table-cell">
-                    {totalProducts}
+
+                <td className="border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                    {quantity}
                 </td>
-                <td className="table-row-item flex items-center justify-end pr-2">
+                <td className="border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                    {statusName}
+                </td>
+                <td className="border border-gray-300 hidden xl:table-cell truncate table-row-item">
+                    {price}
+                </td>
+                <td className="table-row-item sm:hidden md:table-cell border border-r-0 border-gray-300">
+                    {salePrice}
+                </td>
+                <td className="table-row-item !h-16 relative">
                     <ChevronDownIcon
                         height={26}
-                        className="duration-200 ease-out group-data-open:-rotate-180"
+                        className="duration-200 absolute right-2 top-1/2 -translate-y-1/2 ease-out group-data-open:-rotate-180"
                     />
                 </td>
             </DisclosureButton>
@@ -63,4 +86,4 @@ const CategoryItem: FC<Props> = ({
     );
 };
 
-export default CategoryItem;
+export default ProductItem;

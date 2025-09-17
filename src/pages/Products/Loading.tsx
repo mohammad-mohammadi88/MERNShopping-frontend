@@ -1,7 +1,7 @@
 const Line = () => <div className="loading-table-row-item" />;
 const Icon = () => (
-    <td className="size-10 items-center flex justify-center">
-        <div className="rounded-full size-6 bg-gray-500" />
+    <td className="size-16 items-center flex justify-center">
+        <div className="rounded-full size-12 bg-gray-500" />
     </td>
 );
 const arr = [1, 2, 3, 4, 5];
@@ -11,17 +11,17 @@ const ProductsLoader = () => (
         {arr.map((_, i) => (
             <tr key={i} className="border border-gray-300">
                 <Icon />
-                <td className="flex-1 border border-gray-300 truncate table-row-item">
+                <td className="border border-gray-300 truncate table-row-item">
                     <Line />
                 </td>
 
-                <td className="flex-1 border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                <td className="border border-gray-300 hidden lg:table-cell truncate table-row-item">
                     <Line />
                 </td>
-                <td className="flex-1 border border-gray-300 hidden lg:table-cell truncate table-row-item">
+                <td className="border border-gray-300 hidden lg:table-cell truncate table-row-item">
                     <Line />
                 </td>
-                <td className="flex-1 border border-gray-300 hidden xl:table-cell truncate table-row-item">
+                <td className="border border-gray-300 hidden xl:table-cell truncate table-row-item">
                     <Line />
                 </td>
                 <td className="table-row-item sm:hidden md:table-cell border border-r-0 border-gray-300">

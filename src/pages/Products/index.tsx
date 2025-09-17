@@ -5,6 +5,7 @@ import { productsApi } from "@/api";
 import { AlertModal } from "@/Components";
 import { useNavigate } from "react-router";
 import ProductsLoader from "./Loading";
+import ProductItem from "./ProductItem";
 
 const Products = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
@@ -34,14 +35,6 @@ const Products = () => {
           data?.problem ||
           "Unexpected error happend while getting data"
         : data.data?.products.length === 0 && "There is no product exists";
-    /**
-     * title
-     * thumbnail
-     * salePrice
-     * quantity
-     * status
-     * price
-     */
     return (
         <div className="bg-white rounded p-8">
             <h1 className="mb-3">Products List</h1>
@@ -76,6 +69,7 @@ const Products = () => {
                         </th>
                     </tr>
                 </thead>
+                {isLoading && <ProductsLoader />}
                 <AlertModal
                     isOpen={isErrorModalOpen}
                     title="Error"
@@ -87,8 +81,16 @@ const Products = () => {
                         navigate("/");
                     }}
                 />
-
-                <ProductsLoader />
+                <tbody>
+                    {isProductsExists &&
+                        data.data?.products.map((product, i, array) => (
+                            <ProductItem
+                                key={product._id}
+                                isLast={i === array.length - 1}
+                                {...product}
+                            />
+                        ))}
+                </tbody>
             </table>
         </div>
     );
