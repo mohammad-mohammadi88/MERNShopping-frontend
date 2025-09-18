@@ -4,7 +4,12 @@ import type { FC } from "react";
 
 import { productStatus, type ProductStatusKeys } from "@/constants/products";
 import capitalize from "@/utils/capitalize";
-import type { AddProductValue, Category, EditProductValue } from "@Types";
+import type {
+    AddProductValue,
+    Category,
+    EditProductValue,
+    SelectOption,
+} from "@Types";
 import {
     Button,
     Field,
@@ -12,7 +17,6 @@ import {
     ProductAttribute,
     ProductColor,
     Select,
-    type Option,
 } from ".";
 import { editProductSchema, postProductSchema } from "../validation/products";
 
@@ -20,7 +24,7 @@ const formatCategories = (categories: ApiOkResponse<Category[]>) =>
     categories.data?.map(({ title: label, _id: value }) => ({
         label,
         value,
-    })) as Option[];
+    })) as SelectOption[];
 
 type ProductRole =
     | {
@@ -37,7 +41,7 @@ interface Props {
     categories: ApiOkResponse<Category[]>;
 }
 
-const productStatusOptions: Option[] = Object.keys(productStatus).map(
+const productStatusOptions: SelectOption[] = Object.keys(productStatus).map(
     (key) => ({
         label: capitalize(key.toLowerCase()),
         value: String(productStatus[key as ProductStatusKeys]),
@@ -75,6 +79,7 @@ const ProductLogic: FC<Props & ProductRole> = ({
                         <Select
                             label="Product Status"
                             name="status"
+                            defaultOption="Select Category"
                             options={productStatusOptions}
                         />
                     </>

@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 import { productsApi } from "@/api";
-import { AlertModal } from "@/Components";
-import { useNavigate } from "react-router";
+import { AlertModal, Pagination } from "@Components";
 import ProductsLoader from "./Loading";
 import ProductItem from "./ProductItem";
 
 const Products = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [perPage, setPerPage] = useState<number>(10);
     const [page, setPage] = useState<number>(1);
     const { data, isLoading, isSuccess } = useQuery({
-        queryKey: ["products", "page", page],
-        queryFn: () =>
-            productsApi.getProductsWithPagination({ page, perPage: 10 }),
+        queryKey: ["products", "page", page, "perPage", perPage],
+        queryFn: () => productsApi.getProductsWithPagination({ page, perPage }),
     });
 
     const isProductsReady = data?.ok && data.data;
@@ -92,6 +92,15 @@ const Products = () => {
                         ))}
                 </tbody>
             </table>
+            {isProductsExists && (
+                <Pagination
+                    page={page}
+                    setPerPage={setPerPage}
+                    perPage={perPage}
+                    setPage={setPage}
+                    totalPages={data.data?.pages || 1}
+                />
+            )}
         </div>
     );
 };

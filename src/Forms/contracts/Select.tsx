@@ -1,45 +1,26 @@
-import { Field, Label, Select } from "@headlessui/react";
-import clsx from "clsx";
 import { useField } from "formik";
 import type { FC } from "react";
 
+import { Select } from "@AppComponents";
+import type { SelectOption } from "@Types";
 import { ErrorMessage } from ".";
 
-export interface Option {
-    label: string;
-    value: string;
-}
 interface Props {
     containerClassName?: string;
     name: string;
+    defaultOption?: string;
     label: string;
-    options: Option[];
+    options: SelectOption[];
 }
 
-const AppSelect: FC<Props> = ({ containerClassName, name, label, options }) => {
+const FormSelect: FC<Props> = ({ name, ...props }) => {
     const [field] = useField({ name });
 
     return (
-        <Field className={clsx("flex flex-col", containerClassName)}>
-            <Label className="field-label">{label}</Label>
-            <div className="relative">
-                <Select
-                    {...field}
-                    className={
-                        "mb-3 bg-gray-200 w-full hover:bg-gray-300 duration-200 p-2.5 pr-4 cursor-pointer rounded"
-                    }
-                >
-                    <option value="">Select Category</option>
-                    {options.map(({ label, value }) => (
-                        <option className="p-2.5" value={value} key={value}>
-                            {label}
-                        </option>
-                    ))}
-                </Select>
-            </div>
+        <Select {...props} {...field}>
             <ErrorMessage name={name} />
-        </Field>
+        </Select>
     );
 };
 
-export default AppSelect;
+export default FormSelect;
