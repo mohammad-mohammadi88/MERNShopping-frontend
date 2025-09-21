@@ -13,6 +13,7 @@ const initialValues: AddProductValue = {
     attrs: [],
     gallery: [],
     // to show an empty field
+    quantity: "" as unknown as number,
     price: "" as unknown as number,
     productCategory: "",
     thumbnail: [],

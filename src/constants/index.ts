@@ -3,3 +3,4 @@ export default {
     maxGalleryImageCount: 3,
 };
 export * from "./products";
+export { default as sidebarItems } from "./sidebarItems";

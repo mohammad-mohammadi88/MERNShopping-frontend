@@ -7,15 +7,22 @@ import {
     ShowColor,
     ShowGalleryImage,
 } from "./Product";
+import ProductDeleteBtn from "./ProductDeleteBtn";
+import ProductEditBtn from "./ProductEditBtn";
 
 interface Props {
     gallery: string[];
     colors: ProductColor[];
+    id: string;
     attrs: ProductAttribute[];
 }
 
-const ProductExtraField: FC<Props> = ({ gallery, attrs, colors }) => (
+const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
     <>
+        <div className="mt-4 block">
+            <ProductDeleteBtn id={id} />
+            <ProductEditBtn id={id} />
+        </div>
         <ProductArrayField arrayLength={gallery.length} title="Gallery">
             <div className="flex overflow-x-scroll w-full sm:w-56 md:w-full space-x-2.5 pb-3 snap-x snap-mandatory scroll-container scrollbar-hide">
                 {gallery.map((image) => (

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { productsApi } from "@/api";
+import { productsApi } from "@Api";
 import { AlertModal, Pagination } from "@Components";
 import ProductsLoader from "./Loading";
 import ProductItem from "./ProductItem";

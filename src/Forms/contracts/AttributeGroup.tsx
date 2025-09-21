@@ -1,8 +1,9 @@
 import { FieldArray } from "formik";
 import { memo, type FC } from "react";
 
+import { Button } from "@Components";
 import type { FormCategoryGroup } from "@Types";
-import { Button, CategoryAttribute, Field } from ".";
+import { CategoryAttribute, Field } from ".";
 
 interface Props {
     group: FormCategoryGroup;

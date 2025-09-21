@@ -1,5 +1,6 @@
+import { Button } from "@Components";
 import type { FC } from "react";
-import { Button, Field } from ".";
+import { Field } from ".";
 
 interface Props {
     name: string;

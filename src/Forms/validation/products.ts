@@ -1,6 +1,6 @@
 import { array, mixed, number, object } from "yup";
 
-import constants, { productStatus } from "@/constants";
+import constants, { productStatus } from "@Constants";
 import { String } from "./globals";
 
 const productAttrSchema = object().shape({

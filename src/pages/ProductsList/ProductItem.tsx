@@ -7,9 +7,9 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { productStatus, type ProductStatusKeys } from "@/constants";
-import capitalize from "@/utils/capitalize";
+import { productStatus, type ProductStatusKeys } from "@Constants";
 import type { Product } from "@Types";
+import { capitalize } from "@Utils";
 import ProductExtraField from "./ProductExtraField";
 
 interface Props extends Product {
@@ -24,6 +24,7 @@ const ProductItem: FC<Props> = ({
     attrs,
     quantity,
     status,
+    _id,
     title,
     isLast,
 }) => {
@@ -75,6 +76,7 @@ const ProductItem: FC<Props> = ({
                     )}
                 >
                     <ProductExtraField
+                        id={_id}
                         attrs={attrs}
                         gallery={gallery}
                         colors={colors}

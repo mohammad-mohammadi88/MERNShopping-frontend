@@ -1,8 +1,8 @@
 import { Bars3BottomLeftIcon } from "@heroicons/react/20/solid";
 import { useState, type FC } from "react";
 
-import useWindowWidth from "@/hooks";
 import { Routing, Sidebar } from "@Components";
+import { useWindowWidth } from "@Hooks";
 
 const App: FC = () => {
     const [showSidebar, setShowSidebar] = useState<boolean>(false);

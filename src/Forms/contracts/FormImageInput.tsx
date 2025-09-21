@@ -1,10 +1,10 @@
+import { Field, Label } from "@headlessui/react";
 import { useFormikContext } from "formik";
 import type { FC } from "react";
 
-import { ImageInputList } from "@/Components";
-import constants from "@/constants";
-import capitalize from "@/utils/capitalize";
-import { Field, Label } from "@headlessui/react";
+import { ImageInputList } from "@Components";
+import constants from "@Constants";
+import { capitalize } from "@Utils";
 import { ErrorMessage } from ".";
 
 interface Props {

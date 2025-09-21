@@ -1,4 +1,5 @@
 import {
+    PaintBrushIcon,
     PaperAirplaneIcon,
     PlusCircleIcon,
     TrashIcon,
@@ -7,8 +8,9 @@ import clsx from "clsx";
 import type { FC } from "react";
 
 import { RippleBtn } from "@AppComponents";
+import { capitalize } from "@Utils";
 
-type Role = "add" | "delete" | "send";
+type Role = "add" | "delete" | "send" | "edit";
 interface Props {
     title: string;
     role?: Role;
@@ -25,6 +27,8 @@ const IconGenerator: FC<{ role: Role }> = ({ role }) =>
         <PlusCircleIcon {...props} />
     ) : role === "delete" ? (
         <TrashIcon {...props} />
+    ) : role === "edit" ? (
+        <PaintBrushIcon {...props} />
     ) : (
         <PaperAirplaneIcon {...props} rotate={45} />
     );
@@ -47,8 +51,7 @@ const Button: FC<Props> = ({ title, className, role = "add", onClick }) => (
         onClick={onClick}
     >
         <RippleBtn className="flex hover:bg-transparent p-2 items-center">
-            <IconGenerator role={role} />{" "}
-            {role[0].toUpperCase() + role.slice(1)} {title}
+            <IconGenerator role={role} /> {capitalize(role)} {title}
         </RippleBtn>
     </button>
 );

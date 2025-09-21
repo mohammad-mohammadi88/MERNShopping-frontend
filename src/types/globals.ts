@@ -1,7 +1,7 @@
 export interface ID {
     _id: string;
 }
-export interface Pagination {
+export interface PaginationType {
     perPage: number;
     page: number;
 }

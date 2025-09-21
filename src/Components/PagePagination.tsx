@@ -14,7 +14,7 @@ const PagePagination: FC<Props> = ({
     totalPages,
 }) => {
     const btnClass =
-        "size-10 hover:bg-gray-300 border border-r-0 disabled:opacity-60 disabled:hover:bg-gray-200 border-gray-400 duration-150 cursor-pointer flex justify-center items-center bg-gray-200";
+        "size-10 hover:bg-gray-300 border border-r-0 disabled:opacity-60 disabled:cursor-auto disabled:hover:bg-gray-200 border-gray-400 duration-150 cursor-pointer flex justify-center items-center bg-gray-200";
     const PageBtn: FC<{ page: number }> = ({ page }) =>
         page > 0 &&
         page <= totalPages && (

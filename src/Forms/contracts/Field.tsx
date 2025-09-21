@@ -1,9 +1,9 @@
-import capitalize from "@/utils/capitalize";
 import { Field, Input, Label, type InputProps } from "@headlessui/react";
 import clsx from "clsx";
 import { useField } from "formik";
 import type { FC } from "react";
 
+import { capitalize } from "@Utils";
 import { ErrorMessage } from ".";
 
 interface Props extends InputProps {

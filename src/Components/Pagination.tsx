@@ -1,8 +1,7 @@
 import type { Dispatch, FC, SetStateAction } from "react";
 
-import { Select } from "@AppComponents";
 import type { SelectOption } from "@Types";
-import PagePagination from "./PagePagination";
+import { PagePagination, Select } from ".";
 
 interface Props {
     page: number;

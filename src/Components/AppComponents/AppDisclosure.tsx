@@ -6,7 +6,7 @@ import {
 import clsx from "clsx";
 import type { FC, JSX, ReactNode } from "react";
 
-import ListItem from "../ListItem";
+import { ListItem } from "..";
 
 interface Props {
     title: string;

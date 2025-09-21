@@ -10,7 +10,7 @@ import {
     type ReactNode,
 } from "react";
 
-import RippleBtn from "./AppComponents/RippleBtn";
+import { RippleBtn } from "@AppComponents";
 
 interface Props {
     RightElement?: ReactNode;

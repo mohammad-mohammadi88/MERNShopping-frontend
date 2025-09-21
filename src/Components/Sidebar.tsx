@@ -5,10 +5,9 @@ import type { FC } from "react";
 import { Fragment, memo } from "react";
 import { Link } from "react-router";
 
-import sidebarItems from "@/constants/sidebarItems";
-import type { SidebarSubItem } from "@/types/Sidebar";
-import { Disclosure } from "./AppComponents";
-import ListItem from "./ListItem";
+import { sidebarItems } from "@Constants";
+import type { SidebarSubItem } from "@Types";
+import { Disclosure, ListItem } from ".";
 
 type Close = () => void;
 interface SubItemProps {

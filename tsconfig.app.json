@@ -22,6 +22,8 @@
       "@/*": [
         "src/*"
       ],
+      "@All": ["src/All.ts"],
+      "@Api": ["src/api/index.ts"],
       "@AppComponents": [
         "src/Components/AppComponents/index.ts"
       ],
@@ -32,6 +34,9 @@
       "@Pages": [
         "src/pages/index.ts"
       ],
+      "@Constants": ["src/constants/index.ts"],
+      "@Hooks": ["src/hooks/index.ts"],
+      "@Utils": ["src/utils/index.ts"],
       "@Types": [
         "src/types/index.ts"
       ]

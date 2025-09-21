@@ -2,16 +2,16 @@ import type { ApiOkResponse } from "apisauce";
 import { FieldArray, Form, Formik } from "formik";
 import type { FC } from "react";
 
-import { productStatus, type ProductStatusKeys } from "@/constants/products";
-import capitalize from "@/utils/capitalize";
+import { Button } from "@Components";
+import { productStatus, type ProductStatusKeys } from "@Constants";
 import type {
     AddProductValue,
     Category,
     EditProductValue,
     SelectOption,
 } from "@Types";
+import { capitalize } from "@Utils";
 import {
-    Button,
     Field,
     FormImageInput,
     ProductAttribute,

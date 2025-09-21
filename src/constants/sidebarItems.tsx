@@ -1,4 +1,3 @@
-import type { SidebarItem } from "@Types";
 import {
     BanknotesIcon,
     BriefcaseIcon,
@@ -16,6 +15,8 @@ import {
     ShoppingBagIcon,
     TagIcon,
 } from "@heroicons/react/24/outline";
+
+import type { SidebarItem } from "@Types";
 
 const sidebarItems: SidebarItem[] = [
     {

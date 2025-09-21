@@ -2,7 +2,7 @@ import { Description, DialogPanel, DialogTitle } from "@headlessui/react";
 import clsx from "clsx";
 import { Fragment, type FC } from "react";
 
-import { Modal } from "@AppComponents";
+import { Modal } from ".";
 
 type Role = "confirm" | "success" | "error";
 type Props = {

@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import useWindowWidth from "@/hooks";
+import { useWindowWidth } from "@Hooks";
 import type { Category } from "@Types";
 import CategoryGroupItem from "./CategoryGroupItem";
 

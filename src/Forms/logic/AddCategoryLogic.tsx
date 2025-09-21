@@ -1,8 +1,9 @@
 import { FieldArray, Form, Formik } from "formik";
 import type { FC } from "react";
 
+import { Button } from "@Components";
 import type { FormCategoryValues } from "@Types";
-import { AttributeGroup, Button, Field } from "../contracts";
+import { AttributeGroup, Field } from "../contracts";
 import { postValidationSchema } from "../validation/category";
 
 const initialValues: FormCategoryValues = {

@@ -2,13 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState, type FC } from "react";
 import { useNavigate, useParams } from "react-router";
 
-import { categoriesApi, productsApi } from "@/api";
-import useModalReducer from "@/hooks/useModalReducer";
 import { queryClient } from "@/main";
-import setProductBody from "@/utils/setProductBody";
+import { categoriesApi, productsApi } from "@Api";
 import { AlertModal, Loading, ProgressModal } from "@Components";
 import { EditProductLogic } from "@Forms";
+import { useModalReducer } from "@Hooks";
 import type { EditProductValue } from "@Types";
+import { setProductBody } from "@Utils";
 
 const EditProduct: FC = () => {
     const productId = useParams().id!;

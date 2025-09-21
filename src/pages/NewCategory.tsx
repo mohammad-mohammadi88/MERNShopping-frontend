@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { useNavigate } from "react-router";
 
-import { categoriesApi } from "@/api";
-import useModalReducer from "@/hooks/useModalReducer";
+import { categoriesApi } from "@Api";
 import { AlertModal } from "@Components";
 import { AddCategoryLogic } from "@Forms";
+import { useModalReducer } from "@Hooks";
 import type { FormCategoryValues } from "@Types";
 
 const NewCategory: FC = () => {

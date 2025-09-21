@@ -1,11 +1,11 @@
-import { useEffect, useState, type FC } from "react";
-
-import { categoriesApi } from "@/api";
-import { AlertModal } from "@/Components";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState, type FC } from "react";
 import { useNavigate } from "react-router";
-import CategoriesListLoading from "./Loading";
+
+import { categoriesApi } from "@Api";
+import { AlertModal } from "@Components";
 import CategoryItem from "./CategoryItem";
+import CategoriesListLoading from "./Loading";
 
 const CategoriesList: FC = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);

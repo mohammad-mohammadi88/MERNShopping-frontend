@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, type FC } from "react";
 import { useNavigate } from "react-router";
 
-import { categoriesApi, productsApi } from "@/api";
-import useModalReducer from "@/hooks/useModalReducer";
-import setProductBody from "@/utils/setProductBody";
+import { categoriesApi, productsApi } from "@Api";
 import { AlertModal, Loading, ProgressModal } from "@Components";
 import { AddProductLogic } from "@Forms";
+import { useModalReducer } from "@Hooks";
 import type { AddProductValue } from "@Types";
+import { setProductBody } from "@Utils";
 
 const NewProduct: FC = () => {
     const [state, dispatch] = useModalReducer();
