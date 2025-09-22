@@ -18,7 +18,7 @@ import {
 
 import type { SidebarItem } from "@Types";
 
-const sidebarItems: SidebarItem[] = [
+const sidebarItems: (orderCount: number) => SidebarItem[] = (orderCount) => [
     {
         id: "T6rHttpX49-2IU_aRASuQ",
         title: "Manage Products",
@@ -65,7 +65,7 @@ const sidebarItems: SidebarItem[] = [
                 href: "/products",
                 rightElement: (
                     <div className="bg-red-500 rounded-full px-1.5 text-sm text-white">
-                        99+
+                        {orderCount > 99 ? "99+" : orderCount}
                     </div>
                 ),
             },

@@ -11,7 +11,7 @@ interface Props {
     setPerPage: Dispatch<SetStateAction<number>>;
 }
 
-const paginationNumbers: number[] = [1, 10, 20, 30, 40, 50, 100, 200];
+const paginationNumbers: number[] = [10, 20, 30, 40, 50, 100, 200];
 const paginationOptions: SelectOption[] = paginationNumbers.map((value) => ({
     label: String(value),
     value,

@@ -2,7 +2,6 @@ import clsx from "clsx";
 import type { FC } from "react";
 
 import type { CategoryGroup } from "@Types";
-import CategoryAttrItem from "./CategoryAttrItem";
 
 const CategoryGroupItem: FC<CategoryGroup & { isLast: boolean }> = ({
     attrs,
@@ -13,7 +12,7 @@ const CategoryGroupItem: FC<CategoryGroup & { isLast: boolean }> = ({
         <h2 className="font-semibold text-xltruncate pt-5 pb-3">{title}</h2>
         <div className="pl-2 space-y-1">
             {attrs.map((attr) => (
-                <CategoryAttrItem title={attr} />
+                <div className="w-full">{attr}</div>
             ))}
         </div>
     </div>

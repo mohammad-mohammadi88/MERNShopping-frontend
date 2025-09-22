@@ -45,7 +45,10 @@ const PagePagination: FC<Props> = ({
                 <PageBtn page={page} key={page} />
             ))}
             <button
-                className={clsx(btnClass, "!border-r")}
+                className={clsx(
+                    btnClass,
+                    "!border-r !border-l-gray-400 disabled:!border-l-gray-600"
+                )}
                 disabled={currentPage >= totalPages}
                 onClick={() => setPage((p) => p + 1)}
             >

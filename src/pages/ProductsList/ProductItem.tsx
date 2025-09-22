@@ -40,7 +40,11 @@ const ProductItem: FC<Props> = ({
                 className="border group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
             >
                 <td className="size-16 sm:hidden md:flex items-center flex justify-center">
-                    <img src={thumbnail} className="size-12 rounded-full" />
+                    <img
+                        src={thumbnail}
+                        className="size-12 rounded-full"
+                        alt="product image"
+                    />
                 </td>
                 <td className="table-row-item">{title}</td>
 
