@@ -1,4 +1,4 @@
-import type { productStatus } from "@/constants/products";
+import type { productStatus } from "@/constants/product";
 import type { ID } from "./globals";
 
 export interface FormProductAttribute {

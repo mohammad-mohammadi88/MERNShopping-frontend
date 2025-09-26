@@ -1,9 +1,9 @@
-import type { OrdersStatusValues } from "@/constants/orders";
+import type { OrdersStatusValues } from "@Constants";
 import type { Product } from "./products";
 import type { User, UserAddress } from "./users";
 
 export type OrderProduct = {
-    productID: Product;
+    product: Product;
     color?:
         | {
               title: string;
@@ -16,9 +16,9 @@ export type OrderProduct = {
 
 export type Order = {
     products: OrderProduct[];
-    userId: User;
+    user: User;
     couponCode?: string | undefined;
-    deliveryAddress?: UserAddress | undefined;
+    deliveryAddress: UserAddress;
     status: OrdersStatusValues;
     finalPrice: number;
     totalPrice: number;

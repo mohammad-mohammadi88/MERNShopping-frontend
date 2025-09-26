@@ -40,7 +40,8 @@ const Sidebar: FC<Props> = ({ close, show }) => {
         queryKey: ["orderCount"],
         queryFn: () => ordersApi.getOrdersCount(),
     });
-    const items = data?.ok && isSuccess && sidebarItems(data?.data || 0);
+    const ordersCount = typeof data?.data === "number" ? data.data : 0;
+    const items = data?.ok && isSuccess && sidebarItems(ordersCount);
     return (
         <Transition show={show}>
             <div className="sm:max-h-screen top-0 bottom-0 left-0 right-0 fixed z-2000 overflow-y-hidden sm:static pb-6 w-screen sm:w-1/2 md:w-1/3 xl:w-1/4">
@@ -73,11 +74,6 @@ const Sidebar: FC<Props> = ({ close, show }) => {
                         </button>
                     </div>
                     <Loading loading={isPending} />
-                    {isSuccess && !data.ok && (
-                        <p className="text-lg text-red-400">
-                            {data?.data || data.problem}
-                        </p>
-                    )}
                     {items &&
                         items?.map(({ subItems, id, ...props }, index) => (
                             <Fragment key={id}>
