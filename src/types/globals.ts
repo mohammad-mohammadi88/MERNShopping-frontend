@@ -10,3 +10,9 @@ export interface SelectOption {
     label: string;
     value: string | number;
 }
+export interface GetDataWithPagination<T> {
+    pages: number;
+    data: T[];
+    perPage: number;
+    currentPage: number;
+}

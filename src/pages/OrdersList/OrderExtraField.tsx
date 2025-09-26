@@ -1,25 +1,25 @@
-import type { FC } from "react";
+// import type { FC } from "react";
 
-import { ListArrayField } from "@Components";
-import type { ProductAttribute, ProductColor } from "@Types";
-import {
-    ProductDeleteBtn,
-    ProductEditBtn,
-    ShowAttr,
-    ShowColor,
-    ShowGalleryImage,
-} from "./Product";
+// import { ListArrayField } from "@Components";
+// import type { ProductAttribute, ProductColor } from "@Types";
+// import {
+//     ProductDeleteBtn,
+//     ProductEditBtn,
+//     ShowAttr,
+//     ShowColor,
+//     ShowGalleryImage,
+// } from "./Product";
 
-interface Props {
-    gallery: string[];
-    colors: ProductColor[];
-    id: string;
-    attrs: ProductAttribute[];
-}
+// interface Props {
+//     gallery: string[];
+//     colors: ProductColor[];
+//     id: string;
+//     attrs: ProductAttribute[];
+// }
 
-const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
+const ProductExtraField = () => (
     <>
-        <div className="mt-4 block">
+        {/* <div className="mt-4 block">
             <ProductDeleteBtn id={id} />
             <ProductEditBtn id={id} />
         </div>
@@ -62,7 +62,7 @@ const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
                     ))}
                 </tbody>
             </table>
-        </ListArrayField>
+        </ListArrayField> */}
     </>
 );
 

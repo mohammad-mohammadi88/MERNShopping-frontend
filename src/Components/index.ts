@@ -1,4 +1,5 @@
 export * from "./AppComponents";
+export { default as ListArrayField } from "./ListArrayField";
 export { default as ListItem } from "./ListItem";
 export { default as Loading } from "./Loading";
 export * from "./Modal";

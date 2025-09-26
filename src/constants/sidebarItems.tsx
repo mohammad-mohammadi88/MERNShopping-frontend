@@ -62,7 +62,7 @@ const sidebarItems: (orderCount: number) => SidebarItem[] = (orderCount) => [
             {
                 id: "cgB196VpyHM7Snr1-CHhY",
                 title: "Orders List",
-                href: "/products",
+                href: "/orders",
                 rightElement: (
                     <div className="bg-red-500 rounded-full px-1.5 text-sm text-white">
                         {orderCount > 99 ? "99+" : orderCount}

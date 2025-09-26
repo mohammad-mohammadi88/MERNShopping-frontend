@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import type { Pagination, PaginationProducts, Product } from "@Types";
+import type { GetDataWithPagination, PaginationType, Product } from "@Types";
 import apiClient, { endpointGenerator } from "./client";
 
 const { endpoint, addParam } = endpointGenerator("products");
@@ -34,8 +34,8 @@ const editProduct = (
             ),
     });
 
-const getProductsWithPagination = (pagination?: Pagination) =>
-    apiClient.get<PaginationProducts, string>(endpoint, pagination);
+const getProductsWithPagination = (pagination?: PaginationType) =>
+    apiClient.get<GetDataWithPagination<Product>, string>(endpoint, pagination);
 
 const getProductById = (id: string) =>
     apiClient.get<Product, string>(addParam(id));

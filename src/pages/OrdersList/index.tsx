@@ -2,28 +2,52 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { productsApi } from "@Api";
-import { AlertModal, Pagination } from "@Components";
-import ProductsLoader from "./Loading";
-import ProductItem from "./ProductItem";
+import { ordersStatus, type OrdersStatusKeys } from "@/constants";
+import { ordersApi } from "@Api";
+import { AlertModal, Pagination, Select } from "@Components";
+import type { SelectOption } from "@Types";
+import { capitalize } from "@Utils";
+import OrdersLoader from "./Loading";
+import OrderItem from "./OrderItem";
 
-const Products = () => {
+const orderStatusOptions: SelectOption[] = [
+    { value: "null", label: "All" },
+    ...Object.keys(ordersStatus).map((label) => ({
+        label: capitalize(label.toLowerCase()),
+        value: ordersStatus[label as OrdersStatusKeys],
+    })),
+];
+const Orders = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [status, setStatus] = useState<string>("null");
+
     const [perPage, setPerPage] = useState<number>(10);
     const [page, setPage] = useState<number>(1);
     const { data, isLoading, isSuccess } = useQuery({
-        queryKey: ["products", "page", page, "perPage", perPage],
-        queryFn: () => productsApi.getProductsWithPagination({ page, perPage }),
+        queryKey: [
+            "orders",
+            "page",
+            page,
+            "perPage",
+            perPage,
+            "status",
+            status === "null" ? "All" : status,
+        ],
+        queryFn: () =>
+            ordersApi.getAllOrdersWithPagination(
+                status === "null" ? null : status,
+                { page, perPage }
+            ),
     });
 
-    const isProductsReady = data?.ok && data.data;
-    const isProductsExists = isProductsReady && data.data?.data.length !== 0;
+    const isOrdersReady = data?.ok && data.data;
+    const isOrdersExists = isOrdersReady && data.data?.data.length !== 0;
 
     useEffect(() => {
         if (
             isSuccess &&
-            (!data.ok || (isProductsReady && data.data?.data.length === 0))
+            (!data.ok || (isOrdersReady && data.data?.data.length === 0))
         )
             setIsErrorModalOpen(true);
         return () => setIsErrorModalOpen(false);
@@ -33,32 +57,28 @@ const Products = () => {
         ? data?.data ||
           data?.problem ||
           "Unexpected error happend while getting data"
-        : data.data?.data.length === 0 && "There is no product exists";
+        : data.data?.data.length === 0 && "There is no Order exists";
     return (
         <div className="bg-white rounded p-8">
-            <h1 className="mb-3">Products List</h1>
+            <h1 className="mb-3">Orders List</h1>
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th
-                            className="flex-1 !w-10 sm:hidden md:table-cell table-row-item-no-border invisible"
-                            aria-hidden="true"
-                        />
                         <th className="flex-1 table-row-item-no-border">
-                            Title
+                            Final Price
                         </th>
 
-                        <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
-                            Quantity
+                        <th className="flex-1 hidden md:table-cell table-row-item-no-border">
+                            User Mobile
                         </th>
                         <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
-                            Status
+                            Username
                         </th>
                         <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
-                            Exact Price
+                            Total Price
                         </th>
-                        <th className="flex-1 sm:hidden md:table-cell table-row-item-no-border">
-                            Sale Price
+                        <th className="flex-1 hidden sm:table-cell table-row-item-no-border">
+                            Status
                         </th>
                         <th
                             className="max-w-10 table-row-item-no-border invisible"
@@ -68,7 +88,7 @@ const Products = () => {
                         </th>
                     </tr>
                 </thead>
-                {isLoading && <ProductsLoader />}
+                {isLoading && <OrdersLoader />}
                 <AlertModal
                     isOpen={isErrorModalOpen}
                     title="Error"
@@ -81,27 +101,36 @@ const Products = () => {
                     }}
                 />
                 <tbody className="w-full">
-                    {isProductsExists &&
-                        data.data?.data.map((product, i, array) => (
-                            <ProductItem
-                                key={product._id}
+                    {isOrdersExists &&
+                        data.data?.data.map((order, i, array) => (
+                            <OrderItem
+                                key={order._id}
                                 isLast={i === array.length - 1}
-                                {...product}
+                                {...order}
                             />
                         ))}
                 </tbody>
             </table>
-            {isProductsExists && (
+            {isOrdersExists && (
                 <Pagination
                     page={page}
                     setPerPage={setPerPage}
                     perPage={perPage}
                     setPage={setPage}
                     totalPages={data.data?.pages || 1}
-                />
+                >
+                    <Select
+                        label="Orders Status"
+                        containerClassName="w-auto items-center space-x-2 flex-row"
+                        className={"border border-gray-400"}
+                        value={status}
+                        options={orderStatusOptions}
+                        onChange={(e) => setStatus(e.target.value)}
+                    />
+                </Pagination>
             )}
         </div>
     );
 };
 
-export default Products;
+export default Orders;

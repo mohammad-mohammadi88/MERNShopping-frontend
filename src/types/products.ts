@@ -1,4 +1,4 @@
-import type { productStatus } from "@/constants/product";
+import type { productStatus } from "@Constants";
 import type { ID } from "./globals";
 
 export interface FormProductAttribute {
@@ -33,10 +33,4 @@ export interface Product
     colors: ProductColor[];
     thumbnail: string;
     gallery: string[];
-}
-export interface PaginationProducts {
-    pages: number;
-    products: Product[];
-    perPage: number;
-    currentPage: number;
 }

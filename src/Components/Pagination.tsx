@@ -1,4 +1,4 @@
-import type { Dispatch, FC, SetStateAction } from "react";
+import type { Dispatch, FC, PropsWithChildren, SetStateAction } from "react";
 
 import type { SelectOption } from "@Types";
 import { PagePagination, Select } from ".";
@@ -17,8 +17,14 @@ const paginationOptions: SelectOption[] = paginationNumbers.map((value) => ({
     value,
 }));
 
-const Pagination: FC<Props> = ({ perPage, setPerPage, ...pageProps }) => (
-    <div className="flex mt-4 flex-col md:flex-row justify-start md:justify-between ">
+const Pagination: FC<PropsWithChildren<Props>> = ({
+    perPage,
+    setPerPage,
+    children,
+    ...pageProps
+}) => (
+    <div className="flex mt-4 flex-col md:flex-row justify-start md:justify-between">
+        {children}
         <Select
             label="Per Page"
             containerClassName="w-44 items-center space-x-2 flex-row"

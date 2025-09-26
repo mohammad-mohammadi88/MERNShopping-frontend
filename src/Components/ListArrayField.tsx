@@ -6,7 +6,7 @@ interface Props {
     children: ReactNode;
 }
 
-const ProductArrayField: FC<Props> = ({ arrayLength, title, children }) =>
+const ListArrayField: FC<Props> = ({ arrayLength, title, children }) =>
     arrayLength !== 0 && (
         <div className="w-full">
             <h2 className="font-semibold text-xl truncate pt-5 pb-3">
@@ -16,4 +16,4 @@ const ProductArrayField: FC<Props> = ({ arrayLength, title, children }) =>
         </div>
     );
 
-export default ProductArrayField;
+export default ListArrayField;
