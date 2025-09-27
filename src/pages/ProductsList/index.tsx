@@ -29,45 +29,49 @@ const Products = () => {
         return () => setIsErrorModalOpen(false);
     }, [isSuccess, data?.ok]);
 
-    const errorDescription = !data?.ok
-        ? data?.data ||
-          data?.problem ||
-          "Unexpected error happend while getting data"
-        : data.data?.data.length === 0 && "There is no product exists";
+    const errorDescription =
+        !data?.ok &&
+        (data?.data ||
+            data?.problem ||
+            "Unexpected error happend while getting data");
     return (
         <div className="bg-white rounded p-8">
             <h1 className="mb-3">Products List</h1>
             <table className="w-full">
-                <thead>
-                    <tr>
-                        <th
-                            className="flex-1 !w-10 sm:hidden md:table-cell table-row-item-no-border invisible"
-                            aria-hidden="true"
-                        />
-                        <th className="flex-1 table-row-item-no-border">
-                            Title
-                        </th>
+                {(isLoading ||
+                    !data?.ok ||
+                    (data.ok && data.data?.data.length !== 0)) && (
+                    <thead>
+                        <tr>
+                            <th
+                                className="flex-1 !w-10 sm:hidden md:table-cell table-row-item-no-border invisible"
+                                aria-hidden="true"
+                            />
+                            <th className="flex-1 table-row-item-no-border">
+                                Title
+                            </th>
 
-                        <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
-                            Quantity
-                        </th>
-                        <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
-                            Status
-                        </th>
-                        <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
-                            Exact Price
-                        </th>
-                        <th className="flex-1 sm:hidden md:table-cell table-row-item-no-border">
-                            Sale Price
-                        </th>
-                        <th
-                            className="max-w-10 table-row-item-no-border invisible"
-                            aria-hidden="true"
-                        >
-                            open
-                        </th>
-                    </tr>
-                </thead>
+                            <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
+                                Quantity
+                            </th>
+                            <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
+                                Status
+                            </th>
+                            <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
+                                Exact Price
+                            </th>
+                            <th className="flex-1 sm:hidden md:table-cell table-row-item-no-border">
+                                Sale Price
+                            </th>
+                            <th
+                                className="max-w-10 table-row-item-no-border invisible"
+                                aria-hidden="true"
+                            >
+                                open
+                            </th>
+                        </tr>
+                    </thead>
+                )}
                 {isLoading && <ProductsLoader />}
                 <AlertModal
                     isOpen={isErrorModalOpen}
@@ -91,15 +95,20 @@ const Products = () => {
                         ))}
                 </tbody>
             </table>
-            {isProductsExists && (
-                <Pagination
-                    page={page}
-                    setPerPage={setPerPage}
-                    perPage={perPage}
-                    setPage={setPage}
-                    totalPages={data.data?.pages || 1}
-                />
-            )}
+            {isProductsReady &&
+                (data.data?.data.length === 0 ? (
+                    <p className="text-red-500 py-4 text-xl font-bold">
+                        There is no product exists
+                    </p>
+                ) : (
+                    <Pagination
+                        page={page}
+                        setPerPage={setPerPage}
+                        perPage={perPage}
+                        setPage={setPage}
+                        totalPages={data.data?.pages || 1}
+                    />
+                ))}
         </div>
     );
 };

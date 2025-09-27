@@ -1,5 +1,8 @@
-// import type { FC } from "react";
+import type { FC } from "react";
 
+import type { OrdersStatusValues } from "@Constants";
+import type { UserAddress } from "@Types";
+import { ChangeStatus, ShowAddress } from "./Order";
 // import { ListArrayField } from "@Components";
 // import type { ProductAttribute, ProductColor } from "@Types";
 // import {
@@ -17,8 +20,19 @@
 //     attrs: ProductAttribute[];
 // }
 
-const ProductExtraField = () => (
+interface Props {
+    address: UserAddress;
+    coupon: string | null;
+    status: OrdersStatusValues;
+    id: string;
+}
+const ProductExtraField: FC<Props> = ({ address, coupon, id, status }) => (
     <>
+        <ChangeStatus id={id} status={status} />
+        <ShowAddress {...address} />
+        {coupon && (
+            <h3 className="font-bold text-lg mt-2">Coupon Code: {coupon}</h3>
+        )}
         {/* <div className="mt-4 block">
             <ProductDeleteBtn id={id} />
             <ProductEditBtn id={id} />

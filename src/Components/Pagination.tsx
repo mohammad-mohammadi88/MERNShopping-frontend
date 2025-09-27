@@ -23,7 +23,7 @@ const Pagination: FC<PropsWithChildren<Props>> = ({
     children,
     ...pageProps
 }) => (
-    <div className="flex mt-4 flex-col md:flex-row justify-start md:justify-between">
+    <div className="flex mt-4 flex-col md:flex-row md:justify-between">
         {children}
         <Select
             label="Per Page"

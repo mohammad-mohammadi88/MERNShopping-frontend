@@ -1,6 +1,4 @@
-const Line = () => (
-    <div className="loading-table-row-item sm:hidden md:table-cell" />
-);
+const Line = () => <div className="loading-table-row-item" />;
 
 const arr = [1, 2, 3, 4, 5];
 
@@ -20,7 +18,7 @@ const OrdersLoader = () => (
                 <td className="hidden xl:table-cell table-row-item">
                     <Line />
                 </td>
-                <td className="hidden sm:table-cell table-row-item">
+                <td className="table-row-item-no-border">
                     <Line />
                 </td>
                 <td

@@ -17,6 +17,10 @@ const orderStatusOptions: SelectOption[] = [
         value: ordersStatus[label as OrdersStatusKeys],
     })),
 ];
+const convertStatusToString = (status: number) =>
+    Object.keys(ordersStatus).find(
+        (v) => ordersStatus[v as OrdersStatusKeys] === status
+    );
 const Orders = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -77,7 +81,7 @@ const Orders = () => {
                         <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
                             Total Price
                         </th>
-                        <th className="flex-1 hidden sm:table-cell table-row-item-no-border">
+                        <th className="flex-1 table-row-item-no-border">
                             Status
                         </th>
                         <th
@@ -111,24 +115,32 @@ const Orders = () => {
                         ))}
                 </tbody>
             </table>
-            {isOrdersExists && (
-                <Pagination
-                    page={page}
-                    setPerPage={setPerPage}
-                    perPage={perPage}
-                    setPage={setPage}
-                    totalPages={data.data?.pages || 1}
-                >
-                    <Select
-                        label="Orders Status"
-                        containerClassName="w-auto items-center space-x-2 flex-row"
-                        className={"border border-gray-400"}
-                        value={status}
-                        options={orderStatusOptions}
-                        onChange={(e) => setStatus(e.target.value)}
-                    />
-                </Pagination>
-            )}
+            {isOrdersReady &&
+                (data.data?.data.length === 0 ? (
+                    <p className="text-red-500 py-4 text-xl font-bold">
+                        There is no order exists{" "}
+                        {status !== "null" &&
+                            "with status " +
+                                convertStatusToString(Number(status))}
+                    </p>
+                ) : (
+                    <Pagination
+                        page={page}
+                        setPerPage={setPerPage}
+                        perPage={perPage}
+                        setPage={setPage}
+                        totalPages={data.data?.pages || 1}
+                    >
+                        <Select
+                            label="Orders Status"
+                            containerClassName="w-auto mb-4 md:mb-0 items-center space-x-2 flex-row"
+                            className={"border border-gray-400"}
+                            value={status}
+                            options={orderStatusOptions}
+                            onChange={(e) => setStatus(e.target.value)}
+                        />
+                    </Pagination>
+                ))}
         </div>
     );
 };

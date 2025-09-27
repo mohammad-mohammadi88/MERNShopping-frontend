@@ -8,6 +8,7 @@ interface Props extends SelectProps {
     options: SelectOption[];
     label: string;
     defaultOption?: string;
+    labelClassName?: string;
     containerClassName?: string;
 }
 
@@ -18,10 +19,11 @@ const AppSelect: FC<PropsWithChildren<Props>> = ({
     label,
     options,
     defaultOption,
+    labelClassName,
     ...field
 }) => (
     <Field className={clsx("flex flex-col", containerClassName)}>
-        <Label className="field-label">{label}</Label>
+        <Label className={clsx("field-label", labelClassName)}>{label}</Label>
         <div className="relative">
             <Select
                 {...field}

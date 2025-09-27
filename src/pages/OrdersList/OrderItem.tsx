@@ -20,6 +20,9 @@ const OrderItem: FC<Props> = ({
     isLast,
     user: { firstName, lastName, mobile },
     status,
+    deliveryAddress,
+    _id,
+    couponCode,
     totalPrice,
 }) => {
     const statusName = capitalize(
@@ -45,9 +48,7 @@ const OrderItem: FC<Props> = ({
                 <td className="hidden xl:table-cell table-row-item">
                     {totalPrice}
                 </td>
-                <td className="table-row-item sm:hidden md:table-cell !border-r-0">
-                    {statusName}
-                </td>
+                <td className="table-row-item !border-r-0">{statusName}</td>
                 <td className="table-row-item-no-border !h-16 relative">
                     <ChevronDownIcon
                         height={26}
@@ -65,15 +66,18 @@ const OrderItem: FC<Props> = ({
                 <td
                     colSpan={8}
                     className={clsx(
-                        "pl-4 sm:pl-1 md:pl-4",
+                        "pl-4 sm:pl-1 md:pl-4 space-y-4 pt-4",
                         isLast ? "pb-0" : "pb-8"
                     )}
                 >
                     <OrderExtraField
-                    // id={_id}
-                    // attrs={attrs}
-                    // gallery={gallery}
-                    // colors={colors}
+                        address={deliveryAddress}
+                        coupon={couponCode}
+                        id={_id}
+                        status={status}
+                        // attrs={attrs}
+                        // gallery={gallery}
+                        // colors={colors}
                     />
                 </td>
             </DisclosurePanel>

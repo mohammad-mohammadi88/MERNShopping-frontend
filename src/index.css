@@ -31,7 +31,7 @@ h1 {
 }
 
 .loading-table-row-item {
-    @apply w-20 h-2 rounded bg-gray-500;
+    @apply max-w-20 h-2 rounded bg-gray-500;
 }
 
 @-moz-document url-prefix() {
