@@ -17,9 +17,13 @@ const orderStatusOptions: SelectOption[] = [
         value: ordersStatus[label as OrdersStatusKeys],
     })),
 ];
-const convertStatusToString = (status: number) =>
-    Object.keys(ordersStatus).find(
-        (v) => ordersStatus[v as OrdersStatusKeys] === status
+const convertStatusToString = (status: number): string =>
+    capitalize(
+        (
+            Object.keys(ordersStatus).find(
+                (v) => ordersStatus[v as OrdersStatusKeys] === status
+            ) as string
+        ).toLowerCase()
     );
 const Orders = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
@@ -49,19 +53,15 @@ const Orders = () => {
     const isOrdersExists = isOrdersReady && data.data?.data.length !== 0;
 
     useEffect(() => {
-        if (
-            isSuccess &&
-            (!data.ok || (isOrdersReady && data.data?.data.length === 0))
-        )
-            setIsErrorModalOpen(true);
+        if (isSuccess && !data.ok) setIsErrorModalOpen(true);
         return () => setIsErrorModalOpen(false);
     }, [isSuccess, data?.ok]);
 
-    const errorDescription = !data?.ok
-        ? data?.data ||
-          data?.problem ||
-          "Unexpected error happend while getting data"
-        : data.data?.data.length === 0 && "There is no Order exists";
+    const errorDescription =
+        !data?.ok &&
+        (data?.data ||
+            data?.problem ||
+            "Unexpected error happend while getting data");
     return (
         <div className="bg-white rounded p-8">
             <h1 className="mb-3">Orders List</h1>
@@ -116,15 +116,17 @@ const Orders = () => {
                     navigate("/");
                 }}
             />
-            {isOrdersReady &&
-                (data.data?.data.length === 0 ? (
-                    <p className="text-red-500 py-4 text-xl font-bold">
-                        There is no order exists{" "}
-                        {status !== "null" &&
-                            "with status " +
-                                convertStatusToString(Number(status))}
-                    </p>
-                ) : (
+            {isOrdersReady && (
+                <>
+                    {data.data?.data.length === 0 && (
+                        <p className="text-red-500 py-4 text-xl font-bold">
+                            There is no order exists{" "}
+                            {status !== "null" &&
+                                `with status "${convertStatusToString(
+                                    Number(status)
+                                )}"`}
+                        </p>
+                    )}
                     <Pagination
                         page={page}
                         setPerPage={setPerPage}
@@ -141,7 +143,8 @@ const Orders = () => {
                             onChange={(e) => setStatus(e.target.value)}
                         />
                     </Pagination>
-                ))}
+                </>
+            )}
         </div>
     );
 };
