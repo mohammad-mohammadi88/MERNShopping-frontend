@@ -1,9 +1,7 @@
 import type { OrdersStatusValues } from "@Constants";
-import type { ID } from "./globals";
-import type { Product } from "./products";
-import type { User, UserAddress } from "./users";
+import type { ID, Product, User, UserAddress } from ".";
 
-export type OrderProduct = {
+export interface OrderProduct extends ID {
     product: Product;
     color?:
         | {
@@ -12,8 +10,8 @@ export type OrderProduct = {
               priceEffect: any;
           }
         | undefined;
-    count?: number | undefined;
-};
+    count: number;
+}
 
 export interface Order extends ID {
     products: OrderProduct[];

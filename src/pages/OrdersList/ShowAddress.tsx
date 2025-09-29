@@ -11,7 +11,7 @@ const ShowAddress: FC<UserAddress> = ({
 }) => (
     <div className="text-lg mt-2 space-y-2">
         <h3 className="text-xl font-bold">Delivery Address</h3>
-        <div className="pl-2">
+        <div className="pl-2 space-y-1">
             <p>Full address: {address}</p>
             <p>State: {state}</p>
             <p>City: {city}</p>

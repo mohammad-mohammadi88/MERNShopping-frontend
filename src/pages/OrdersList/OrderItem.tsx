@@ -22,6 +22,7 @@ const OrderItem: FC<Props> = ({
     status,
     deliveryAddress,
     _id,
+    products,
     couponCode,
     totalPrice,
 }) => {
@@ -74,10 +75,8 @@ const OrderItem: FC<Props> = ({
                         address={deliveryAddress}
                         coupon={couponCode}
                         id={_id}
+                        orderProducts={products}
                         status={status}
-                        // attrs={attrs}
-                        // gallery={gallery}
-                        // colors={colors}
                     />
                 </td>
             </DisclosurePanel>
