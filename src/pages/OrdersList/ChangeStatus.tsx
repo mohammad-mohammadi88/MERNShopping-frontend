@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState, type FC } from "react";
 
 import { queryClient } from "@/main";
+import { capitalize } from "@/utils";
 import { ordersApi } from "@Api";
 import { AlertModal, Button, Loading, Modal, Select } from "@Components";
 import {
@@ -19,7 +20,7 @@ interface Props {
 
 const orderStatusOptions: SelectOption[] = Object.keys(ordersStatus).map(
     (label) => ({
-        label,
+        label: capitalize(label.toLowerCase()),
         value: ordersStatus[label as OrdersStatusKeys],
     })
 );
@@ -44,7 +45,7 @@ const ChangeStatus: FC<Props> = ({ status, id }) => {
                 />
                 <Button
                     role="edit"
-                    title="Order"
+                    title="Order status"
                     className="h-auto -translate-y-0.5"
                     onClick={() => seteditConfirmOpen(true)}
                 />

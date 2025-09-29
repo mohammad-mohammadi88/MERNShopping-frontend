@@ -76,7 +76,7 @@ const Orders = () => {
                             User Mobile
                         </th>
                         <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
-                            Username
+                            Customer
                         </th>
                         <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
                             Total Price
@@ -93,17 +93,7 @@ const Orders = () => {
                     </tr>
                 </thead>
                 {isLoading && <OrdersLoader />}
-                <AlertModal
-                    isOpen={isErrorModalOpen}
-                    title="Error"
-                    // it will always have error text and "" is just for typescript
-                    description={errorDescription || ""}
-                    role="error"
-                    onClose={() => {
-                        setIsErrorModalOpen(false);
-                        navigate("/");
-                    }}
-                />
+
                 <tbody className="w-full">
                     {isOrdersExists &&
                         data.data?.data.map((order, i, array) => (
@@ -115,6 +105,17 @@ const Orders = () => {
                         ))}
                 </tbody>
             </table>
+            <AlertModal
+                isOpen={isErrorModalOpen}
+                title="Error"
+                // it will always have error text and "" is just for typescript
+                description={errorDescription || ""}
+                role="error"
+                onClose={() => {
+                    setIsErrorModalOpen(false);
+                    navigate("/");
+                }}
+            />
             {isOrdersReady &&
                 (data.data?.data.length === 0 ? (
                     <p className="text-red-500 py-4 text-xl font-bold">
