@@ -7,7 +7,13 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { ordersStatus, type OrdersStatusKeys } from "@Constants";
+import { Status } from "@Components";
+import {
+    ordersStatus,
+    ordersStatusColors,
+    type OrdersStatus,
+    type OrdersStatusKeys,
+} from "@Constants";
 import type { Order } from "@Types";
 import { capitalize } from "@Utils";
 import OrderExtraField from "./OrderExtraField";
@@ -26,17 +32,16 @@ const OrderItem: FC<Props> = ({
     couponCode,
     totalPrice,
 }) => {
-    const statusName = capitalize(
-        Object.keys(ordersStatus)
-            .find((c) => ordersStatus[c as OrdersStatusKeys] === status)
-            ?.toLowerCase() as string
-    );
+    const statusName = Object.keys(ordersStatus).find(
+        (c) => ordersStatus[c as OrdersStatusKeys] === status
+    ) as OrdersStatusKeys;
+
     const fullname = `${capitalize(firstName)} ${capitalize(lastName)}`;
     return (
         <Disclosure>
             <DisclosureButton
                 as={"tr"}
-                className="border group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
+                className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
             >
                 <td className="table-row-item">{finalPrice}</td>
 
@@ -49,7 +54,12 @@ const OrderItem: FC<Props> = ({
                 <td className="hidden xl:table-cell table-row-item">
                     {totalPrice}
                 </td>
-                <td className="table-row-item !border-r-0">{statusName}</td>
+                <td className="table-row-item !border-r-0">
+                    <Status<OrdersStatus>
+                        currentStatus={statusName}
+                        statusColors={ordersStatusColors}
+                    />
+                </td>
                 <td className="table-row-item-no-border !h-16 relative">
                     <ChevronDownIcon
                         height={26}

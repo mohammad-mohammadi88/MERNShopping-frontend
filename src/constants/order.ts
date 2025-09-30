@@ -7,6 +7,15 @@ export const ordersStatus = {
     RECEIVED: 5,
     CANCELED: 6,
 } as const;
-
-export type OrdersStatusKeys = keyof typeof ordersStatus;
-export type OrdersStatusValues = (typeof ordersStatus)[OrdersStatusKeys];
+export type OrdersStatus = typeof ordersStatus;
+export type OrdersStatusKeys = keyof OrdersStatus;
+export type OrdersStatusValues = OrdersStatus[OrdersStatusKeys];
+export const ordersStatusColors: Record<OrdersStatusKeys, `#${string}`> = {
+    CANCELED: "#f00",
+    INIT: "#f90",
+    PAID: "#2eba43",
+    PROCESSING: "#8b2eba",
+    READY: "#00c51e",
+    SHIPPING: "#8b2eba",
+    RECEIVED: "#008414",
+};

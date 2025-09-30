@@ -7,9 +7,14 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { productStatus, type ProductStatusKeys } from "@Constants";
+import { Status } from "@Components";
+import {
+    productStatus,
+    productStatusColors,
+    type ProductStatus,
+    type ProductStatusKeys,
+} from "@Constants";
 import type { Product } from "@Types";
-import { capitalize } from "@Utils";
 import ProductExtraField from "./ProductExtraField";
 
 interface Props extends Product {
@@ -28,11 +33,10 @@ const ProductItem: FC<Props> = ({
     title,
     isLast,
 }) => {
-    const statusName = capitalize(
-        Object.keys(productStatus)
-            .find((c) => productStatus[c as ProductStatusKeys] === status)
-            ?.toLowerCase() as string
-    );
+    const statusName = Object.keys(productStatus).find(
+        (c) => productStatus[c as ProductStatusKeys] === status
+    ) as ProductStatusKeys;
+
     return (
         <Disclosure>
             <DisclosureButton
@@ -52,7 +56,10 @@ const ProductItem: FC<Props> = ({
                     {quantity}
                 </td>
                 <td className="hidden lg:table-cell table-row-item">
-                    {statusName}
+                    <Status<ProductStatus>
+                        currentStatus={statusName}
+                        statusColors={productStatusColors}
+                    />
                 </td>
                 <td className="hidden xl:table-cell table-row-item">{price}</td>
                 <td className="table-row-item sm:hidden md:table-cell !border-r-0">

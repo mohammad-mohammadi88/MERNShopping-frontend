@@ -4,6 +4,6 @@ export const shipmentStatus = {
     DELIVERED: 2,
     ABSENT: 3,
 } as const;
-type ShipmentStatus = typeof shipmentStatus;
+export type ShipmentStatus = typeof shipmentStatus;
 export type ShipmentStatusKey = keyof ShipmentStatus;
 export type ShipmentStatusValue = ShipmentStatus[ShipmentStatusKey];

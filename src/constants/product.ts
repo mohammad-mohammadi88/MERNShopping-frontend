@@ -3,5 +3,11 @@ export const productStatus = {
     INACTIVE: 1,
     PUBLISHED: 2,
 } as const;
-export type ProductStatusKeys = keyof typeof productStatus;
-export type ProductStatusValues = (typeof productStatus)[ProductStatusKeys];
+export type ProductStatus = typeof productStatus;
+export type ProductStatusKeys = keyof ProductStatus;
+export type ProductStatusValues = ProductStatus[ProductStatusKeys];
+export const productStatusColors: Record<ProductStatusKeys, `#${string}`> = {
+    INIT: "#f90",
+    INACTIVE: "#f00",
+    PUBLISHED: "#00c51e",
+};

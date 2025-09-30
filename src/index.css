@@ -27,7 +27,7 @@ h1 {
     @apply px-3 truncate h-10 text-start;
 }
 .table-row-item {
-    @apply px-3 truncate h-10 text-start border border-gray-300;
+    @apply px-3 truncate h-10 text-start border-y border-gray-300;
 }
 
 .loading-table-row-item {

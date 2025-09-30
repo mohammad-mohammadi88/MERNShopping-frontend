@@ -7,3 +7,4 @@ export { default as PagePagination } from "./PagePagination";
 export { default as Pagination } from "./Pagination";
 export { default as Routing } from "./Routing";
 export { default as Sidebar } from "./Sidebar";
+export { default as Status } from "./Status";
