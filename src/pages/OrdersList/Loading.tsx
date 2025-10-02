@@ -18,11 +18,11 @@ const OrdersLoader = () => (
                 <td className="hidden xl:table-cell table-row-item">
                     <Line />
                 </td>
-                <td className="table-row-item-no-border">
+                <td className="table-row-item">
                     <Line />
                 </td>
                 <td
-                    className="max-w-10 table-row-item-no-border invisible"
+                    className="max-w-10 table-row-item invisible"
                     aria-hidden="true"
                 >
                     open

@@ -41,14 +41,14 @@ const CategoriesList: FC = () => {
                 {isCategoriesExists && (
                     <thead className="w-full">
                         <tr className="w-full">
-                            <th className="flex-1 pb-3 table-row-item-no-border">
+                            <th className="flex-1 pb-3 table-row-item">
                                 Product title
                             </th>
-                            <th className="flex-1 hidden md:table-cell pb-3 table-row-item-no-border">
+                            <th className="flex-1 hidden md:table-cell pb-3 table-row-item">
                                 Product Count
                             </th>
                             <th
-                                className="flex-1 table-row-item-no-border invisible"
+                                className="flex-1 table-row-item invisible"
                                 aria-hidden="true"
                             >
                                 open btn col

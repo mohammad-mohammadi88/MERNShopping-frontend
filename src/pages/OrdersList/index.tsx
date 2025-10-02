@@ -68,24 +68,20 @@ const Orders = () => {
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th className="flex-1 table-row-item-no-border">
-                            Final Price
-                        </th>
+                        <th className="flex-1 table-row-item">Final Price</th>
 
-                        <th className="flex-1 hidden md:table-cell table-row-item-no-border">
+                        <th className="flex-1 hidden md:table-cell table-row-item">
                             User Mobile
                         </th>
-                        <th className="flex-1 hidden lg:table-cell table-row-item-no-border">
+                        <th className="flex-1 hidden lg:table-cell table-row-item">
                             Customer
                         </th>
-                        <th className="flex-1 hidden xl:table-cell table-row-item-no-border">
+                        <th className="flex-1 hidden xl:table-cell table-row-item">
                             Total Price
                         </th>
-                        <th className="flex-1 table-row-item-no-border">
-                            Status
-                        </th>
+                        <th className="flex-1 table-row-item">Status</th>
                         <th
-                            className="max-w-10 table-row-item-no-border invisible"
+                            className="max-w-10 table-row-item invisible"
                             aria-hidden="true"
                         >
                             open

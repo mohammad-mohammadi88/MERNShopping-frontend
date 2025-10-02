@@ -25,15 +25,13 @@ const CategoryItem: FC<Props> = ({
         <Disclosure>
             <DisclosureButton
                 as={"tr"}
-                className="border group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full"
+                className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full"
             >
-                <td className="table-row-item-no-border md:border-r md:border-r-gray-300">
-                    {title}
-                </td>
-                <td className="table-row-item-no-border hidden md:table-cell">
+                <td className="table-row-item">{title}</td>
+                <td className="table-row-item hidden md:table-cell">
                     {totalProducts}
                 </td>
-                <td className="table-row-item-no-border flex items-center justify-end pr-2">
+                <td className="table-row-item flex items-center justify-end pr-2">
                     <ChevronDownIcon
                         height={26}
                         className="duration-200 ease-out group-data-open:-rotate-180"

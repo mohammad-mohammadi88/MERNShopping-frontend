@@ -33,14 +33,14 @@ const ProductExtraField: FC<Props> = ({
                 <thead>
                     <tr>
                         <th
-                            className="flex-1 !w-16 sm:hidden md:table-cell table-row-item-no-border invisible"
+                            className="flex-1 !w-16 sm:hidden md:table-cell table-row-item invisible"
                             aria-hidden="true"
                         />
-                        <th className="table-row-item-no-border">Title</th>
-                        <th className="table-row-item-no-border sm:hidden md:table-cell">
+                        <th className="table-row-item">Title</th>
+                        <th className="table-row-item sm:hidden md:table-cell">
                             Color (Hex)
                         </th>
-                        <th className="table-row-item-no-border">Count</th>
+                        <th className="table-row-item">Count</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -30,7 +30,7 @@ const ProductsLoader = () => (
                     <Line />
                 </td>
                 <td
-                    className="max-w-10 table-row-item-no-border invisible"
+                    className="max-w-10 table-row-item invisible"
                     aria-hidden="true"
                 >
                     open

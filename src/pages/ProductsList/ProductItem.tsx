@@ -41,7 +41,7 @@ const ProductItem: FC<Props> = ({
         <Disclosure>
             <DisclosureButton
                 as={"tr"}
-                className="border group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
+                className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
             >
                 <td className="size-16 sm:hidden md:flex items-center flex justify-center">
                     <img
@@ -65,7 +65,7 @@ const ProductItem: FC<Props> = ({
                 <td className="table-row-item sm:hidden md:table-cell !border-r-0">
                     {salePrice}
                 </td>
-                <td className="table-row-item-no-border !h-16 relative">
+                <td className="table-row-item !h-16 relative">
                     <ChevronDownIcon
                         height={26}
                         className="duration-200 absolute right-2 top-1/2 -translate-y-1/2 ease-out group-data-open:-rotate-180"

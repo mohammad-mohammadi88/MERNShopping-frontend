@@ -60,7 +60,7 @@ const OrderItem: FC<Props> = ({
                         statusColors={ordersStatusColors}
                     />
                 </td>
-                <td className="table-row-item-no-border !h-16 relative">
+                <td className="table-row-item !h-16 relative">
                     <ChevronDownIcon
                         height={26}
                         className="duration-200 absolute right-2 top-1/2 -translate-y-1/2 ease-out group-data-open:-rotate-180"
