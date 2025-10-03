@@ -3,36 +3,41 @@ import { useEffect, useState, type FC } from "react";
 import { useNavigate } from "react-router";
 
 import { categoriesApi } from "@Api";
-import { AlertModal } from "@Components";
+import { AlertModal, Pagination } from "@Components";
 import CategoryItem from "./CategoryItem";
 import CategoriesListLoading from "./Loading";
 
 const CategoriesList: FC = () => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [perPage, setPerPage] = useState<number>(10);
+    const [page, setPage] = useState<number>(1);
     const { data, isLoading, isSuccess } = useQuery({
-        queryKey: ["categories"],
-        queryFn: () => categoriesApi.getCategories(),
+        queryKey: ["categories", "page", page, "perPage", perPage],
+        queryFn: () => categoriesApi.getCategories({ page, perPage }),
         // one hour
         staleTime: 3_600_000,
     });
     const isCategoriesReady = data?.ok && data.data;
-    const isCategoriesExists = isCategoriesReady && data.data?.length !== 0;
+    const isCategoriesExists =
+        isCategoriesReady && data.data?.data?.length !== 0;
 
     useEffect(() => {
         if (
             isSuccess &&
-            (!data.ok || (isCategoriesReady && data.data?.length === 0))
+            (!data.ok || (isCategoriesReady && data.data?.data?.length === 0))
         )
             setIsErrorModalOpen(true);
         return () => setIsErrorModalOpen(false);
     }, [isSuccess, data?.ok]);
 
-    const errorDescription = !data?.ok
-        ? data?.data ||
-          data?.problem ||
-          "Unexpected error happend while getting data"
-        : data.data?.length === 0 && "There is no category exists";
+    const errorDescription =
+        !data?.ok &&
+        (data?.data ||
+            data?.problem ||
+            "Unexpected error happend while getting data");
+
+    const totalPages = isCategoriesReady ? data?.data?.pages || 1 : 0;
 
     return (
         <div className="bg-white overflow-hidden w-full rounded p-8">
@@ -57,20 +62,9 @@ const CategoriesList: FC = () => {
                     </thead>
                 )}
                 {isLoading && <CategoriesListLoading />}
-                <AlertModal
-                    isOpen={isErrorModalOpen}
-                    title="Error"
-                    // it will always have error text and "" is just for typescript
-                    description={errorDescription || ""}
-                    role="error"
-                    onClose={() => {
-                        setIsErrorModalOpen(false);
-                        navigate("/");
-                    }}
-                />
                 <tbody>
                     {isCategoriesExists &&
-                        data?.data?.map((category, i, array) => (
+                        data?.data?.data?.map((category, i, array) => (
                             <CategoryItem
                                 key={category._id}
                                 isLast={i === array.length - 1}
@@ -79,6 +73,28 @@ const CategoriesList: FC = () => {
                         ))}
                 </tbody>
             </table>
+            <AlertModal
+                isOpen={isErrorModalOpen}
+                title="Error"
+                // it will always have error text and "" is just for typescript
+                description={errorDescription || ""}
+                role="error"
+                onClose={() => {
+                    setIsErrorModalOpen(false);
+                    navigate("/");
+                }}
+            />
+            {isCategoriesReady &&
+                (data.data?.data.length === 0 ? (
+                    <p className="text-red-500 py-4 text-xl font-bold">
+                        There is no product category exists
+                    </p>
+                ) : (
+                    <Pagination
+                        pageProps={{ page, setPage, totalPages }}
+                        perPageProps={{ perPage, setPerPage }}
+                    />
+                ))}
         </div>
     );
 };

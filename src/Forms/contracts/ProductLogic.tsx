@@ -8,6 +8,7 @@ import type {
     AddProductValue,
     Category,
     EditProductValue,
+    GetDataWithPagination,
     SelectOption,
 } from "@Types";
 import { capitalize } from "@Utils";
@@ -20,8 +21,10 @@ import {
 } from ".";
 import { editProductSchema, postProductSchema } from "../validation/products";
 
-const formatCategories = (categories: ApiOkResponse<Category[]>) =>
-    categories.data?.map(({ title: label, _id: value }) => ({
+const formatCategories = (
+    categories: ApiOkResponse<GetDataWithPagination<Category>>
+) =>
+    categories.data?.data?.map(({ title: label, _id: value }) => ({
         label,
         value,
     })) as SelectOption[];
@@ -38,7 +41,7 @@ type ProductRole =
           role: "edit";
       };
 interface Props {
-    categories: ApiOkResponse<Category[]>;
+    categories: ApiOkResponse<GetDataWithPagination<Category>>;
 }
 
 const productStatusOptions: SelectOption[] = Object.keys(productStatus).map(

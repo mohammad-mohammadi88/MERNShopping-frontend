@@ -14,7 +14,7 @@ const Products = () => {
     const [page, setPage] = useState<number>(1);
     const { data, isLoading, isSuccess } = useQuery({
         queryKey: ["products", "page", page, "perPage", perPage],
-        queryFn: () => productsApi.getProductsWithPagination({ page, perPage }),
+        queryFn: () => productsApi.getProducts({ page, perPage }),
     });
 
     const isProductsReady = data?.ok && data.data;
@@ -34,6 +34,9 @@ const Products = () => {
         (data?.data ||
             data?.problem ||
             "Unexpected error happend while getting data");
+
+    const totalPages = isProductsReady ? data?.data?.pages || 1 : 0;
+
     return (
         <div className="bg-white rounded p-8">
             <h1 className="mb-3">Products List</h1>
@@ -71,17 +74,7 @@ const Products = () => {
                     </thead>
                 )}
                 {isLoading && <ProductsLoader />}
-                <AlertModal
-                    isOpen={isErrorModalOpen}
-                    title="Error"
-                    // it will always have error text and "" is just for typescript
-                    description={errorDescription || ""}
-                    role="error"
-                    onClose={() => {
-                        setIsErrorModalOpen(false);
-                        navigate("/");
-                    }}
-                />
+
                 <tbody className="w-full">
                     {isProductsExists &&
                         data.data?.data.map((product, i, array) => (
@@ -93,6 +86,17 @@ const Products = () => {
                         ))}
                 </tbody>
             </table>
+            <AlertModal
+                isOpen={isErrorModalOpen}
+                title="Error"
+                // it will always have error text and "" is just for typescript
+                description={errorDescription || ""}
+                role="error"
+                onClose={() => {
+                    setIsErrorModalOpen(false);
+                    navigate("/");
+                }}
+            />
             {isProductsReady &&
                 (data.data?.data.length === 0 ? (
                     <p className="text-red-500 py-4 text-xl font-bold">
@@ -100,11 +104,8 @@ const Products = () => {
                     </p>
                 ) : (
                     <Pagination
-                        page={page}
-                        setPerPage={setPerPage}
-                        perPage={perPage}
-                        setPage={setPage}
-                        totalPages={data.data?.pages || 1}
+                        pageProps={{ page, setPage, totalPages }}
+                        perPageProps={{ perPage, setPerPage }}
                     />
                 ))}
         </div>

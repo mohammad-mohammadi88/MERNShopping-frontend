@@ -2,13 +2,18 @@ import type { ApiOkResponse } from "apisauce";
 import { useEffect, useState, type FC } from "react";
 
 import { Loading } from "@Components";
-import type { Category, EditProductValue, Product } from "@Types";
+import type {
+    Category,
+    EditProductValue,
+    GetDataWithPagination,
+    Product,
+} from "@Types";
 import { urlToObject } from "@Utils";
 import ProductLogic from "../contracts/ProductLogic";
 
 interface Props {
     handleSubmit: (values: EditProductValue) => void;
-    categories: ApiOkResponse<Category[]>;
+    categories: ApiOkResponse<GetDataWithPagination<Category>>;
     initialValues: ApiOkResponse<Product>;
 }
 

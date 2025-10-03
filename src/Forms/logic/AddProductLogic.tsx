@@ -1,12 +1,12 @@
 import type { ApiOkResponse } from "apisauce";
 import type { FC } from "react";
 
-import type { AddProductValue, Category } from "@Types";
+import type { AddProductValue, Category, GetDataWithPagination } from "@Types";
 import ProductLogic from "../contracts/ProductLogic";
 
 interface Props {
     handleSubmit: (values: AddProductValue) => void;
-    categories: ApiOkResponse<Category[]>;
+    categories: ApiOkResponse<GetDataWithPagination<Category>>;
 }
 
 const initialValues: AddProductValue = {

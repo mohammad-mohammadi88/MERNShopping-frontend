@@ -1,4 +1,9 @@
-import type { Category, FormCategoryValues } from "@Types";
+import type {
+    Category,
+    FormCategoryValues,
+    GetDataWithPagination,
+    PaginationType,
+} from "@Types";
 import apiClient, { endpointGenerator } from "./client";
 
 const { endpoint, addParam } = endpointGenerator("categories");
@@ -6,7 +11,11 @@ const { endpoint, addParam } = endpointGenerator("categories");
 const postCategory = (values: FormCategoryValues) =>
     apiClient.post<Category, string>(endpoint, values);
 
-const getCategories = () => apiClient.get<Category[], string>(endpoint);
+const getCategories = (pagination?: PaginationType) =>
+    apiClient.get<GetDataWithPagination<Category>, string>(
+        endpoint,
+        pagination
+    );
 
 const getCategoryById = (id: string) =>
     apiClient.get<Category, string>(addParam(id));

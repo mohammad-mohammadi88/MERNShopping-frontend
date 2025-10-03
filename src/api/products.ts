@@ -34,7 +34,7 @@ const editProduct = (
             ),
     });
 
-const getProductsWithPagination = (pagination?: PaginationType) =>
+const getProducts = (pagination?: PaginationType) =>
     apiClient.get<GetDataWithPagination<Product>, string>(endpoint, pagination);
 
 const getProductById = (id: string) =>
@@ -48,5 +48,5 @@ export default {
     deleteProductById,
     editProduct,
     getProductById,
-    getProductsWithPagination,
+    getProducts,
 };

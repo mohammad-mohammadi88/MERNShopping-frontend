@@ -4,19 +4,11 @@ import { useNavigate } from "react-router";
 
 import { ordersStatus, type OrdersStatusKeys } from "@/constants";
 import { ordersApi } from "@Api";
-import { AlertModal, Pagination, Select } from "@Components";
-import type { SelectOption } from "@Types";
+import { AlertModal, Pagination } from "@Components";
 import { capitalize } from "@Utils";
 import OrdersLoader from "./Loading";
 import OrderItem from "./OrderItem";
 
-const orderStatusOptions: SelectOption[] = [
-    { value: "null", label: "All" },
-    ...Object.keys(ordersStatus).map((label) => ({
-        label: capitalize(label.toLowerCase()),
-        value: ordersStatus[label as OrdersStatusKeys],
-    })),
-];
 const convertStatusToString = (status: number): string =>
     capitalize(
         (
@@ -62,6 +54,8 @@ const Orders = () => {
         (data?.data ||
             data?.problem ||
             "Unexpected error happend while getting data");
+
+    const totalPages = isOrdersReady ? data?.data?.pages || 1 : 0;
     return (
         <div className="bg-white rounded p-8">
             <h1 className="mb-3">Orders List</h1>
@@ -124,21 +118,14 @@ const Orders = () => {
                         </p>
                     )}
                     <Pagination
-                        page={page}
-                        setPerPage={setPerPage}
-                        perPage={perPage}
-                        setPage={setPage}
-                        totalPages={data.data?.pages || 1}
-                    >
-                        <Select
-                            label="Orders Status"
-                            containerClassName="w-auto mb-4 md:mb-0 items-center space-x-2 flex-row"
-                            className={"border border-gray-400"}
-                            value={status}
-                            options={orderStatusOptions}
-                            onChange={(e) => setStatus(e.target.value)}
-                        />
-                    </Pagination>
+                        pageProps={{ page, setPage, totalPages }}
+                        perPageProps={{ perPage, setPerPage }}
+                        statusProps={{
+                            collectionStatus: ordersStatus,
+                            setStatus,
+                            status,
+                        }}
+                    />
                 </>
             )}
         </div>

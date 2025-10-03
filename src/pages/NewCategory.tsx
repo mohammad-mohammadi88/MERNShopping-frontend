@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { useNavigate } from "react-router";
 
+import { queryClient } from "@/main";
 import { categoriesApi } from "@Api";
 import { AlertModal } from "@Components";
 import { AddCategoryLogic } from "@Forms";
@@ -13,6 +14,7 @@ const NewCategory: FC = () => {
 
     const handleSubmit = async (values: FormCategoryValues) => {
         const { ok, data, problem } = await categoriesApi.postCategory(values);
+        if (ok) queryClient.invalidateQueries({ queryKey: ["categories"] });
         dispatch(
             ok
                 ? useModalReducer.success

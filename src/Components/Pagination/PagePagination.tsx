@@ -2,13 +2,13 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { Dispatch, FC, SetStateAction } from "react";
 
-interface Props {
+export interface PagePaginationProps {
     page: number;
     setPage: Dispatch<SetStateAction<number>>;
     totalPages: number;
 }
 
-const PagePagination: FC<Props> = ({
+const PagePagination: FC<PagePaginationProps> = ({
     page: currentPage,
     setPage,
     totalPages,
