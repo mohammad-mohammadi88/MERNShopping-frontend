@@ -1,8 +1,9 @@
+import { getContrastColor } from "@/utils";
 import type { ProductColor } from "@Types";
 import type { FC } from "react";
 
 const ShowColor: FC<ProductColor> = ({ title, color, priceEffect }) => (
-    <tr style={{ backgroundColor: color }}>
+    <tr style={{ backgroundColor: color, color: getContrastColor(color) }}>
         <td className="sm:hidden md:table-cell table-row-item">{title}</td>
         <td className="table-row-item">{color}</td>
         <td className="table-row-item">{priceEffect}</td>
