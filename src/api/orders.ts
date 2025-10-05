@@ -3,10 +3,7 @@ import apiClient, { endpointGenerator } from "./client";
 
 const { addParam, endpoint } = endpointGenerator("orders");
 
-const getAllOrdersWithPagination = (
-    status: string | null,
-    pagination?: PaginationType
-) =>
+const getAllOrders = (status: string | null, pagination?: PaginationType) =>
     apiClient.get<GetDataWithPagination<Order>, string>(
         endpoint,
         status ? { status, ...pagination } : { ...pagination }
@@ -18,7 +15,7 @@ const editOrderStatus = (id: string, status: number | string) =>
     apiClient.patch<Order, string>(addParam(id), { status: Number(status) });
 
 export default {
-    getAllOrdersWithPagination,
+    getAllOrders,
     getOrdersCount,
     editOrderStatus,
 };

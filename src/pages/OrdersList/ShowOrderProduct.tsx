@@ -1,3 +1,4 @@
+import { getContrastColor } from "@/utils";
 import type { OrderProduct } from "@Types";
 import type { FC } from "react";
 
@@ -17,7 +18,13 @@ const ShowOrderProduct: FC<OrderProduct> = ({
         <td className="table-row-item">{title}</td>
         <td className="table-row-item sm:hidden md:table-cell">
             {color ? (
-                <div className="p-2" style={{ backgroundColor: color.color }}>
+                <div
+                    className="p-2"
+                    style={{
+                        backgroundColor: color.color,
+                        color: getContrastColor(color.color),
+                    }}
+                >
                     {color.title}
                 </div>
             ) : (

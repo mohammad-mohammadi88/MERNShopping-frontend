@@ -12,7 +12,7 @@ import {
 interface Props {
     perPageProps: PerPagePaginationProps;
     pageProps: PagePaginationProps;
-    statusProps?: StatusPaginationProps;
+    statusProps?: StatusPaginationProps | undefined;
 }
 
 const Pagination: FC<Props> = ({ statusProps, pageProps, perPageProps }) => (
