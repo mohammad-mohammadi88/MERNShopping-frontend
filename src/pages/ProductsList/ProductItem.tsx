@@ -3,11 +3,10 @@ import {
     DisclosureButton,
     DisclosurePanel,
 } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { Status } from "@Components";
+import { RowChevron, RowItem, Status, type RowItemProps } from "@Components";
 import {
     productStatus,
     productStatusColors,
@@ -37,6 +36,23 @@ const ProductItem: FC<Props> = ({
         (c) => productStatus[c as ProductStatusKeys] === status
     ) as ProductStatusKeys;
 
+    const productItemHeading: RowItemProps[] = [
+        { children: title },
+        { children: quantity, hidden: true, LG: true },
+        {
+            children: (
+                <Status<ProductStatus>
+                    currentStatus={statusName}
+                    statusColors={productStatusColors}
+                />
+            ),
+            hidden: true,
+            LG: true,
+        },
+        { children: price, hidden: true, XL: true },
+        { children: salePrice, SM: false, MD: true },
+        { children: <RowChevron />, className: "!h-16" },
+    ];
     return (
         <Disclosure>
             <DisclosureButton
@@ -50,27 +66,9 @@ const ProductItem: FC<Props> = ({
                         alt="product image"
                     />
                 </td>
-                <td className="table-row-item">{title}</td>
-
-                <td className="hidden lg:table-cell table-row-item">
-                    {quantity}
-                </td>
-                <td className="hidden lg:table-cell table-row-item">
-                    <Status<ProductStatus>
-                        currentStatus={statusName}
-                        statusColors={productStatusColors}
-                    />
-                </td>
-                <td className="hidden xl:table-cell table-row-item">{price}</td>
-                <td className="table-row-item sm:hidden md:table-cell !border-r-0">
-                    {salePrice}
-                </td>
-                <td className="table-row-item !h-16 relative">
-                    <ChevronDownIcon
-                        height={26}
-                        className="duration-200 absolute right-2 top-1/2 -translate-y-1/2 ease-out group-data-open:-rotate-180"
-                    />
-                </td>
+                {productItemHeading.map((props, i) => (
+                    <RowItem key={i} {...props} />
+                ))}
             </DisclosureButton>
             <DisclosurePanel
                 as="tr"

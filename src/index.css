@@ -24,11 +24,11 @@ h1 {
     @apply font-bold text-2xl truncate;
 }
 .table-row-item {
-    @apply px-3 truncate h-10 text-start;
+    @apply px-3 truncate h-16 text-start;
 }
 
 .loading-table-row-item {
-    @apply max-w-20 h-2 rounded bg-gray-500;
+    @apply max-w-20 h-2 min-w-1.5 rounded bg-gray-500;
 }
 
 @-moz-document url-prefix() {

@@ -1,4 +1,5 @@
 import { getContrastColor } from "@/utils";
+import { RowItem } from "@Components";
 import type { OrderProduct } from "@Types";
 import type { FC } from "react";
 
@@ -15,8 +16,8 @@ const ShowOrderProduct: FC<OrderProduct> = ({
                 alt="product image"
             />
         </td>
-        <td className="table-row-item">{title}</td>
-        <td className="table-row-item sm:hidden md:table-cell">
+        <RowItem children={title} />
+        <RowItem SM={false} MD>
             {color ? (
                 <div
                     className="p-2"
@@ -30,8 +31,8 @@ const ShowOrderProduct: FC<OrderProduct> = ({
             ) : (
                 "--"
             )}
-        </td>
-        <td className="table-row-item">{count}</td>
+        </RowItem>
+        <RowItem children={count} />
     </tr>
 );
 

@@ -1,12 +1,14 @@
-import { getContrastColor } from "@/utils";
-import type { ProductColor } from "@Types";
 import type { FC } from "react";
+
+import { RowItem } from "@TableComponents";
+import type { ProductColor } from "@Types";
+import { getContrastColor } from "@Utils";
 
 const ShowColor: FC<ProductColor> = ({ title, color, priceEffect }) => (
     <tr style={{ backgroundColor: color, color: getContrastColor(color) }}>
-        <td className="sm:hidden md:table-cell table-row-item">{title}</td>
-        <td className="table-row-item">{color}</td>
-        <td className="table-row-item">{priceEffect}</td>
+        <RowItem SM={false} MD children={title} />
+        <RowItem children={color} />
+        <RowItem children={String(priceEffect)} />
     </tr>
 );
 

@@ -24,6 +24,7 @@
       ],
       "@All": ["src/All.ts"],
       "@Api": ["src/api/index.ts"],
+      "@TableComponents": ["src/Components/TableComponents/index.ts"],
       "@AppComponents": [
         "src/Components/AppComponents/index.ts"
       ],

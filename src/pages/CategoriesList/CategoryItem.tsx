@@ -8,6 +8,7 @@ import clsx from "clsx";
 import type { FC } from "react";
 
 import { useWindowWidth } from "@Hooks";
+import { RowItem } from "@TableComponents";
 import type { Category } from "@Types";
 import CategoryGroupItem from "./CategoryGroupItem";
 
@@ -27,16 +28,14 @@ const CategoryItem: FC<Props> = ({
                 as={"tr"}
                 className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full"
             >
-                <td className="table-row-item">{title}</td>
-                <td className="table-row-item hidden md:table-cell">
-                    {totalProducts}
-                </td>
-                <td className="table-row-item flex items-center justify-end pr-2">
+                <RowItem children={title} />
+                <RowItem hidden MD children={totalProducts} />
+                <RowItem className="flex items-center justify-end pr-2">
                     <ChevronDownIcon
                         height={26}
                         className="duration-200 ease-out group-data-open:-rotate-180"
                     />
-                </td>
+                </RowItem>
             </DisclosureButton>
             <DisclosurePanel
                 as="tr"

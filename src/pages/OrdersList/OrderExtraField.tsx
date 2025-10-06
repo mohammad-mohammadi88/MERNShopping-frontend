@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { ListArrayField } from "@/Components";
+import { ListArrayField, RowItem, type RowItemProps } from "@Components";
 import type { OrdersStatusValues } from "@Constants";
 import type { OrderProduct, UserAddress } from "@Types";
 import { ChangeStatus, ShowAddress, ShowOrderProduct } from "./Order";
@@ -12,6 +12,13 @@ interface Props {
     id: string;
     orderProducts: OrderProduct[];
 }
+
+const ProductItemsHeading: RowItemProps[] = [
+    { inVisible: true, className: "w-16", SM: false, MD: true },
+    { children: "Title" },
+    { children: "Color (Hex)", SM: false, MD: true },
+    { children: "Count" },
+];
 const ProductExtraField: FC<Props> = ({
     address,
     coupon,
@@ -32,15 +39,9 @@ const ProductExtraField: FC<Props> = ({
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th
-                            className="flex-1 !w-16 sm:hidden md:table-cell table-row-item invisible"
-                            aria-hidden="true"
-                        />
-                        <th className="table-row-item">Title</th>
-                        <th className="table-row-item sm:hidden md:table-cell">
-                            Color (Hex)
-                        </th>
-                        <th className="table-row-item">Count</th>
+                        {ProductItemsHeading.map((props, i) => (
+                            <RowItem key={i} isHeading {...props} />
+                        ))}
                     </tr>
                 </thead>
                 <tbody>

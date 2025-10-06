@@ -1,14 +1,22 @@
 import { productsApi } from "@Api";
-import { PaginatedPage } from "@Components";
+import { PaginatedPage, RowItem, type RowItemProps } from "@Components";
 import type { Product } from "@Types";
 import { convertTime } from "@Utils";
 import ProductsLoader from "./Loading";
 import ProductItem from "./ProductItem";
 
+const rowItems: RowItemProps[] = [
+    { inVisible: true, className: "!w-10", SM: false, MD: true },
+    { children: "Title" },
+    { children: "Quantity", hidden: true, LG: true },
+    { children: "Status", hidden: true, LG: true },
+    { children: "Exact Price", hidden: true, XL: true },
+    { children: "Sale Price", SM: false, MD: true },
+    { children: "open", className: "max-w-10", inVisible: true },
+];
 const Products = () => (
     <PaginatedPage<Product, {}>
         label="product"
-        // 60 minutes
         staleTime={convertTime(60)}
         LoadingComponent={ProductsLoader}
         apiCall={({ page, perPage }) =>
@@ -16,23 +24,9 @@ const Products = () => (
         }
         DatumItemComponent={ProductItem}
     >
-        <th
-            className="flex-1 !w-10 sm:hidden md:table-cell table-row-item invisible"
-            aria-hidden="true"
-        />
-        <th className="flex-1 table-row-item">Title</th>
-
-        <th className="flex-1 hidden lg:table-cell table-row-item">Quantity</th>
-        <th className="flex-1 hidden lg:table-cell table-row-item">Status</th>
-        <th className="flex-1 hidden xl:table-cell table-row-item">
-            Exact Price
-        </th>
-        <th className="flex-1 sm:hidden md:table-cell table-row-item">
-            Sale Price
-        </th>
-        <th className="max-w-10 table-row-item invisible" aria-hidden="true">
-            open
-        </th>
+        {rowItems.map((props, i) => (
+            <RowItem key={i} isHeading {...props} />
+        ))}
     </PaginatedPage>
 );
 

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-import { ListArrayField } from "@Components";
+import { ListArrayField, RowItem, type RowItemProps } from "@Components";
 import type { ProductAttribute, ProductColor } from "@Types";
 import {
     ProductDeleteBtn,
@@ -17,6 +17,11 @@ interface Props {
     attrs: ProductAttribute[];
 }
 
+const colorItems: RowItemProps[] = [
+    { children: "Color Name", SM: false, MD: true },
+    { children: "Color (Hex)" },
+    { children: "Price Effect" },
+];
 const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
     <>
         <div className="mt-4 block">
@@ -34,11 +39,9 @@ const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th className="sm:hidden md:table-cell table-row-item">
-                            Color Name
-                        </th>
-                        <th className="table-row-item">Color (Hex)</th>
-                        <th className="table-row-item">Price Effect</th>
+                        {colorItems.map((props, i) => (
+                            <RowItem key={i} isHeading {...props} />
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
@@ -52,8 +55,8 @@ const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th className="table-row-item">Title</th>
-                        <th className="table-row-item">Description</th>
+                        <RowItem children="Title" />
+                        <RowItem children="Description" />
                     </tr>
                 </thead>
                 <tbody>

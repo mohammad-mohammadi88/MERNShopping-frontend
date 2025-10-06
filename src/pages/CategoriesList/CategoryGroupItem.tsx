@@ -11,8 +11,10 @@ const CategoryGroupItem: FC<CategoryGroup & { isLast: boolean }> = ({
     <div className={clsx(!isLast && "border-b pb-4 border-b-gray-500")}>
         <h2 className="font-semibold text-xltruncate pt-5 pb-3">{title}</h2>
         <div className="pl-2 space-y-1">
-            {attrs.map((attr) => (
-                <div className="w-full">{attr}</div>
+            {attrs.map((attr, i) => (
+                <div key={i} className="w-full">
+                    {attr}
+                </div>
             ))}
         </div>
     </div>

@@ -103,9 +103,7 @@ const PaginatedPage = <T, E extends Obj>({
         <div className="bg-white rounded p-8">
             <h1 className="mb-3">{capitalize(label)}s List</h1>
             <table className="w-full">
-                {(isLoading ||
-                    !data?.ok ||
-                    (data.ok && data.data?.data.length !== 0)) && (
+                {(isLoading || isDataExists) && (
                     <thead>
                         <tr>{children}</tr>
                     </thead>

@@ -1,10 +1,12 @@
-import type { ProductAttribute } from "@Types";
 import type { FC } from "react";
+
+import { RowItem } from "@TableComponents";
+import type { ProductAttribute } from "@Types";
 
 const ShowAttr: FC<ProductAttribute> = ({ title, description }) => (
     <tr className="border-y border-gray-300">
-        <td className="table-row-item">{title}</td>
-        <td className="table-row-item">{description}</td>
+        <RowItem children={title} />
+        <RowItem children={description} />
     </tr>
 );
 

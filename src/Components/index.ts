@@ -8,3 +8,4 @@ export { default as PaginatedPage } from "./Pagination/PaginatedPage";
 export { default as Routing } from "./Routing";
 export { default as Sidebar } from "./Sidebar";
 export { default as Status } from "./Status";
+export * from "./TableComponents";

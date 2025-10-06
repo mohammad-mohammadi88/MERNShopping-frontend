@@ -7,7 +7,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { Status } from "@Components";
+import { RowItem, Status } from "@Components";
 import {
     ordersStatus,
     ordersStatusColors,
@@ -41,31 +41,26 @@ const OrderItem: FC<Props> = ({
         <Disclosure>
             <DisclosureButton
                 as={"tr"}
-                className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
+                className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 max-w-full"
             >
-                <td className="table-row-item">{finalPrice}</td>
+                <RowItem children={finalPrice} />
+                <RowItem hidden MD children={mobile} />
 
-                <td className="hidden md:table-cell table-row-item">
-                    {mobile}
-                </td>
-                <td className="hidden lg:table-cell table-row-item">
-                    {fullname}
-                </td>
-                <td className="hidden xl:table-cell table-row-item">
-                    {totalPrice}
-                </td>
-                <td className="table-row-item !border-r-0">
+                <RowItem hidden LG children={fullname} />
+                <RowItem hidden XL children={totalPrice} />
+                <RowItem>
                     <Status<OrdersStatus>
                         currentStatus={statusName}
                         statusColors={ordersStatusColors}
                     />
-                </td>
-                <td className="table-row-item !h-16 relative">
+                </RowItem>
+
+                <RowItem className="!h-16 relative">
                     <ChevronDownIcon
                         height={26}
                         className="duration-200 absolute right-2 top-1/2 -translate-y-1/2 ease-out group-data-open:-rotate-180"
                     />
-                </td>
+                </RowItem>
             </DisclosureButton>
             <DisclosurePanel
                 as="tr"
