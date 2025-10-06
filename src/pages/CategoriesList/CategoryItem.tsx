@@ -3,12 +3,11 @@ import {
     DisclosureButton,
     DisclosurePanel,
 } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
 import { useWindowWidth } from "@Hooks";
-import { RowItem } from "@TableComponents";
+import { RowChevron, RowItem } from "@TableComponents";
 import type { Category } from "@Types";
 import CategoryGroupItem from "./CategoryGroupItem";
 
@@ -30,12 +29,7 @@ const CategoryItem: FC<Props> = ({
             >
                 <RowItem children={title} />
                 <RowItem hidden MD children={totalProducts} />
-                <RowItem className="flex items-center justify-end pr-2">
-                    <ChevronDownIcon
-                        height={26}
-                        className="duration-200 ease-out group-data-open:-rotate-180"
-                    />
-                </RowItem>
+                <RowItem children={<RowChevron />} />
             </DisclosureButton>
             <DisclosurePanel
                 as="tr"

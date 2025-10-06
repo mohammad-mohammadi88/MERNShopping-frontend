@@ -19,7 +19,7 @@ const ProductItemsHeading: RowItemProps[] = [
     { children: "Color (Hex)", SM: false, MD: true },
     { children: "Count" },
 ];
-const ProductExtraField: FC<Props> = ({
+const OrderExtraField: FC<Props> = ({
     address,
     coupon,
     id,
@@ -54,4 +54,4 @@ const ProductExtraField: FC<Props> = ({
     </>
 );
 
-export default ProductExtraField;
+export default OrderExtraField;

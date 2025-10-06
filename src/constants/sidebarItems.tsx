@@ -86,7 +86,7 @@ const sidebarItems: (orderCount: number) => SidebarItem[] = (orderCount) => [
                 id: "BFCbik-i0HE63Hf-PI1Af",
                 title: "Coupons",
                 Icon: TagIcon,
-                href: "/products",
+                href: "/coupons",
             },
         ],
     },

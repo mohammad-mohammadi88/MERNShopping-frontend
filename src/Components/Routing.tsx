@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 
 import {
     CategoriesList,
+    CouponsList,
     EditProduct,
     Index,
     NewCategory,
@@ -16,6 +17,7 @@ const Routing: FC = () => (
         <Route path="/" Component={Index} />
         <Route path="/products" Component={ProductsList} />
         <Route path="/categories" Component={CategoriesList} />
+        <Route path="/coupons" Component={CouponsList} />
         <Route path="/orders" Component={OrdersList} />
         <Route path="/new-category" Component={NewCategory} />
         <Route path="/new-product" Component={NewProduct} />

@@ -1,4 +1,5 @@
 export { default as CategoriesList } from "./CategoriesList";
+export { default as CouponsList } from "./CouponsList";
 export { default as EditProduct } from "./EditProduct";
 export { default as Index } from "./Index";
 export { default as NewCategory } from "./NewCategory";

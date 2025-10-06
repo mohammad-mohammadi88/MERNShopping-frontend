@@ -16,3 +16,7 @@ export interface GetDataWithPagination<T> {
     perPage: number;
     currentPage: number;
 }
+export interface TimeStamp {
+    createdAt: Date;
+    updatedAt: Date;
+}

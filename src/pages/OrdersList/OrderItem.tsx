@@ -3,11 +3,10 @@ import {
     DisclosureButton,
     DisclosurePanel,
 } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { RowItem, Status } from "@Components";
+import { RowChevron, RowItem, Status } from "@Components";
 import {
     ordersStatus,
     ordersStatusColors,
@@ -55,11 +54,8 @@ const OrderItem: FC<Props> = ({
                     />
                 </RowItem>
 
-                <RowItem className="!h-16 relative">
-                    <ChevronDownIcon
-                        height={26}
-                        className="duration-200 absolute right-2 top-1/2 -translate-y-1/2 ease-out group-data-open:-rotate-180"
-                    />
+                <RowItem className="!h-16">
+                    <RowChevron />
                 </RowItem>
             </DisclosureButton>
             <DisclosurePanel
