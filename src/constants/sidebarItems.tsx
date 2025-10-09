@@ -18,7 +18,9 @@ import {
 
 import type { SidebarItem } from "@Types";
 
-const sidebarItems: (orderCount: number) => SidebarItem[] = (orderCount) => [
+const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
+    orderCount
+) => [
     {
         id: "T6rHttpX49-2IU_aRASuQ",
         title: "Manage Products",
@@ -64,8 +66,15 @@ const sidebarItems: (orderCount: number) => SidebarItem[] = (orderCount) => [
                 title: "Orders List",
                 href: "/orders",
                 rightElement: (
-                    <div className="bg-red-500 rounded-full px-1.5 text-sm text-white">
-                        {orderCount > 99 ? "99+" : orderCount}
+                    <div
+                        title={String(orderCount)}
+                        className="bg-red-500 rounded-full px-1.5 text-sm text-white"
+                    >
+                        {typeof orderCount === "number"
+                            ? orderCount > 99
+                                ? "99+"
+                                : orderCount
+                            : orderCount}
                     </div>
                 ),
             },
@@ -81,6 +90,12 @@ const sidebarItems: (orderCount: number) => SidebarItem[] = (orderCount) => [
                 title: "Payments",
                 Icon: CreditCardIcon,
                 href: "/products",
+            },
+            {
+                id: "kjsldfHlksDASJDF_5FkF",
+                href: "/new-coupon",
+                title: "New Coupon",
+                Icon: PlusCircleIcon,
             },
             {
                 id: "BFCbik-i0HE63Hf-PI1Af",

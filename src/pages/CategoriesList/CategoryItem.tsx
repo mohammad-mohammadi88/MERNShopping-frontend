@@ -28,7 +28,7 @@ const CategoryItem: FC<Props> = ({
                 className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full"
             >
                 <RowItem children={title} />
-                <RowItem hidden MD children={totalProducts} />
+                <RowItem hidden MD children={String(totalProducts)} />
                 <RowItem children={<RowChevron />} />
             </DisclosureButton>
             <DisclosurePanel

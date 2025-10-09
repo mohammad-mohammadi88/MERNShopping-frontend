@@ -8,6 +8,8 @@ import { ErrorMessage } from ".";
 interface Props {
     containerClassName?: string;
     name: string;
+    className?: string;
+    description?: string;
     defaultOption?: string;
     label: string;
     options: SelectOption[];

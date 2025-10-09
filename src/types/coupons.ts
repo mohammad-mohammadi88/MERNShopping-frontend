@@ -1,19 +1,16 @@
-import type { CouponStatusValues } from "@Constants";
-import type { ID, TimeStamp, User } from ".";
+import type { CouponsStatusValues } from "@Constants";
+import type { FormCouponValues, ID, TimeStamp, User } from ".";
+export type * from "@/Forms/validation";
 
 export interface Constraints {
     user: User;
 }
-export interface Discount {
-    role: "number" | "percent";
-    amount: number;
-}
-export interface Coupon extends ID, TimeStamp {
+export interface Coupon
+    extends ID,
+        TimeStamp,
+        Omit<FormCouponValues, "constraints"> {
     code: string;
-    discount: Discount;
-    limit: number;
     used: number;
-    expiresAt: Date;
+    status: CouponsStatusValues;
     constraints: Constraints;
-    status: CouponStatusValues;
 }

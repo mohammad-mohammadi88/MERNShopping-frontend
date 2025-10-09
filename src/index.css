@@ -17,6 +17,9 @@
     }
 }
 
+.page-layout {
+    @apply bg-white p-4 rounded border;
+}
 .field-label {
     @apply text-lg font-normal mb-2 block text-gray-800;
 }

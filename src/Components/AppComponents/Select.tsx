@@ -1,4 +1,10 @@
-import { Field, Label, Select, type SelectProps } from "@headlessui/react";
+import {
+    Description,
+    Field,
+    Label,
+    Select,
+    type SelectProps,
+} from "@headlessui/react";
 import clsx from "clsx";
 import type { FC, PropsWithChildren } from "react";
 
@@ -8,6 +14,7 @@ interface Props extends SelectProps {
     options: SelectOption[];
     label: string;
     defaultOption?: string;
+    description?: string;
     labelClassName?: string;
     containerClassName?: string;
 }
@@ -18,12 +25,18 @@ const AppSelect: FC<PropsWithChildren<Props>> = ({
     className,
     label,
     options,
+    description,
     defaultOption,
     labelClassName,
     ...field
 }) => (
     <Field className={clsx("flex flex-col", containerClassName)}>
         <Label className={clsx("field-label", labelClassName)}>{label}</Label>
+        {description && (
+            <Description className="text-gray-600 mb-1 text-sm">
+                {description}
+            </Description>
+        )}
         <div className="relative">
             <Select
                 {...field}

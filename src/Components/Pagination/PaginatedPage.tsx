@@ -100,7 +100,7 @@ const PaginatedPage = <T, E extends Obj>({
         status,
     };
     return (
-        <div className="bg-white rounded p-8">
+        <div className="page-layout !p-8">
             <h1 className="mb-3">{capitalize(label)}s List</h1>
             <table className="w-full">
                 {(isLoading || isDataExists) && (

@@ -43,7 +43,7 @@ const NewProduct: FC = () => {
         );
     };
     return (
-        <div className="bg-white p-4 rounded border">
+        <div className="page-layout">
             <ProgressModal progress={progress} />
             <AlertModal
                 isOpen={state.isOpen}

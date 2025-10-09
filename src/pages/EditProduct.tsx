@@ -63,7 +63,7 @@ const EditProduct: FC = () => {
         ? prevProduct?.data || prevProduct?.problem
         : undefined;
     return (
-        <div className="bg-white p-4 rounded border">
+        <div className="page-layout">
             <ProgressModal progress={progress} />
             <AlertModal
                 isOpen={state.isOpen}

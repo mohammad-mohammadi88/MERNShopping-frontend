@@ -36,12 +36,12 @@ interface Props {
     close: Close;
 }
 const Sidebar: FC<Props> = ({ close, show }) => {
-    const { data, isSuccess, isPending } = useQuery({
+    const { data, isPending } = useQuery({
         queryKey: ["orderCount"],
         queryFn: () => ordersApi.getOrdersCount(),
     });
-    const ordersCount = typeof data?.data === "number" ? data.data : 0;
-    const items = data?.ok && isSuccess && sidebarItems(ordersCount);
+    const items =
+        !isPending && sidebarItems(data?.ok && data?.data ? data.data : "N/A");
     return (
         <Transition show={show}>
             <div className="sm:max-h-screen top-0 bottom-0 left-0 right-0 fixed z-2000 overflow-y-hidden sm:static pb-6 w-screen sm:w-1/2 md:w-1/3 xl:w-1/4">
