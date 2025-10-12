@@ -12,17 +12,16 @@ const rowItems: RowItemProps[] = [
     { children: "Limit/Used", hidden: true, LG: true },
     { children: "Username", hidden: true, XL: true },
 ];
+const searchFields: string[] = ["user info", "code"];
 const index = () => (
     <PaginatedPage<Coupon, {}>
         LoadingComponent={CouponsLoading}
+        fields={searchFields}
         staleTime={convertTime(120)}
         label="coupon"
         DatumItemComponent={CouponItem}
-        apiCall={({ page, perPage, status }) =>
-            couponsApi.getCoupons(status === "null" ? null : status, {
-                page,
-                perPage,
-            })
+        apiCall={({ status, ...params }) =>
+            couponsApi.getCoupons(status === "null" ? null : status, params)
         }
     >
         {rowItems.map((props, i) => (

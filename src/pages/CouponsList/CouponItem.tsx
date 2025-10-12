@@ -19,7 +19,7 @@ const CouponItem: FC<Coupon> = ({
     status,
     limit,
     used,
-    constraints: { user },
+    user,
 }) => (
     <tr className="border-y h-16 group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full">
         <RowItem children={code} />

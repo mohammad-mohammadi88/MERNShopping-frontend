@@ -33,7 +33,7 @@ type ClassValues = {
 const sizeClassGenerator = (data: ClassValues): string =>
     sizeClasses[data.size][
         // if false it will return hidden class and if true it will return display class
-        Number(data.value || true)
+        Number(data.value ?? true)
     ];
 
 const RowItem: FC<PropsWithChildren<RowItemProps>> = ({

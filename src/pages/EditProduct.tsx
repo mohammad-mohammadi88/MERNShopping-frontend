@@ -42,8 +42,10 @@ const EditProduct: FC = () => {
         // if ok is true it will be 1 and if false will be 0 and close the progress modal
         setProgress(Number(ok));
 
-        if (ok)
+        if (ok) {
+            queryClient.invalidateQueries({ queryKey: ["products"] });
             queryClient.invalidateQueries({ queryKey: ["product", productId] });
+        }
         dispatch(
             ok
                 ? useModalReducer.success

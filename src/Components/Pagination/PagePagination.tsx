@@ -15,13 +15,14 @@ const PagePagination: FC<PagePaginationProps> = ({
 }) => {
     const btnClass =
         "size-10 hover:bg-gray-300 border border-r-0 disabled:opacity-60 disabled:cursor-auto disabled:hover:bg-gray-200 border-gray-400 duration-150 cursor-pointer flex justify-center items-center bg-gray-200";
-    const PageBtn: FC<{ page: number }> = ({ page }) =>
+    const PageBtn: FC<{ page: number; i: number }> = ({ page, i }) =>
         page > 0 &&
         page <= totalPages && (
             <button
                 onClick={() => setPage(page)}
                 className={clsx(
                     btnClass,
+                    (i === 0 || i === 4) && "md:hidden xl:block",
                     page === currentPage && "bg-gray-300 hover:bg-gray-400"
                 )}
             >
@@ -41,8 +42,8 @@ const PagePagination: FC<PagePaginationProps> = ({
             >
                 <ChevronLeftIcon height={20} />
             </button>
-            {pageArray.map((page) => (
-                <PageBtn page={page} key={page} />
+            {pageArray.map((page, i) => (
+                <PageBtn page={page} i={i} key={page} />
             ))}
             <button
                 className={clsx(

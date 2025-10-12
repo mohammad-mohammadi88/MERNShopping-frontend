@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, type FC } from "react";
 import { useNavigate } from "react-router";
 
+import { queryClient } from "@/main";
 import { categoriesApi, productsApi } from "@Api";
 import { AlertModal, Loading, ProgressModal } from "@Components";
 import { AddProductLogic } from "@Forms";
@@ -29,6 +30,7 @@ const NewProduct: FC = () => {
 
         // if ok is true it will be 1 and if false will be 0 and close the progress modal
         setProgress(Number(ok));
+        if (ok) queryClient.invalidateQueries({ queryKey: ["products"] });
 
         dispatch(
             ok

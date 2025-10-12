@@ -14,18 +14,17 @@ const rowItems: RowItemProps[] = [
     { children: "Status" },
     { children: "open", inVisible: true, className: "max-w-20" },
 ];
+const searchFields: string[] = ["user info", "coupon"];
 const Orders = () => (
     <PaginatedPage<Order, OrdersStatus>
         label="order"
+        fields={searchFields}
         staleTime={convertTime(5)}
         LoadingComponent={OrdersLoader}
         collectionStatus={ordersStatus}
         DatumItemComponent={OrderItem}
-        apiCall={({ page, perPage, status }) =>
-            ordersApi.getAllOrders(status === "null" ? null : status, {
-                page,
-                perPage,
-            })
+        apiCall={({ status, ...params }) =>
+            ordersApi.getAllOrders(status === "null" ? null : status, params)
         }
     >
         {rowItems.map((props, i) => (

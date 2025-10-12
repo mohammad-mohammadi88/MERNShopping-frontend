@@ -1,4 +1,5 @@
 import type { productStatus } from "@Constants";
+import type { Category } from "./category";
 import type { ID } from "./globals";
 
 export interface FormProductAttribute {
@@ -28,8 +29,9 @@ export interface EditProductValue extends AddProductValue {
 }
 export interface Product
     extends ID,
-        Omit<EditProductValue, "gallery" | "thumbnail"> {
+        Omit<EditProductValue, "gallery" | "thumbnail" | "productCategory"> {
     attrs: ProductAttribute[];
+    productCategory: Category;
     colors: ProductColor[];
     thumbnail: string;
     gallery: string[];

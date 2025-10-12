@@ -1,12 +1,12 @@
-import type { GetDataWithPagination, Order, PaginationType } from "@Types";
+import type { ApiListQueries, GetDataWithPagination, Order } from "@Types";
 import apiClient, { endpointGenerator } from "./client";
 
 const { addParam, endpoint } = endpointGenerator("orders");
 
-const getAllOrders = (status: string | null, pagination?: PaginationType) =>
+const getAllOrders = (status: string | null, params?: ApiListQueries) =>
     apiClient.get<GetDataWithPagination<Order>, string>(
         endpoint,
-        status ? { status, ...pagination } : { ...pagination }
+        status ? { status, ...params } : { ...params }
     );
 
 const getOrdersCount = () => apiClient.get<number, string>(addParam("count"));

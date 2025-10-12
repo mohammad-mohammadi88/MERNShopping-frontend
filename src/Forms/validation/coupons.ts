@@ -39,9 +39,6 @@ const discount = object().shape({
 });
 export type Discount = InferType<typeof discount>;
 
-// constraints
-const constraints = object().shape({ user: string().required().label("User") });
-
 // limit
 const limit = number()
     .typeError("Limit Must be a number")
@@ -60,11 +57,14 @@ const expiresAt = date()
     )
     .label("Expiration date");
 
+// user
+const user = string().required().label("User");
+
 // schema
 export const postCouponSchema = object().shape({
     discount,
     limit,
-    constraints,
+    user,
     expiresAt,
 });
 export type FormCouponValues = InferType<typeof postCouponSchema>;

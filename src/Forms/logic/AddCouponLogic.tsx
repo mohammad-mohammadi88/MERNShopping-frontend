@@ -12,7 +12,7 @@ import { DiscountRoleField, Field, Select } from "../contracts";
 import { postCouponSchema } from "../validation/coupons";
 
 const initialValues: FormCouponValues = {
-    constraints: { user: "" },
+    user: "",
     discount: { amount: "" as unknown as number, role: "number" },
     expiresAt: new Date(),
     limit: "" as unknown as number,
@@ -69,7 +69,7 @@ const AddCouponLogic: FC<Props> = ({ handleSubmit, users }) => (
                     description="This coupon will be available for the selected user"
                     label="User"
                     className="-mt-1"
-                    name="constraints.user"
+                    name="user"
                     defaultOption="Select User"
                     options={formatUserOption(users)}
                 />

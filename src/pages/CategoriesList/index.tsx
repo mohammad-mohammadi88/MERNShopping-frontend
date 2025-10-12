@@ -8,15 +8,15 @@ import { convertTime } from "@Utils";
 import CategoryItem from "./CategoryItem";
 import CategoriesLoading from "./Loading";
 
+const searchFields: string[] = ["title", "attributes"];
 const CategoriesList: FC = () => (
     <PaginatedPage<Category, {}>
         LoadingComponent={CategoriesLoading}
+        fields={searchFields}
         staleTime={convertTime(120)}
         label="category"
         DatumItemComponent={CategoryItem}
-        apiCall={({ page, perPage }) =>
-            categoriesApi.getCategories({ page, perPage })
-        }
+        apiCall={({ status, ...params }) => categoriesApi.getCategories(params)}
     >
         <RowItem children="Product Title" isHeading />
         <RowItem children="Product Count" isHeading hidden MD />

@@ -20,3 +20,6 @@ export interface TimeStamp {
     createdAt: Date;
     updatedAt: Date;
 }
+export interface ApiListQueries extends PaginationType {
+    query: string;
+}

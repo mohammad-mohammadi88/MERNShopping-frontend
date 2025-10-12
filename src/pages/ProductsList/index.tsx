@@ -10,18 +10,19 @@ const rowItems: RowItemProps[] = [
     { children: "Title" },
     { children: "Quantity", hidden: true, LG: true },
     { children: "Status", hidden: true, LG: true },
-    { children: "Exact Price", hidden: true, XL: true },
+    { children: "Category", hidden: true, XL: true },
+    { children: "Exact Price", hidden: true, XXL: true },
     { children: "Sale Price", SM: false, MD: true },
     { children: "open", className: "max-w-10", inVisible: true },
 ];
+const searchFields: string[] = ["title", "category"];
 const Products = () => (
     <PaginatedPage<Product, {}>
+        fields={searchFields}
         label="product"
         staleTime={convertTime(60)}
         LoadingComponent={ProductsLoader}
-        apiCall={({ page, perPage }) =>
-            productsApi.getProducts({ page, perPage })
-        }
+        apiCall={({ status, ...params }) => productsApi.getProducts(params)}
         DatumItemComponent={ProductItem}
     >
         {rowItems.map((props, i) => (

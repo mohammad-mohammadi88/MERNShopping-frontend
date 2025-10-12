@@ -1,17 +1,17 @@
 import type {
+    ApiListQueries,
     Coupon,
     FormCouponValues,
     GetDataWithPagination,
-    PaginationType,
 } from "@Types";
 import apiClient, { endpointGenerator } from "./client";
 
 const { endpoint } = endpointGenerator("coupons");
 
-const getCoupons = (status: string | null, pagination?: PaginationType) =>
+const getCoupons = (status: string | null, params?: ApiListQueries) =>
     apiClient.get<GetDataWithPagination<Coupon>, string>(
         endpoint,
-        status ? { status, ...pagination } : { ...pagination }
+        status ? { status, ...params } : { ...params }
     );
 
 const postCoupon = (data: FormCouponValues) =>

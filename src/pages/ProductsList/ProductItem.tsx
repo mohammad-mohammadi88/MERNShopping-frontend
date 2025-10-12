@@ -20,14 +20,15 @@ interface Props extends Product {
     isLast: boolean;
 }
 const ProductItem: FC<Props> = ({
-    price,
     salePrice,
     thumbnail,
     gallery,
     colors,
+    price,
     attrs,
     quantity,
     status,
+    productCategory: { title: categoryTitle },
     _id,
     title,
     isLast,
@@ -49,7 +50,8 @@ const ProductItem: FC<Props> = ({
             hidden: true,
             LG: true,
         },
-        { children: price, hidden: true, XL: true },
+        { children: categoryTitle, hidden: true, XL: true },
+        { children: price, hidden: true, XXL: true },
         { children: salePrice, SM: false, MD: true },
         { children: <RowChevron />, className: "!h-16" },
     ];

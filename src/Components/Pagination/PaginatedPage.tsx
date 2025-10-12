@@ -3,15 +3,14 @@ import type { ApiResponse } from "apisauce";
 import { useEffect, useState, type FC, type JSX, type ReactNode } from "react";
 import { useNavigate } from "react-router";
 
-import type { GetDataWithPagination, ID } from "@Types";
+import type { ApiListQueries, GetDataWithPagination, ID } from "@Types";
 import { capitalize } from "@Utils";
 import { AlertModal } from "../Modal";
+import SearchInput from "../SearchInput";
 import Pagination from "./Pagination";
 
 type Obj = Record<string, number>;
-interface ApiParams {
-    page: number;
-    perPage: number;
+interface ApiParams extends ApiListQueries {
     status: string;
 }
 interface DatumItemProps {
@@ -26,6 +25,7 @@ export interface PaginatedPageProps<T, E extends Obj> {
     label: string;
     staleTime?: number;
     children: ReactNode;
+    fields: string[];
     collectionStatus?: E;
     DatumItemComponent: FC<DatumItemProps & T>;
 }
@@ -47,17 +47,42 @@ const PaginatedPage = <T, E extends Obj>({
     apiCall,
     LoadingComponent,
     label,
+    fields,
     children,
     DatumItemComponent,
     staleTime,
     collectionStatus,
 }: PaginatedPageProps<T, E>) => {
-    const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
     const navigate = useNavigate();
+
+    // states
+    const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
+
+    // status
     const [status, setStatus] = useState<string>("null");
 
+    // search query
+    const [searchQuery, setSearchQuery] = useState<string>("");
+    const [debouncedSearchQuery, setDebouncedSearchQuery] =
+        useState<string>("");
+
+    // pagination
     const [perPage, setPerPage] = useState<number>(10);
     const [page, setPage] = useState<number>(1);
+
+    // to debounce search
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearchQuery(searchQuery.trim());
+            clearTimeout(timer);
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
+
+    // api query keys and query center
+    const searchQueryKeys = debouncedSearchQuery
+        ? ["query", debouncedSearchQuery]
+        : [];
     const statusQueryKeys = collectionStatus
         ? ["status", status === "null" ? "All" : status]
         : [];
@@ -68,40 +93,71 @@ const PaginatedPage = <T, E extends Obj>({
             page,
             "perPage",
             perPage,
+            ...searchQueryKeys,
             ...statusQueryKeys,
         ],
-        queryFn: () => apiCall({ page, perPage, status }),
+        queryFn: () =>
+            apiCall({
+                page,
+                perPage,
+                status,
+                query: debouncedSearchQuery,
+            }),
         staleTime,
     });
 
+    // data status constants
     const isDataReady = data?.ok && data.data;
     const isDataExists = isDataReady && data.data?.data.length !== 0;
+    const isStatusExists = collectionStatus && status !== "null";
+    const isSearchQueryExists = !!debouncedSearchQuery;
+    const totalPages = isDataReady ? data?.data?.pages || 1 : 0;
 
+    // checking for error
     useEffect(() => {
-        if (
-            isSuccess &&
-            (!data.ok || (isDataReady && data.data?.data.length === 0))
-        )
-            setIsErrorModalOpen(true);
+        if (isSuccess && !data.ok) setIsErrorModalOpen(true);
         return () => setIsErrorModalOpen(false);
     }, [isSuccess, data?.ok]);
 
-    const errorDescription =
-        !data?.ok &&
-        (data?.data ||
-            data?.problem ||
-            "Unexpected error happend while getting data");
+    // handling api error to show in modal
+    const errorDescription = !data?.ok
+        ? data?.data ||
+          data?.problem ||
+          "Unexpected error happend while getting data"
+        : "";
 
-    const totalPages = isDataReady ? data?.data?.pages || 1 : 0;
-
+    // if status collection exists, create status props for status pagination
     const statusProps = collectionStatus && {
         collectionStatus,
         setStatus,
         status,
     };
+
+    // message for not data existence message
+    const noDataMessage = `There is no ${label} exists ${
+        isStatusExists
+            ? `with status "${convertStatusToString(
+                  Number(status),
+                  collectionStatus
+              )}"`
+            : ""
+    } ${
+        isSearchQueryExists
+            ? `${
+                  isStatusExists ? "and" : "with"
+              } search query "${debouncedSearchQuery}"`
+            : ""
+    }`.trim();
     return (
         <div className="page-layout !p-8">
-            <h1 className="mb-3">{capitalize(label)}s List</h1>
+            <div className="flex pb-4 !space-y-4 flex-col md:flow-row justify-between">
+                <h1 className="mb-3">{capitalize(label)}s List</h1>
+                <SearchInput
+                    fields={fields}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                />
+            </div>
             <table className="w-full">
                 {(isLoading || isDataExists) && (
                     <thead>
@@ -124,8 +180,7 @@ const PaginatedPage = <T, E extends Obj>({
             <AlertModal
                 isOpen={isErrorModalOpen}
                 title="Error"
-                // it will always have error text and "" is just for typescript
-                description={errorDescription || ""}
+                description={errorDescription}
                 role="error"
                 onClose={() => {
                     setIsErrorModalOpen(false);
@@ -136,13 +191,7 @@ const PaginatedPage = <T, E extends Obj>({
                 <>
                     {data.data?.data.length === 0 && (
                         <p className="text-red-500 py-4 text-xl font-bold">
-                            There is no {label} exists{" "}
-                            {collectionStatus &&
-                                status !== "null" &&
-                                `with status "${convertStatusToString(
-                                    Number(status),
-                                    collectionStatus
-                                )}"`}
+                            {noDataMessage}
                         </p>
                     )}
                     <Pagination
