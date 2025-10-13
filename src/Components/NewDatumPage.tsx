@@ -37,7 +37,7 @@ const NewDatumPage = <T,>({
         );
     };
     return (
-        <div className="page-layout border">
+        <>
             <AlertModal
                 isOpen={state.isOpen}
                 onClose={() => {
@@ -58,7 +58,7 @@ const NewDatumPage = <T,>({
             />
             <h1 className="pb-4">New {datumName}</h1>
             <NewDatumLogic handleSubmit={handleSubmit} />
-        </div>
+        </>
     );
 };
 

@@ -12,7 +12,6 @@ const rowItems: RowItemProps[] = [
     { children: "Customer", hidden: true, LG: true },
     { children: "Total Price", hidden: true, XL: true },
     { children: "Status" },
-    { children: "open", inVisible: true, className: "max-w-20" },
 ];
 const searchFields: string[] = ["user info", "coupon"];
 const Orders = () => (

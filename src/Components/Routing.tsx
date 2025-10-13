@@ -9,6 +9,7 @@ import {
     NewCategory,
     NewCoupon,
     NewProduct,
+    OrderDetail,
     OrdersList,
     ProductsList,
 } from "@Pages";
@@ -23,6 +24,7 @@ const Routing: FC = () => (
         <Route path="/new-category" Component={NewCategory} />
         <Route path="/new-product" Component={NewProduct} />
         <Route path="/new-coupon" Component={NewCoupon} />
+        <Route path="/order/:id" Component={OrderDetail} />
         <Route path="/edit-product/:id" Component={EditProduct} />
     </Routes>
 );

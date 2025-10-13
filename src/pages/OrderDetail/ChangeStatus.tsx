@@ -37,16 +37,17 @@ const ChangeStatus: FC<Props> = ({ status, id }) => {
         <>
             <div className="flex items-end space-x-3">
                 <Select
-                    labelClassName="!font-bold !text-xl !mb-3"
+                    labelClassName="!font-bold !text-xl"
                     options={orderStatusOptions}
                     label="Order Status"
+                    className={"!mb-0"}
                     onChange={(e) => setNewStatus(e.target.value)}
                     value={newStatus}
                 />
                 <Button
                     role="edit"
-                    title="Order status"
-                    className="h-auto -translate-y-0.5"
+                    title="Status"
+                    className="h-auto !-mb-1 -translate-y-0.5"
                     onClick={() => seteditConfirmOpen(true)}
                 />
             </div>

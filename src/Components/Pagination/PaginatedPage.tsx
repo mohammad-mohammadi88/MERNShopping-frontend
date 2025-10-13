@@ -149,7 +149,7 @@ const PaginatedPage = <T, E extends Obj>({
             : ""
     }`.trim();
     return (
-        <div className="page-layout !p-8">
+        <div className="w-full p-4">
             <div className="flex pb-4 !space-y-4 flex-col md:flow-row justify-between">
                 <h1 className="mb-3">{capitalize(label)}s List</h1>
                 <SearchInput

@@ -1,15 +1,16 @@
-import { getContrastColor } from "@/utils";
+import type { FC } from "react";
+
 import { RowItem } from "@Components";
 import type { OrderProduct } from "@Types";
-import type { FC } from "react";
+import { getContrastColor } from "@Utils";
 
 const ShowOrderProduct: FC<OrderProduct> = ({
     product: { thumbnail, title },
     color,
     count,
 }) => (
-    <tr className="border border-gray-300">
-        <td className="!size-16 sm:hidden md:flex items-center flex justify-center">
+    <tr className="border h-16 border-gray-300">
+        <td className="!size-16 hidden md:flex items-center justify-center">
             <img
                 src={thumbnail}
                 className="!size-12 rounded-full"

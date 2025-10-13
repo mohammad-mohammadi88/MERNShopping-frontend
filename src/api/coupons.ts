@@ -6,7 +6,7 @@ import type {
 } from "@Types";
 import apiClient, { endpointGenerator } from "./client";
 
-const { endpoint } = endpointGenerator("coupons");
+const { endpoint, addParam } = endpointGenerator("coupons");
 
 const getCoupons = (status: string | null, params?: ApiListQueries) =>
     apiClient.get<GetDataWithPagination<Coupon>, string>(
@@ -14,10 +14,14 @@ const getCoupons = (status: string | null, params?: ApiListQueries) =>
         status ? { status, ...params } : { ...params }
     );
 
+const getSingleCoupon = (id: string) =>
+    apiClient.get<Coupon, string>(addParam(id));
+
 const postCoupon = (data: FormCouponValues) =>
     apiClient.post<Coupon, string>(endpoint, data);
 
 export default {
     getCoupons,
+    getSingleCoupon,
     postCoupon,
 };

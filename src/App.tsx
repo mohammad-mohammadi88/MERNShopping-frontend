@@ -23,7 +23,9 @@ const App: FC = () => {
                     close={() => setShowSidebar(false)}
                 />
                 <div className="w-full sm:w-1/2 md:w-2/3 xl:w-3/4 px-4 sm:pr-0">
-                    <Routing />
+                    <div className="page-layout">
+                        <Routing />
+                    </div>
                 </div>
             </div>
         </div>

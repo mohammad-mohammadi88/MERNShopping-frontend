@@ -6,9 +6,9 @@ import { getContrastColor } from "@Utils";
 
 const ShowColor: FC<ProductColor> = ({ title, color, priceEffect }) => (
     <tr style={{ backgroundColor: color, color: getContrastColor(color) }}>
-        <RowItem SM={false} MD children={title} />
+        <RowItem hidden MD children={title} />
         <RowItem children={color} />
-        <RowItem children={String(priceEffect)} />
+        <RowItem hidden SM children={String(priceEffect)} />
     </tr>
 );
 

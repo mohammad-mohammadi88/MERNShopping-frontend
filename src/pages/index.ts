@@ -5,5 +5,6 @@ export { default as Index } from "./Index";
 export { default as NewCategory } from "./NewCategory";
 export { default as NewCoupon } from "./NewCoupon";
 export { default as NewProduct } from "./NewProduct";
+export { default as OrderDetail } from "./OrderDetail";
 export { default as OrdersList } from "./OrdersList";
 export { default as ProductsList } from "./ProductsList";

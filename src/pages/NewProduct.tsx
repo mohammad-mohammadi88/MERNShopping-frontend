@@ -45,7 +45,7 @@ const NewProduct: FC = () => {
         );
     };
     return (
-        <div className="page-layout">
+        <>
             <ProgressModal progress={progress} />
             <AlertModal
                 isOpen={state.isOpen}
@@ -73,7 +73,7 @@ const NewProduct: FC = () => {
                     categories={data}
                 />
             )}
-        </div>
+        </>
     );
 };
 

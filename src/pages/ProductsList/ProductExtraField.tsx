@@ -18,9 +18,9 @@ interface Props {
 }
 
 const colorItems: RowItemProps[] = [
-    { children: "Color Name", SM: false, MD: true },
+    { children: "Color Name", hidden: true, MD: true },
     { children: "Color (Hex)" },
-    { children: "Price Effect" },
+    { children: "Price Effect", hidden: true, SM: true },
 ];
 const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
     <>
@@ -29,7 +29,7 @@ const ProductExtraField: FC<Props> = ({ gallery, attrs, colors, id }) => (
             <ProductEditBtn id={id} />
         </div>
         <ListArrayField arrayLength={gallery.length} title="Gallery">
-            <div className="flex overflow-x-scroll w-full sm:w-56 md:w-full space-x-2.5 pb-3 snap-x snap-mandatory scroll-container scrollbar-hide">
+            <div className="flex overflow-x-scroll -pl-2 sm:pl-0 w-56 md:w-96 lg:w-full space-x-2.5 pb-3 snap-x snap-mandatory scroll-container scrollbar-hide">
                 {gallery.map((image) => (
                     <ShowGalleryImage url={image} key={image} />
                 ))}

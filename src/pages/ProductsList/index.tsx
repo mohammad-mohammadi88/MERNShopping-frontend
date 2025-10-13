@@ -12,7 +12,7 @@ const rowItems: RowItemProps[] = [
     { children: "Status", hidden: true, LG: true },
     { children: "Category", hidden: true, XL: true },
     { children: "Exact Price", hidden: true, XXL: true },
-    { children: "Sale Price", SM: false, MD: true },
+    { children: "Sale Price", hidden: true, MD: true },
     { children: "open", className: "max-w-10", inVisible: true },
 ];
 const searchFields: string[] = ["title", "category"];

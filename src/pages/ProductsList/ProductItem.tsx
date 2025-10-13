@@ -52,7 +52,7 @@ const ProductItem: FC<Props> = ({
         },
         { children: categoryTitle, hidden: true, XL: true },
         { children: price, hidden: true, XXL: true },
-        { children: salePrice, SM: false, MD: true },
+        { children: salePrice, hidden: true, MD: true },
         { children: <RowChevron />, className: "!h-16" },
     ];
     return (
@@ -81,10 +81,7 @@ const ProductItem: FC<Props> = ({
             >
                 <td
                     colSpan={8}
-                    className={clsx(
-                        "pl-4 sm:pl-1 md:pl-4",
-                        isLast ? "pb-0" : "pb-8"
-                    )}
+                    className={clsx("pl-1 md:pl-4", isLast ? "pb-0" : "pb-8")}
                 >
                     <ProductExtraField
                         id={_id}

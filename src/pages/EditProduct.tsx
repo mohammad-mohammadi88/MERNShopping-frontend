@@ -65,7 +65,7 @@ const EditProduct: FC = () => {
         ? prevProduct?.data || prevProduct?.problem
         : undefined;
     return (
-        <div className="page-layout">
+        <>
             <ProgressModal progress={progress} />
             <AlertModal
                 isOpen={state.isOpen}
@@ -99,7 +99,7 @@ const EditProduct: FC = () => {
                     {error}
                 </h2>
             )}
-        </div>
+        </>
     );
 };
 
