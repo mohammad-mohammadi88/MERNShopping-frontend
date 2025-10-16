@@ -25,7 +25,10 @@ const orderStatusOptions: SelectOption[] = Object.keys(ordersStatus).map(
     })
 );
 const ChangeStatus: FC<Props> = ({ status, id }) => {
-    const [editConfirmOpen, seteditConfirmOpen] = useState<boolean>(false);
+    const [editConfirmOpen, setEditConfirmOpen] = useState<boolean>(false);
+    const [prevStatus, setPrevStatus] = useState<OrdersStatusValues | string>(
+        status
+    );
     const [newStatus, setNewStatus] = useState<OrdersStatusValues | string>(
         status
     );
@@ -48,7 +51,7 @@ const ChangeStatus: FC<Props> = ({ status, id }) => {
                     role="edit"
                     title="Status"
                     className="h-auto !-mb-1 -translate-y-0.5"
-                    onClick={() => seteditConfirmOpen(true)}
+                    onClick={() => setEditConfirmOpen(true)}
                 />
             </div>
             {/* loading modal */}
@@ -64,12 +67,19 @@ const ChangeStatus: FC<Props> = ({ status, id }) => {
                 title="Edit"
                 description="Are you sure want to edit this order status"
                 isOpen={editConfirmOpen}
-                onClose={() => seteditConfirmOpen(false)}
+                onClose={() => setEditConfirmOpen(false)}
                 onConfirm={async () => {
                     const { ok, data, problem } = await mutateAsync();
 
-                    if (!ok)
+                    if (!ok) {
+                        // if request fails we will change the status to prevStatus, the one is stable
+                        setNewStatus(prevStatus);
+
                         return dispatch(useModalReducer.error(data ?? problem));
+                    }
+
+                    // if request resolves we will update the prevStatus because the newStatus is now stable
+                    setPrevStatus(newStatus);
 
                     queryClient.invalidateQueries({
                         queryKey: ["orders", "page"],

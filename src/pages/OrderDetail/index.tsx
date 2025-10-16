@@ -1,8 +1,9 @@
-import { ordersApi } from "@/api";
-import { AlertModal, Loading } from "@/Components";
-import { convertTime } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
+
+import { ordersApi } from "@Api";
+import { AlertModal, Loading } from "@Components";
+import { convertTime } from "@Utils";
 import OrderDatumShow from "./OrderDatumShow";
 
 const OrderDetail = () => {
@@ -28,7 +29,7 @@ const OrderDetail = () => {
         <>
             <AlertModal
                 role="error"
-                isOpen={!product?.ok}
+                isOpen={!product?.ok && !!product?.problem}
                 description={errorDescription}
                 title="Error"
                 onClose={() => navigate("/orders")}
