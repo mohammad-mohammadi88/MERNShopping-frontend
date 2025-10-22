@@ -29,7 +29,7 @@ const PaymentItem: FC<Props> = ({
     const fullname = `${capitalize(firstName)} ${capitalize(lastName)}`;
     return (
         <tr
-            onClick={() => navigate(`/order/${_id}`)}
+            onClick={() => navigate(`/payment/${_id}`)}
             className="border-y h-16 group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 max-w-full"
         >
             <RowItem children={amount} />

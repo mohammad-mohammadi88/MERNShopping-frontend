@@ -1,12 +1,12 @@
 import type { FC } from "react";
 
 import type { FullOrder } from "@Types";
+import { UserDetails } from "../Shared";
 import {
     ChangeStatus,
     CouponDetails,
     OrderProductDetails,
     ShowAddress,
-    UserDetails,
 } from "./Order";
 
 const OrderDatumShow: FC<FullOrder> = ({

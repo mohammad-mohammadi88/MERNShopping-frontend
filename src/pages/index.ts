@@ -8,5 +8,6 @@ export { default as NewProduct } from "./NewProduct";
 export { default as OrderDetail } from "./OrderDetail";
 export { default as OrdersList } from "./OrdersList";
 export { default as PaymentCancel } from "./PaymentCancel";
+export { default as PaymentDetail } from "./PaymentDetail";
 export { default as PaymentsList } from "./PaymentsList";
 export { default as ProductsList } from "./ProductsList";
