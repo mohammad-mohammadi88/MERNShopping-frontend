@@ -19,7 +19,7 @@ const searchFields: string[] = ["title", "category"];
 const Products = () => (
     <PaginatedPage<Product, {}>
         fields={searchFields}
-        label="product"
+        label="products"
         staleTime={convertTime(60)}
         LoadingComponent={ProductsLoader}
         apiCall={({ status, ...params }) => productsApi.getProducts(params)}

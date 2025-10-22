@@ -73,7 +73,7 @@ const PaginatedPage = <T, E extends Obj>({
     // to debounce search
     useEffect(() => {
         const timer = setTimeout(() => {
-            setDebouncedSearchQuery(searchQuery.trim());
+            setDebouncedSearchQuery(searchQuery.toLowerCase().trim());
             clearTimeout(timer);
         }, 500);
         return () => clearTimeout(timer);
@@ -88,7 +88,7 @@ const PaginatedPage = <T, E extends Obj>({
         : [];
     const { data, isLoading, isSuccess } = useQuery({
         queryKey: [
-            label + "s",
+            label,
             "page",
             page,
             "perPage",
@@ -151,7 +151,7 @@ const PaginatedPage = <T, E extends Obj>({
     return (
         <div className="w-full p-4">
             <div className="flex pb-4 !space-y-4 flex-col md:flow-row justify-between">
-                <h1 className="mb-3">{capitalize(label)}s List</h1>
+                <h1 className="mb-3">{capitalize(label)} List</h1>
                 <SearchInput
                     fields={fields}
                     searchQuery={searchQuery}

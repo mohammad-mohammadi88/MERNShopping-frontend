@@ -14,7 +14,7 @@ const CategoriesList: FC = () => (
         LoadingComponent={CategoriesLoading}
         fields={searchFields}
         staleTime={convertTime(120)}
-        label="category"
+        label="categorys"
         DatumItemComponent={CategoryItem}
         apiCall={({ status, ...params }) => categoriesApi.getCategories(params)}
     >

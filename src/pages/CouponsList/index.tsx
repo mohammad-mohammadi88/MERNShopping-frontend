@@ -18,7 +18,7 @@ const index = () => (
         LoadingComponent={CouponsLoading}
         fields={searchFields}
         staleTime={convertTime(120)}
-        label="coupon"
+        label="coupons"
         DatumItemComponent={CouponItem}
         apiCall={({ status, ...params }) =>
             couponsApi.getCoupons(status === "null" ? null : status, params)

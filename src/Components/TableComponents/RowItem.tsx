@@ -63,7 +63,7 @@ const RowItem: FC<PropsWithChildren<RowItemProps>> = ({
             )}
             aria-hidden={inVisible}
         >
-            {item && !children ? <LoadingLine /> : children}
+            {item && children === undefined ? <LoadingLine /> : children}
         </Component>
     );
 };

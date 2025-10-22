@@ -89,7 +89,7 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
                 id: "UltWrNvaisV_jXzF0Tkd6",
                 title: "Payments",
                 Icon: CreditCardIcon,
-                href: "/products",
+                href: "/payments",
             },
             {
                 id: "kjsldfHlksDASJDF_5FkF",

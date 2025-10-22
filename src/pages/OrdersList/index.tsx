@@ -9,14 +9,14 @@ import OrderItem from "./OrderItem";
 const rowItems: RowItemProps[] = [
     { children: "Final Price" },
     { children: "User Mobile", hidden: true, MD: true },
-    { children: "Customer", hidden: true, LG: true },
+    { children: "User Name", hidden: true, LG: true },
     { children: "Total Price", hidden: true, XL: true },
     { children: "Status" },
 ];
 const searchFields: string[] = ["user info", "coupon"];
 const Orders = () => (
     <PaginatedPage<Order, OrdersStatus>
-        label="order"
+        label="orders"
         fields={searchFields}
         staleTime={convertTime(5)}
         LoadingComponent={OrdersLoader}
