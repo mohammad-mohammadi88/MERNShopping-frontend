@@ -6,8 +6,8 @@ import { useNavigate } from "react-router";
 import type { ApiListQueries, GetDataWithPagination, ID } from "@Types";
 import { capitalize } from "@Utils";
 import { AlertModal } from "../Modal";
+import Pagination from "../Pagination/Pagination";
 import SearchInput from "../SearchInput";
-import Pagination from "./Pagination";
 
 type Obj = Record<string, number>;
 interface ApiParams extends ApiListQueries {

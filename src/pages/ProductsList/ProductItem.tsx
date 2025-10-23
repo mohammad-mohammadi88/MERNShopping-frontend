@@ -1,20 +1,14 @@
-import {
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-} from "@headlessui/react";
-import clsx from "clsx";
 import type { FC } from "react";
+import { useNavigate } from "react-router";
 
-import { RowChevron, RowItem, Status, type RowItemProps } from "@Components";
+import { RowItem, Status } from "@Components";
 import {
     productStatus,
     productStatusColors,
     type ProductStatus,
-    type ProductStatusKeys,
 } from "@Constants";
 import type { Product } from "@Types";
-import ProductExtraField from "./ProductExtraField";
+import { getStatusName } from "@Utils";
 
 interface Props extends Product {
     isLast: boolean;
@@ -22,76 +16,39 @@ interface Props extends Product {
 const ProductItem: FC<Props> = ({
     salePrice,
     thumbnail,
-    gallery,
-    colors,
+    _id,
     price,
-    attrs,
     quantity,
     status,
     productCategory: { title: categoryTitle },
-    _id,
     title,
-    isLast,
 }) => {
-    const statusName = Object.keys(productStatus).find(
-        (c) => productStatus[c as ProductStatusKeys] === status
-    ) as ProductStatusKeys;
-
-    const productItemHeading: RowItemProps[] = [
-        { children: title },
-        { children: quantity, hidden: true, LG: true },
-        {
-            children: (
+    const navigate = useNavigate();
+    const statusName = getStatusName(productStatus, status);
+    return (
+        <tr
+            onClick={() => navigate(`/product/${_id}`)}
+            className="border-y border-gray-300 cursor-pointer hover:bg-gray-200 duration-300 max-w-full"
+        >
+            <td className="size-16 sm:hidden md:flex items-center flex justify-center">
+                <img
+                    src={thumbnail}
+                    className="size-12 rounded-full"
+                    alt="product image"
+                />
+            </td>
+            <RowItem children={title} />
+            <RowItem children={quantity} hidden LG />
+            <RowItem hidden LG>
                 <Status<ProductStatus>
                     currentStatus={statusName}
                     statusColors={productStatusColors}
                 />
-            ),
-            hidden: true,
-            LG: true,
-        },
-        { children: categoryTitle, hidden: true, XL: true },
-        { children: price, hidden: true, XXL: true },
-        { children: salePrice, hidden: true, MD: true },
-        { children: <RowChevron />, className: "!h-16" },
-    ];
-    return (
-        <Disclosure>
-            <DisclosureButton
-                as={"tr"}
-                className="border-y group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 ax-w-full"
-            >
-                <td className="size-16 sm:hidden md:flex items-center flex justify-center">
-                    <img
-                        src={thumbnail}
-                        className="size-12 rounded-full"
-                        alt="product image"
-                    />
-                </td>
-                {productItemHeading.map((props, i) => (
-                    <RowItem key={i} {...props} />
-                ))}
-            </DisclosureButton>
-            <DisclosurePanel
-                as="tr"
-                transition
-                className={
-                    "transition overflow-hidden duration-200 ease-out data-closed:-translate-y-6 data-closed:opacity-0 w-full max-h-auto"
-                }
-            >
-                <td
-                    colSpan={8}
-                    className={clsx("pl-1 md:pl-4", isLast ? "pb-0" : "pb-8")}
-                >
-                    <ProductExtraField
-                        id={_id}
-                        attrs={attrs}
-                        gallery={gallery}
-                        colors={colors}
-                    />
-                </td>
-            </DisclosurePanel>
-        </Disclosure>
+            </RowItem>
+            <RowItem children={categoryTitle} hidden XL />
+            <RowItem children={price} hidden XXL />
+            <RowItem children={salePrice} hidden MD />
+        </tr>
     );
 };
 

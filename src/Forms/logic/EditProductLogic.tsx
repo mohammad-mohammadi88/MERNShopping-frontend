@@ -44,8 +44,9 @@ const AddProductLogic: FC<Props> = ({ initialValues: { data }, ...props }) => {
             <ProductLogic
                 initialValues={{
                     ...data,
-                    thumbnail: [thumbnail],
-                    // to display an empty field when salePrice is
+                    thumbnail: [thumbnail!],
+                    productCategory: data.productCategory.title,
+                    // to display an empty field when salePrice is empty
                     salePrice: data.salePrice ?? ("" as unknown as number),
                     gallery,
                 }}

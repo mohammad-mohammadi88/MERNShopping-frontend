@@ -1,10 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import type { FC } from "react";
+import { useNavigate } from "react-router";
 
 import { couponsApi, usersApi } from "@Api";
 import { AlertModal, Loading, NewDatumPage } from "@Components";
 import { AddCouponLogic } from "@Forms";
-import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
 
 const NewCoupon: FC = () => {
     const navigate = useNavigate();

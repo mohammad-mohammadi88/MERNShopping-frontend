@@ -31,6 +31,7 @@ export interface Product
     extends ID,
         Omit<EditProductValue, "gallery" | "thumbnail" | "productCategory"> {
     attrs: ProductAttribute[];
+    salePrice: number;
     productCategory: Category;
     colors: ProductColor[];
     thumbnail: string;

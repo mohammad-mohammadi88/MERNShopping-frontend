@@ -17,7 +17,6 @@ const ProductsLoader = () => (
                 <RowItem hidden LG />
                 <RowItem hidden XL />
                 <RowItem SM={false} MD />
-                <RowItem inVisible children="open" />
             </tr>
         ))}
     </tbody>

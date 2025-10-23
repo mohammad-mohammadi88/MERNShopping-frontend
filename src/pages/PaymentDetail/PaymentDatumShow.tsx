@@ -1,8 +1,10 @@
 import type { FC } from "react";
 
+import { ShowCurrentStatus } from "@Components";
+import { paymentStatus, paymentStatusColors } from "@Constants";
 import type { Payment } from "@Types";
 import { UserDetails } from "../Shared";
-import { RedirectToOrderBtn, ShowPricing, ShowStatus } from "./Payment";
+import { RedirectToOrderBtn, ShowPricing } from "./Payment";
 
 const PaymentDatumShow: FC<Payment> = ({
     amount,
@@ -23,7 +25,11 @@ const PaymentDatumShow: FC<Payment> = ({
                 paidAmount={paidAmount}
             />
 
-            <ShowStatus status={status} />
+            <ShowCurrentStatus
+                statusColors={paymentStatusColors}
+                statuses={paymentStatus}
+                status={status}
+            />
 
             <UserDetails {...user} />
         </div>

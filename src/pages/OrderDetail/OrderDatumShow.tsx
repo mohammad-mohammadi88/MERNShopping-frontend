@@ -7,6 +7,7 @@ import {
     CouponDetails,
     OrderProductDetails,
     ShowAddress,
+    ShowPrices,
 } from "./Order";
 
 const OrderDatumShow: FC<FullOrder> = ({
@@ -22,18 +23,16 @@ const OrderDatumShow: FC<FullOrder> = ({
     <div>
         <h1 className="pb-2 mb-4 border-b">Order Details</h1>
         <div className="pl-2 space-y-4">
-            <div>
-                <p className="text-lg">
-                    <strong>Final Price:</strong> {finalPrice}
-                </p>
-                <p className="text-lg">
-                    <strong>Total Price:</strong> {totalPrice}
-                </p>
-            </div>
+            <ShowPrices finalPrice={finalPrice} totalPrice={totalPrice} />
+
             <ChangeStatus id={_id} status={status} />
+
             <UserDetails {...user} />
+
             {couponCode && <CouponDetails {...couponCode} />}
+
             <OrderProductDetails products={products} />
+
             <ShowAddress {...deliveryAddress} />
         </div>
     </div>
