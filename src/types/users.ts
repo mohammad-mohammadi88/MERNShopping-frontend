@@ -11,6 +11,7 @@ export interface User extends ID {
     email: string;
     totalOrders: number;
     addresses: UserAddress[];
+    isAdmin: boolean;
     mobile: string;
 }
 
