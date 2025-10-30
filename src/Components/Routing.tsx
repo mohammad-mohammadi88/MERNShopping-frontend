@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router";
 import {
     CategoriesList,
     CouponsList,
+    CustomerDetail,
+    CustomersList,
     EditProduct,
     Index,
     NewCategory,
@@ -11,7 +13,6 @@ import {
     NewProduct,
     OrderDetail,
     OrdersList,
-    PaymentCancel,
     PaymentDetail,
     PaymentsList,
     ProductDetail,
@@ -21,7 +22,6 @@ import {
 const Routing: FC = () => (
     <Routes>
         <Route path="/" Component={Index} />
-        <Route path="/cancel" Component={PaymentCancel} />
 
         {/* Products */}
         <Route path="/products" Component={ProductsList} />
@@ -44,6 +44,10 @@ const Routing: FC = () => (
         {/* Payments */}
         <Route path="/payments" Component={PaymentsList} />
         <Route path="/payment/:id" Component={PaymentDetail} />
+
+        {/* Customers */}
+        <Route path="/customers" Component={CustomersList} />
+        <Route path="/customer/:id" Component={CustomerDetail} />
     </Routes>
 );
 

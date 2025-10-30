@@ -28,6 +28,7 @@ const StatusPagination: FC<StatusPaginationProps> = ({
             label="Status"
             containerClassName="w-auto mb-4 md:mb-0 items-center space-x-2 flex-row"
             className={"border border-gray-400"}
+            labelClassName="-translate-y-1.5"
             value={status}
             options={collectionStatusOptions}
             onChange={(e) => setStatus(e.target.value)}

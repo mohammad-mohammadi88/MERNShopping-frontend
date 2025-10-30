@@ -24,10 +24,7 @@ const PaymentItem: FC<Props> = ({
     const statusName = getStatusName(paymentStatus, status);
     const fullname = `${capitalize(firstName)} ${capitalize(lastName)}`;
     return (
-        <tr
-            onClick={() => navigate(`/payment/${_id}`)}
-            className="border-y h-16 cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 max-w-full"
-        >
+        <tr onClick={() => navigate(`/payment/${_id}`)} className="data-item">
             <RowItem children={amount} />
             <RowItem hidden MD children={mobile} />
             <RowItem hidden XL children={fullname} />

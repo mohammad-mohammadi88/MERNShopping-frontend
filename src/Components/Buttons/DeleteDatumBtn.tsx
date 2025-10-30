@@ -1,26 +1,38 @@
-import { useMutation } from "@tanstack/react-query";
 import { useState, type FC } from "react";
 
 import { queryClient } from "@/main";
-import { productsApi } from "@Api";
 import { AlertModal, Button, Loading, Modal } from "@Components";
 import { useModalReducer } from "@Hooks";
+import { useMutation } from "@tanstack/react-query";
+import { capitalize } from "@Utils";
+import { useNavigate } from "react-router";
 
 interface Props {
     id: string;
+    apiCall: (id: string) => Promise<any>;
+    datumName: string;
+    queryKey: string[];
+    navigateUrl: string;
 }
 
-const ProductDeleteBtn: FC<Props> = ({ id }) => {
+const DeleteDatumBtn: FC<Props> = ({
+    id,
+    apiCall,
+    datumName,
+    queryKey,
+    navigateUrl,
+}) => {
+    const navigate = useNavigate();
     const [deleteConfirmOpen, setDeleteConfirmOpen] = useState<boolean>(false);
     const [state, dispatch] = useModalReducer();
     const { mutateAsync, isPending } = useMutation({
-        mutationFn: () => productsApi.deleteProductById(id),
+        mutationFn: () => apiCall(id),
     });
     return (
         <>
             <Button
                 role="delete"
-                title="Product"
+                title={capitalize(datumName)}
                 className="block"
                 onClick={() => setDeleteConfirmOpen(true)}
             />
@@ -35,7 +47,7 @@ const ProductDeleteBtn: FC<Props> = ({ id }) => {
             <AlertModal
                 role="confirm"
                 title="Delete"
-                description="Are you sure want to delete this product"
+                description={`Are you sure want to delete this ${datumName}`}
                 isOpen={deleteConfirmOpen}
                 onClose={() => setDeleteConfirmOpen(false)}
                 onConfirm={async () => {
@@ -44,9 +56,7 @@ const ProductDeleteBtn: FC<Props> = ({ id }) => {
                     if (!ok)
                         return dispatch(useModalReducer.error(data ?? problem));
 
-                    queryClient.invalidateQueries({
-                        queryKey: ["products", "page"],
-                    });
+                    queryClient.invalidateQueries({ queryKey });
                     dispatch(useModalReducer.success);
                 }}
             />
@@ -58,13 +68,24 @@ const ProductDeleteBtn: FC<Props> = ({ id }) => {
                 description={
                     state.isSuccess === false
                         ? state.error
-                        : "Product Deleted successfully"
+                        : `${capitalize(datumName)} Deleted successfully`
                 }
-                onClose={() => dispatch(useModalReducer.close)}
+                onClose={() => {
+                    dispatch(useModalReducer.close);
+                    navigate(navigateUrl);
+
+                    // invalidate user 1 second after nagivation
+                    const timer = setTimeout(() => {
+                        queryClient.invalidateQueries({
+                            queryKey: [datumName, id],
+                        });
+                        clearTimeout(timer);
+                    }, 1000);
+                }}
                 title={state.isSuccess ? "Success" : "Error"}
             />
         </>
     );
 };
 
-export default ProductDeleteBtn;
+export default DeleteDatumBtn;

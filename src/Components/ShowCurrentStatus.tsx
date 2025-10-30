@@ -13,7 +13,7 @@ const ShowCurrentStatus = <T extends object>({
     statuses,
 }: Props<T>) => (
     <p className="text-lg mt-2">
-        <strong>Current Status:</strong>{" "}
+        <strong className="font-semibold text-xl">Current Status:</strong>{" "}
         <Status
             statusColors={statusColors}
             currentStatus={getStatusName(statuses, status)}

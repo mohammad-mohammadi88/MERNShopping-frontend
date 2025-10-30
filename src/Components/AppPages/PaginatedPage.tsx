@@ -14,7 +14,6 @@ interface ApiParams extends ApiListQueries {
     status: string;
 }
 interface DatumItemProps {
-    isLast: boolean;
     key: string;
 }
 export interface PaginatedPageProps<T, E extends Obj> {
@@ -168,10 +167,9 @@ const PaginatedPage = <T, E extends Obj>({
 
                 <tbody className="w-full">
                     {isDataExists &&
-                        data.data?.data.map((datum, i, array) => (
+                        data.data?.data.map((datum) => (
                             <DatumItemComponent
                                 key={(datum as ID)._id}
-                                isLast={i === array.length - 1}
                                 {...datum}
                             />
                         ))}

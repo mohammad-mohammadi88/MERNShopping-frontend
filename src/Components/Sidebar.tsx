@@ -1,13 +1,13 @@
 import { Transition, TransitionChild } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import type { FC } from "react";
 import { Fragment, memo } from "react";
 import { Link } from "react-router";
 
-import { ordersApi } from "@/api";
+import { ordersApi } from "@Api";
 import { sidebarItems } from "@Constants";
-import { useQuery } from "@tanstack/react-query";
 import type { SidebarSubItem } from "@Types";
 import { Disclosure, ListItem, Loading } from ".";
 

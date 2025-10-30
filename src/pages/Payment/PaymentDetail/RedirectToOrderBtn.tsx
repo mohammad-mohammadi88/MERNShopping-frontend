@@ -10,7 +10,7 @@ interface Props {
 
 const RedirectToOrderBtn: FC<Props> = ({ id }) => (
     <Link to={`/order/${id}`} className="w-auto">
-        <RippleBtn className="p-2.5 text-lg pr-8 space-x-2 relative rounded-full items-center bg-red-500 text-white hover:bg-red-700">
+        <RippleBtn className="p-2.5 mt-6 text-lg pr-8 space-x-2 relative rounded-full items-center bg-red-500 text-white hover:bg-red-700">
             See Related Order{" "}
             <ArrowRightIcon
                 className="absolute top-1/2 -translate-y-1/2 right-3"

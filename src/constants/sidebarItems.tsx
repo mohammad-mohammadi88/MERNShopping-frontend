@@ -4,13 +4,10 @@ import {
     BuildingStorefrontIcon,
     ChatBubbleBottomCenterTextIcon,
     Cog6ToothIcon,
-    TruckIcon,
     UserGroupIcon,
 } from "@heroicons/react/20/solid";
 import {
     CreditCardIcon,
-    GlobeAltIcon,
-    MegaphoneIcon,
     PlusCircleIcon,
     ShoppingBagIcon,
     TagIcon,
@@ -106,18 +103,6 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
         ],
     },
     {
-        id: "KA37SaPuVR7oZp9eJ_LZ3",
-        title: "Consignments",
-        Icon: TruckIcon,
-        subItems: [
-            {
-                id: "fhOEWNlzal4k0d-McEH23",
-                title: "Consignments List",
-                href: "/products",
-            },
-        ],
-    },
-    {
         id: "NI0wp7yBlvCQ8p0Y-5P1y",
         title: "Customers",
         Icon: UserGroupIcon,
@@ -125,7 +110,7 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
             {
                 id: "T4q1pHNH9hgZTokMZjE08",
                 title: "Customers List",
-                href: "/products",
+                href: "/customers",
             },
         ],
     },
@@ -137,7 +122,7 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
             {
                 id: "kEUMXhrKHsHR3c280zjFg",
                 title: "Comments List",
-                href: "/products",
+                href: "/comments",
             },
         ],
     },
@@ -148,15 +133,8 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
         subItems: [
             {
                 id: "_X9AygkKTLs-a1ovlbdRE",
-                title: "Public",
-                href: "/products",
-                Icon: GlobeAltIcon,
-            },
-            {
-                id: "PQeQycimlEOZDRqx-eLtg",
-                title: "Notification",
-                href: "/products",
-                Icon: MegaphoneIcon,
+                title: "Settings List",
+                href: "/settings",
             },
         ],
     },

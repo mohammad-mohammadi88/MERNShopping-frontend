@@ -17,6 +17,9 @@
     }
 }
 
+.data-item {
+    @apply border-y border-gray-300 cursor-pointer h-16 hover:bg-gray-200 duration-300 max-w-full;
+}
 .page-layout {
     @apply bg-white p-4 rounded border;
 }

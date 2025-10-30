@@ -7,8 +7,8 @@ import {
 import clsx from "clsx";
 import type { FC } from "react";
 
-import { RippleBtn } from "@AppComponents";
 import { capitalize } from "@Utils";
+import { RippleBtn } from ".";
 
 type Role = "add" | "delete" | "send" | "edit";
 interface Props {

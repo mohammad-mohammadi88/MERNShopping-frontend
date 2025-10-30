@@ -11,6 +11,26 @@ export interface User extends ID {
     email: string;
     totalOrders: number;
     addresses: UserAddress[];
-    wallet: number;
     mobile: string;
+}
+
+export interface LoginData {
+    email: string;
+    password: string;
+}
+
+interface Auth {
+    email: string;
+    password: {
+        prev: string;
+        next: string;
+    };
+}
+export interface UpdateUserData {
+    auth?: Auth;
+    firstName?: string;
+    lastName?: string;
+    mobile?: string;
+    isAdmin?: boolean;
+    addresses?: UserAddress[] | undefined;
 }

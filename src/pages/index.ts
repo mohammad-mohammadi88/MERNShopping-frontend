@@ -1,24 +1,19 @@
 export { default as Index } from "./Index";
 
 // Categories
-export { default as CategoriesList } from "./CategoriesList";
-export { default as NewCategory } from "./NewCategory";
+export * from "./Category";
 
 // Coupons
-export { default as CouponsList } from "./CouponsList";
-export { default as NewCoupon } from "./NewCoupon";
+export * from "./Coupon";
 
 // Orders
-export { default as OrderDetail } from "./OrderDetail";
-export { default as OrdersList } from "./OrdersList";
+export * from "./Order";
 
 // Payments
-export { default as PaymentCancel } from "./PaymentCancel";
-export { default as PaymentDetail } from "./PaymentDetail";
-export { default as PaymentsList } from "./PaymentsList";
+export * from "./Payment";
 
 // Products
-export { default as EditProduct } from "./EditProduct";
-export { default as NewProduct } from "./NewProduct";
-export { default as ProductDetail } from "./ProductDetail";
-export { default as ProductsList } from "./ProductsList";
+export * from "./Product";
+
+// Customers
+export * from "./User";

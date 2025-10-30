@@ -10,10 +10,7 @@ import {
 import type { Product } from "@Types";
 import { getStatusName } from "@Utils";
 
-interface Props extends Product {
-    isLast: boolean;
-}
-const ProductItem: FC<Props> = ({
+const ProductItem: FC<Product> = ({
     salePrice,
     thumbnail,
     _id,
@@ -26,10 +23,7 @@ const ProductItem: FC<Props> = ({
     const navigate = useNavigate();
     const statusName = getStatusName(productStatus, status);
     return (
-        <tr
-            onClick={() => navigate(`/product/${_id}`)}
-            className="border-y border-gray-300 cursor-pointer hover:bg-gray-200 duration-300 max-w-full"
-        >
+        <tr onClick={() => navigate(`/product/${_id}`)} className="data-item">
             <td className="size-16 sm:hidden md:flex items-center flex justify-center">
                 <img
                     src={thumbnail}

@@ -1,20 +1,17 @@
-import { paymentApi } from "@/api";
-import { Button } from "@/Components";
-import { useState } from "react";
+import { usersApi } from "@Api";
+import { Button } from "@Components";
 
 const Index = () => {
-    const [url, setUrl] = useState<string>("");
-    const handlePayment = async () => {
-        const { data, ok } = await paymentApi.createSession();
-        setUrl(data as string);
-        if (ok) {
-            window.location.href = data as string;
-        }
+    const handleLogin = async () => {
+        const { data } = await usersApi.login({
+            email: "mohammaddev09@gmail.com",
+            password: "Moh@mm@d!8809",
+        });
+        console.log(data);
     };
     return (
         <div className="page-layout !w-full">
-            <p>{url}</p>
-            <Button title="add payment" onClick={handlePayment} role="send" />
+            <Button title="Login" onClick={handleLogin} role="send" />
         </div>
     );
 };

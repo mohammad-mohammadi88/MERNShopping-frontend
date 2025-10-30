@@ -21,7 +21,7 @@ const CouponItem: FC<Coupon> = ({
     used,
     user,
 }) => (
-    <tr className="border-y h-16 group cursor-pointer hover:bg-gray-200 duration-300 border-gray-300 w-full">
+    <tr className="data-item">
         <RowItem children={code} />
         <RowItem children={`${amount}${role === "number" ? "$" : "%"}`} />
         <RowItem hidden MD>
@@ -31,11 +31,7 @@ const CouponItem: FC<Coupon> = ({
             />
         </RowItem>
         <RowItem hidden LG children={`${limit} / ${used}`} />
-        <RowItem
-            hidden
-            XL
-            children={user ? `${user.firstName} ${user.lastName}` : "unknown"}
-        />
+        <RowItem hidden XL children={`${user.firstName} ${user.lastName}`} />
     </tr>
 );
 

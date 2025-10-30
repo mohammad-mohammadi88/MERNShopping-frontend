@@ -1,6 +1,7 @@
-import { Button } from "@/Components";
 import type { FC } from "react";
 import { useNavigate } from "react-router";
+
+import { Button } from "@Components";
 
 interface Props {
     id: string;

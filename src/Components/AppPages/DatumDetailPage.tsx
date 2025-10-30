@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { useNavigate, useParams } from "react-router";
 
 import { AlertModal, Loading } from "@Components";
-import { convertTime } from "@Utils";
+import { capitalize, convertTime } from "@Utils";
 
 interface Props<T> {
     datumName: string;
@@ -46,7 +46,16 @@ const DatumDetailPage = <T,>({
                 onClose={() => navigate(navigateUrl)}
             />
             <Loading loading={isLoading} />
-            {isDatumReady && <DatumItem {...datum.data!} />}
+            {isDatumReady && (
+                <div>
+                    <h1 className="pb-2 mb-4 border-b">
+                        {capitalize(datumName)} Details
+                    </h1>
+                    <div className="pl-2 space-y-4">
+                        <DatumItem {...datum.data!} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
