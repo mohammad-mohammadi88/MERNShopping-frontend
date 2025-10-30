@@ -27,11 +27,16 @@ interface Auth {
         next: string;
     };
 }
-export interface UpdateUserData {
-    auth?: Auth;
-    firstName?: string;
-    lastName?: string;
-    mobile?: string;
-    isAdmin?: boolean;
-    addresses?: UserAddress[] | undefined;
+
+export interface UpdateUserBasics {
+    firstName: string;
+    lastName: string;
+    mobile: string;
+    email: string;
+    isAdmin: boolean;
+    addresses: UserAddress[];
 }
+export interface UpdateUserAuth {
+    auth: Auth;
+}
+export type UpdateUserData = Partial<UpdateUserBasics & UpdateUserAuth>;

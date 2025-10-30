@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState, type FC } from "react";
+import { useState, type FC } from "react";
 import { useNavigate, useParams } from "react-router";
 
 import { queryClient } from "@/main";
@@ -23,9 +23,6 @@ const EditProduct: FC = () => {
         staleTime: 3_600_000,
     });
 
-    useEffect(() => {
-        queryClient.invalidateQueries({ queryKey: ["product", productId] });
-    }, []);
     const { data: prevProduct, isLoading: isProductLoading } = useQuery({
         queryKey: ["product", productId],
         queryFn: () => productsApi.getProductById(productId),

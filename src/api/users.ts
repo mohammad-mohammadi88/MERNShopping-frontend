@@ -27,7 +27,7 @@ const login = (data: LoginData) =>
 const deleteUser = (id: string) => apiClient.delete<string>(addParam(id));
 
 const updateUser = (id: string, data: UpdateUserData) =>
-    apiClient.patch<string>(addParam(id), data);
+    apiClient.patch<string, string | { errors: string[] }>(addParam(id), data);
 
 export default {
     getAllCustomers,

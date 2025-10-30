@@ -20,8 +20,8 @@ const index = () => (
         label="customers"
         staleTime={convertTime(60)}
     >
-        {rowItems.map((item) => (
-            <RowItem isHeading {...item} />
+        {rowItems.map((item, i) => (
+            <RowItem isHeading key={i} {...item} />
         ))}
     </PaginatedPage>
 );

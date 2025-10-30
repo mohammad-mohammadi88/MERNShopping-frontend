@@ -7,6 +7,7 @@ import {
     CustomerDetail,
     CustomersList,
     EditProduct,
+    EditUser,
     Index,
     NewCategory,
     NewCoupon,
@@ -48,6 +49,7 @@ const Routing: FC = () => (
         {/* Customers */}
         <Route path="/customers" Component={CustomersList} />
         <Route path="/customer/:id" Component={CustomerDetail} />
+        <Route path="/edit-customer/:id" Component={EditUser} />
     </Routes>
 );
 

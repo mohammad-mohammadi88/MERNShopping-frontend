@@ -6,6 +6,7 @@ import { CustomerActionBtn, ShowAddresses, UserBasicInfo } from "./Customer";
 const CustomerDatumShow: FC<User> = ({ _id, addresses, ...basicInfo }) => (
     <>
         <CustomerActionBtn _id={_id} />
+
         <UserBasicInfo {...basicInfo} />
 
         <ShowAddresses addresses={addresses} />

@@ -1,3 +1,4 @@
+export { default as AddressLogic } from "./AddressLogic";
 export { default as AttributeGroup } from "./AttributeGroup";
 export { default as CategoryAttribute } from "./CategoryAttribute";
 export { default as DiscountRoleField } from "./DiscountRoleField";
@@ -8,3 +9,4 @@ export { default as ProductAttribute } from "./ProductAttribute";
 export { default as ProductColor } from "./ProductColor";
 export * from "./Select";
 export { default as Select } from "./Select";
+export { default as Switch } from "./Switch";
