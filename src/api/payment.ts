@@ -1,4 +1,9 @@
-import type { ApiListQueries, GetDataWithPagination, Payment } from "@Types";
+import type {
+    ApiListQueries,
+    GetDataWithPagination,
+    Payment,
+    SinglePayment,
+} from "@Types";
 import apiClient, { endpointGenerator } from "./client";
 
 const { endpoint, addParam } = endpointGenerator("payments");
@@ -10,7 +15,7 @@ const getAllPayments = (status: string | null, params?: ApiListQueries) =>
     );
 
 const getSinglePayment = (id: string) =>
-    apiClient.get<Payment, string>(addParam(id));
+    apiClient.get<SinglePayment, string>(addParam(id));
 
 export default {
     getAllPayments,

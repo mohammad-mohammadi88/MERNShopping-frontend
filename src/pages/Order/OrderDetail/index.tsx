@@ -1,11 +1,11 @@
 import { ordersApi } from "@Api";
 import { DatumDetailPage } from "@Components";
-import OrderDatumShow from "./OrderDatumShow";
+import OrderItem from "./OrderItem";
 
 const OrderDetail = () => (
     <DatumDetailPage
         navigateUrl="/orders"
-        DatumItem={OrderDatumShow}
+        DatumItem={OrderItem}
         apiCall={ordersApi.getSingleOrder}
         datumName="order"
     />

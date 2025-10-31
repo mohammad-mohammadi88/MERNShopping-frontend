@@ -1,6 +1,6 @@
 import { couponsApi } from "@Api";
 import { PaginatedPage, RowItem, type RowItemProps } from "@Components";
-import type { Coupon } from "@Types";
+import type { FullCoupon } from "@Types";
 import { convertTime } from "@Utils";
 import CouponItem from "./CouponItem";
 import CouponsLoading from "./Loading";
@@ -14,7 +14,7 @@ const rowItems: RowItemProps[] = [
 ];
 const searchFields: string[] = ["user info", "code"];
 const index = () => (
-    <PaginatedPage<Coupon, {}>
+    <PaginatedPage<FullCoupon, {}>
         LoadingComponent={CouponsLoading}
         fields={searchFields}
         staleTime={convertTime(120)}

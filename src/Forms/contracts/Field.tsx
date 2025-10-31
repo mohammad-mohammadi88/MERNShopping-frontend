@@ -29,7 +29,7 @@ const AppField: FC<Props> = ({
             <div className="flex items-center">
                 <Input
                     className={clsx(
-                        "outline my-2 outline-gray-700 p-1 text-gray-900 rounded block",
+                        "outline mb-2 outline-gray-700 p-1 text-gray-900 rounded block",
                         className
                     )}
                     {...field}

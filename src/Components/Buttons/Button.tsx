@@ -1,4 +1,5 @@
 import {
+    EyeIcon,
     PaintBrushIcon,
     PaperAirplaneIcon,
     PlusCircleIcon,
@@ -10,7 +11,7 @@ import type { FC } from "react";
 import { capitalize } from "@Utils";
 import { RippleBtn } from ".";
 
-type Role = "add" | "delete" | "send" | "edit";
+type Role = "add" | "delete" | "send" | "edit" | "see";
 interface Props {
     title: string;
     role?: Role;
@@ -29,6 +30,8 @@ const IconGenerator: FC<{ role: Role }> = ({ role }) =>
         <TrashIcon {...props} />
     ) : role === "edit" ? (
         <PaintBrushIcon {...props} />
+    ) : role === "see" ? (
+        <EyeIcon {...props} />
     ) : (
         <PaperAirplaneIcon {...props} rotate={45} />
     );
@@ -38,6 +41,8 @@ const classGenerator = (role: Role) =>
         ? "bg-blue-500 hover:bg-blue-700"
         : role === "delete"
         ? "bg-red-500 hover:bg-red-700"
+        : role === "see"
+        ? "bg-green-600 hover:bg-green-700"
         : "bg-orange-500 hover:bg-orange-700";
 
 const Button: FC<Props> = ({ title, className, role = "add", onClick }) => (

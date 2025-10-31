@@ -12,7 +12,7 @@ import {
     ShowThumbnail,
 } from "./Product";
 
-const ProductDatumShow: FC<Product> = ({
+const ProductItem: FC<Product> = ({
     gallery,
     attrs,
     colors,
@@ -58,4 +58,4 @@ const ProductDatumShow: FC<Product> = ({
     </>
 );
 
-export default ProductDatumShow;
+export default ProductItem;

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 
 import {
     CategoriesList,
+    CouponDetail,
     CouponsList,
     CustomerDetail,
     CustomersList,
@@ -37,6 +38,8 @@ const Routing: FC = () => (
 
         {/* Coupons */}
         <Route path="/coupons" Component={CouponsList} />
+        {/* This id is the coupon code but because of DatumDetailPage component I should use id word */}
+        <Route path="/coupon/:id" Component={CouponDetail} />
         <Route path="/new-coupon" Component={NewCoupon} />
 
         {/* Categories */}

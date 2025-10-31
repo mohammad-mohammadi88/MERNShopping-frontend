@@ -1,32 +1,23 @@
 import type { FC } from "react";
+import { useNavigate } from "react-router";
 
-import type { Coupon } from "@Types";
+import { Button } from "@Components";
 
-const CouponDetails: FC<Coupon> = ({
-    code,
-    discount: { amount, role },
-    expiresAt,
-    limit,
-    used,
-}) => (
-    <div className="flex flex-col">
-        <h2 className="font-semibold text-xl truncate pt-5 pb-2">Coupon</h2>
-        <div className="flex flex-col pl-2 space-y-1">
-            <p className="truncate">
-                <strong>Code:</strong> {code}
-            </p>
-            <p className="truncate">
-                <strong>Discount:</strong>{" "}
-                {amount + (role === "number" ? "$" : "%")}
-            </p>
-            <p className="truncate">
-                <strong>Limit / Used:</strong> {limit} / {used}
-            </p>
-            <p className="truncate">
-                <strong>Expires At:</strong> {new Date(expiresAt).toString()}
-            </p>
+interface Props {
+    code: string;
+}
+const CouponDetails: FC<Props> = ({ code }) => {
+    const navigate = useNavigate();
+    return (
+        <div className="mt-8">
+            <h2 className="font-semibold text-xl truncate pb-2">Coupon</h2>
+            <Button
+                role="see"
+                className="block"
+                title="Coupon"
+                onClick={() => navigate("/coupon/" + code)}
+            />
         </div>
-    </div>
-);
-
+    );
+};
 export default CouponDetails;

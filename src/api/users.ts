@@ -9,7 +9,7 @@ import apiClient, { endpointGenerator } from "./client";
 
 const { endpoint, addParam } = endpointGenerator("users");
 
-const getAllCustomers = (params: ApiListQueries) =>
+const getAllCustomers = (params?: ApiListQueries) =>
     apiClient.get<GetDataWithPagination<User>, string>(endpoint, params);
 
 const getSelfInfo = () => apiClient.get<User, string>(addParam("self"));

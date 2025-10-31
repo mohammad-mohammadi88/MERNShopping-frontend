@@ -1,38 +1,42 @@
 import type { FC } from "react";
+import { useNavigate } from "react-router";
 
 import { RowItem, Status } from "@Components";
 import {
     couponsStatus,
     couponsStatusColors,
     type CouponsStatus,
-    type CouponsStatusKeys,
 } from "@Constants";
-import type { Coupon } from "@Types";
+import type { FullCoupon } from "@Types";
+import { getStatusName } from "@Utils";
 
-const statusName = (status: number) =>
-    Object.keys(couponsStatus).find(
-        (c) => couponsStatus[c as CouponsStatusKeys] === status
-    ) as CouponsStatusKeys;
-const CouponItem: FC<Coupon> = ({
+const CouponItem: FC<FullCoupon> = ({
     code,
     discount: { amount, role },
     status,
     limit,
     used,
     user,
-}) => (
-    <tr className="data-item">
-        <RowItem children={code} />
-        <RowItem children={`${amount}${role === "number" ? "$" : "%"}`} />
-        <RowItem hidden MD>
-            <Status<CouponsStatus>
-                currentStatus={statusName(status)}
-                statusColors={couponsStatusColors}
+}) => {
+    const navigate = useNavigate();
+    return (
+        <tr className="data-item" onClick={() => navigate(`/coupon/` + code)}>
+            <RowItem children={code} />
+            <RowItem children={`${amount}${role === "number" ? "$" : "%"}`} />
+            <RowItem hidden MD>
+                <Status<CouponsStatus>
+                    currentStatus={getStatusName(couponsStatus, status)}
+                    statusColors={couponsStatusColors}
+                />
+            </RowItem>
+            <RowItem hidden LG children={`${limit} / ${used}`} />
+            <RowItem
+                hidden
+                XL
+                children={`${user.firstName} ${user.lastName}`}
             />
-        </RowItem>
-        <RowItem hidden LG children={`${limit} / ${used}`} />
-        <RowItem hidden XL children={`${user.firstName} ${user.lastName}`} />
-    </tr>
-);
+        </tr>
+    );
+};
 
 export default CouponItem;

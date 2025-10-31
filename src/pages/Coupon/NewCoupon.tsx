@@ -10,7 +10,7 @@ const NewCoupon: FC = () => {
     const navigate = useNavigate();
     const { data, isLoading, isSuccess } = useQuery({
         queryKey: ["users"],
-        queryFn: () => usersApi.getAllUsers(),
+        queryFn: () => usersApi.getAllCustomers(),
         // one hour
         staleTime: 3_600_000,
     });

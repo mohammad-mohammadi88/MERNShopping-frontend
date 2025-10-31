@@ -1,12 +1,13 @@
 import type { FC } from "react";
 
+import { UserDetails } from "@/pages/Shared";
 import { ShowCurrentStatus } from "@Components";
 import { paymentStatus, paymentStatusColors } from "@Constants";
-import type { Payment } from "@Types";
-import { UserDetails } from "../../Shared";
-import { RedirectToOrderBtn, ShowPricing } from "./Payment";
+import type { SinglePayment } from "@Types";
+import OrderDetailts from "./OrderDetails";
+import ShowPricing from "./ShowPricing";
 
-const PaymentDatumShow: FC<Payment> = ({
+const PaymentItem: FC<SinglePayment> = ({
     amount,
     currency,
     order: orderId,
@@ -15,8 +16,6 @@ const PaymentDatumShow: FC<Payment> = ({
     paidAmount,
 }) => (
     <div className="mt-7">
-        <RedirectToOrderBtn id={orderId} />
-
         <div className="pl-2 space-y-4 mt-6">
             <ShowPricing
                 amount={amount}
@@ -30,8 +29,9 @@ const PaymentDatumShow: FC<Payment> = ({
                 status={status}
             />
 
-            <UserDetails {...user} />
+            <UserDetails id={user} />
+            <OrderDetailts id={orderId} />
         </div>
     </div>
 );
-export default PaymentDatumShow;
+export default PaymentItem;

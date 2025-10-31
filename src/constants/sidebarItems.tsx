@@ -4,6 +4,7 @@ import {
     BuildingStorefrontIcon,
     ChatBubbleBottomCenterTextIcon,
     Cog6ToothIcon,
+    TruckIcon,
     UserGroupIcon,
 } from "@heroicons/react/20/solid";
 import {
@@ -111,6 +112,18 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
                 id: "T4q1pHNH9hgZTokMZjE08",
                 title: "Customers List",
                 href: "/customers",
+            },
+        ],
+    },
+    {
+        id: "kjdfskjfdkccjnvdkfskj",
+        title: "Consignments",
+        Icon: TruckIcon,
+        subItems: [
+            {
+                id: "kjedsijndggcjsldfsljk",
+                title: "Consignments List",
+                href: "/consignments",
             },
         ],
     },

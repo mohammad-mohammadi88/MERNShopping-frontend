@@ -1,5 +1,5 @@
 import type { OrdersStatusValues } from "@Constants";
-import type { Coupon, ID, Product, User, UserAddress } from ".";
+import type { ID, Product, User, UserAddress } from ".";
 
 export interface OrderProduct extends ID {
     product: Product;
@@ -23,6 +23,6 @@ export interface Order extends ID {
     totalPrice: number;
 }
 
-export interface FullOrder extends Omit<Order, "couponCode"> {
-    couponCode?: Coupon;
+export interface FullOrder extends Omit<Order, "user"> {
+    user: string;
 }

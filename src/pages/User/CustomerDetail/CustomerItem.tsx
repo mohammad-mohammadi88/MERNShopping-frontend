@@ -3,7 +3,7 @@ import type { FC } from "react";
 import type { User } from "@Types";
 import { CustomerActionBtn, ShowAddresses, UserBasicInfo } from "./Customer";
 
-const CustomerDatumShow: FC<User> = ({ _id, addresses, ...basicInfo }) => (
+const CustomerItem: FC<User> = ({ _id, addresses, ...basicInfo }) => (
     <>
         <CustomerActionBtn _id={_id} />
 
@@ -13,4 +13,4 @@ const CustomerDatumShow: FC<User> = ({ _id, addresses, ...basicInfo }) => (
     </>
 );
 
-export default CustomerDatumShow;
+export default CustomerItem;

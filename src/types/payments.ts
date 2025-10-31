@@ -12,3 +12,7 @@ export interface Payment extends ID {
     currency: string;
     createdAt: Date;
 }
+
+export interface SinglePayment extends Omit<Payment, "user"> {
+    user: string;
+}

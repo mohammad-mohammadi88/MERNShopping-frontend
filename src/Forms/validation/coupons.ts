@@ -14,8 +14,9 @@ type NumSchemaFn = (schema: NumSchema) => NumSchema;
 
 const percentAmount: NumSchemaFn = (schema) =>
     schema
-        .min(0, "percent amount must be at least 0")
-        .max(100, "percent amount cannot exceed 100");
+        .min(0, "Percent Amount must be at least 0")
+        .max(100, "Percent Amount cannot exceed 100")
+        .label("Percent Amount");
 const numberAmount: NumSchemaFn = (schema) =>
     schema.min(0).label("Number Amount");
 

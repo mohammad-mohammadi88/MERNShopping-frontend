@@ -32,7 +32,6 @@ const DiscountFields: FC<{ role: DiscountRole }> = ({ role }) => (
                 name="discount.amount"
                 autoFocus
                 type="number"
-                className={"-mt-1"}
                 label="Discount Amount"
                 extraElement={
                     <span className="ml-2 -translate-y-1.5 font-semibold text-lg">
@@ -47,7 +46,7 @@ const DiscountFields: FC<{ role: DiscountRole }> = ({ role }) => (
 const formatUserOption: (users: User[]) => SelectOption[] = (users) =>
     users.map(({ firstName, lastName, mobile, _id }) => ({
         value: _id,
-        label: `${firstName} ${lastName}  ${mobile}`,
+        label: `${firstName} ${lastName} ${mobile}`,
     }));
 const AddCouponLogic: FC<Props> = ({ handleSubmit, users }) => (
     <Formik
@@ -61,25 +60,18 @@ const AddCouponLogic: FC<Props> = ({ handleSubmit, users }) => (
                     name="limit"
                     autoFocus
                     type="number"
-                    className="-mt-1"
                     label="Coupon Use Limitation"
                 />
 
                 <Select
                     description="This coupon will be available for the selected user"
                     label="User"
-                    className="-mt-1"
                     name="user"
                     defaultOption="Select User"
                     options={formatUserOption(users)}
                 />
 
-                <Field
-                    name="expiresAt"
-                    label="Expires At"
-                    type="date"
-                    className="-mt-1"
-                />
+                <Field name="expiresAt" label="Expires At" type="date" />
 
                 <DiscountFields role={values.discount.role} />
 

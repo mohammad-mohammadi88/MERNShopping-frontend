@@ -1,13 +1,13 @@
 import { paymentApi } from "@Api";
 import { DatumDetailPage } from "@Components";
-import PaymentDatumShow from "./PaymentDatumShow";
+import PaymentItem from "./PaymentItem";
 
 const PaymentDetail = () => (
     <DatumDetailPage
         navigateUrl="/payments"
         datumName="payment"
         apiCall={paymentApi.getSinglePayment}
-        DatumItem={PaymentDatumShow}
+        DatumItem={PaymentItem}
     />
 );
 

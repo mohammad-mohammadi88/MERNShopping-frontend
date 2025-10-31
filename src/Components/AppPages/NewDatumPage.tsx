@@ -56,7 +56,7 @@ const NewDatumPage = <T,>({
                         : state.error
                 }
             />
-            <h1 className="pb-4">New {datumName}</h1>
+            <h1 className="mb-4 border-b border-b-gray-400">New {datumName}</h1>
             <NewDatumLogic handleSubmit={handleSubmit} />
         </>
     );

@@ -1,13 +1,13 @@
 import { productsApi } from "@Api";
 import { DatumDetailPage } from "@Components";
-import ProductDatumShow from "./ProductDatumShow";
+import ProductItem from "./ProductItem";
 
 const ProductDetail = () => (
     <DatumDetailPage
         datumName="product"
         navigateUrl="/products"
         apiCall={productsApi.getProductById}
-        DatumItem={ProductDatumShow}
+        DatumItem={ProductItem}
     />
 );
 
