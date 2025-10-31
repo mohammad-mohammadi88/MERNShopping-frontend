@@ -3,10 +3,10 @@ import {
     number,
     NumberSchema,
     object,
-    string,
     type AnyObject,
     type InferType,
 } from "yup";
+import { String } from "./globals";
 
 // discount Amount
 type NumSchema = NumberSchema<number, AnyObject, undefined, "">;
@@ -29,7 +29,7 @@ const discountAmount = number()
     .label("Amount");
 
 // discount Role
-const discountRole = string().required().oneOf(["number", "percent"]);
+const discountRole = String.oneOf(["number", "percent"]);
 export type DiscountRole = InferType<typeof discountRole>;
 
 // discount
@@ -58,7 +58,7 @@ const expiresAt = date()
     .label("Expiration date");
 
 // user
-const user = string().required().label("User");
+const user = String.label("User");
 
 // schema
 export const postCouponSchema = object().shape({

@@ -4,31 +4,40 @@ import { useNavigate, useParams } from "react-router";
 import { queryClient } from "@/main";
 import { usersApi } from "@Api";
 import { AlertModal, Loading } from "@Components";
-import { EditUserBasicInfoLogic } from "@Forms";
 import { useModalReducer } from "@Hooks";
-import type { UpdateUserBasics, UserAddress } from "@Types";
+import type { UpdateUserData, User } from "@Types";
+import type { FC } from "react";
 
-const EditUser = () => {
-    const id = useParams().id!;
+export interface EditFormProps<T> {
+    handleSubmit: (values: T) => Promise<void>;
+    data: User;
+    id: string;
+}
+export type FormatValues<T> = (values: T) => UpdateUserData;
+interface Props<T> {
+    formatValues: FormatValues<T>;
+    EditForm: FC<EditFormProps<T>>;
+}
+
+const EditUserContainer = <T,>({ EditForm, formatValues }: Props<T>) => {
+    const userId = useParams().id!;
     const [state, dispatch] = useModalReducer();
     const { data, isLoading } = useQuery({
-        queryKey: ["customer", id],
-        queryFn: () => usersApi.getUserInfo(id),
+        queryKey: ["customer", userId],
+        queryFn: () => usersApi.getUserInfo(userId),
         staleTime: 3_600_000,
     });
     const navigate = useNavigate();
 
-    const handleSubmit = async (values: UpdateUserBasics) => {
-        values.addresses = values.addresses.map(({ zipCode, ...address }) => {
-            const data: UserAddress = { ...address };
-            if (zipCode) data.zipCode = zipCode;
-            return data;
-        });
-        const { ok, data, problem } = await usersApi.updateUser(id, values);
+    const handleSubmit = async (values: T) => {
+        const { ok, data, problem } = await usersApi.updateUser(
+            userId,
+            formatValues(values)
+        );
 
         if (ok) {
             queryClient.invalidateQueries({ queryKey: ["customers"] });
-            queryClient.invalidateQueries({ queryKey: ["customer", id] });
+            queryClient.invalidateQueries({ queryKey: ["customer", userId] });
         }
         dispatch(
             ok
@@ -49,7 +58,7 @@ const EditUser = () => {
                 isOpen={state.isOpen}
                 onClose={() => {
                     dispatch(useModalReducer.close);
-                    if (state.isSuccess) navigate("/");
+                    if (state.isSuccess) navigate("/customers");
                 }}
                 role={state.isSuccess ? "success" : "error"}
                 title={
@@ -63,11 +72,12 @@ const EditUser = () => {
                         : state.error
                 }
             />
-            <h1 className="pb-4">Edit User</h1>
+            <h1 className="mb-4 border-b border-b-gray-400">Edit User</h1>
             <Loading loading={isLoading} />
             {!isLoading && data?.ok && data.data && (
-                <EditUserBasicInfoLogic
-                    initialValues={{ ...data.data }}
+                <EditForm
+                    id={userId}
+                    data={data.data}
                     handleSubmit={handleSubmit}
                 />
             )}
@@ -80,4 +90,4 @@ const EditUser = () => {
     );
 };
 
-export default EditUser;
+export default EditUserContainer;
