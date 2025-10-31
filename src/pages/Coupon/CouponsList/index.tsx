@@ -13,7 +13,7 @@ const rowItems: RowItemProps[] = [
     { children: "Username", hidden: true, XL: true },
 ];
 const searchFields: string[] = ["user info", "code"];
-const index = () => (
+const CouponsList = () => (
     <PaginatedPage<FullCoupon, {}>
         LoadingComponent={CouponsLoading}
         fields={searchFields}
@@ -30,4 +30,4 @@ const index = () => (
     </PaginatedPage>
 );
 
-export default index;
+export default CouponsList;

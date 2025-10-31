@@ -4,4 +4,5 @@ export { default as couponsApi } from "./coupons";
 export { default as ordersApi } from "./orders";
 export { default as paymentApi } from "./payment";
 export { default as productsApi } from "./products";
+export { default as shipmentsApi } from "./shipments";
 export { default as usersApi } from "./users";

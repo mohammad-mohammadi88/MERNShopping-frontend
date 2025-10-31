@@ -17,3 +17,6 @@ export * from "./Product";
 
 // Customers
 export * from "./User";
+
+// Shipments
+export * from "./Shipment";

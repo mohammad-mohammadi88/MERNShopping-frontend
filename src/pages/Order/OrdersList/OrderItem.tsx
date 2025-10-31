@@ -11,10 +11,7 @@ import {
 import type { Order } from "@Types";
 import { capitalize } from "@Utils";
 
-interface Props extends Order {
-    isLast: boolean;
-}
-const OrderItem: FC<Props> = ({
+const OrderItem: FC<Order> = ({
     finalPrice,
     _id,
     user: { firstName, lastName, mobile },

@@ -10,10 +10,7 @@ import {
 import type { Payment } from "@Types";
 import { capitalize, getStatusName } from "@Utils";
 
-interface Props extends Payment {
-    isLast: boolean;
-}
-const PaymentItem: FC<Props> = ({
+const PaymentItem: FC<Payment> = ({
     amount,
     _id,
     user: { firstName, lastName, mobile },

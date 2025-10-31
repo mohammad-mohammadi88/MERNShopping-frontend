@@ -117,13 +117,13 @@ const sidebarItems: (orderCount: number | string) => SidebarItem[] = (
     },
     {
         id: "kjdfskjfdkccjnvdkfskj",
-        title: "Consignments",
+        title: "Shipments",
         Icon: TruckIcon,
         subItems: [
             {
                 id: "kjedsijndggcjsldfsljk",
-                title: "Consignments List",
-                href: "/consignments",
+                title: "Shipments List",
+                href: "/shipments",
             },
         ],
     },

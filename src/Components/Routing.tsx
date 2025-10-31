@@ -20,6 +20,7 @@ import {
     PaymentsList,
     ProductDetail,
     ProductsList,
+    ShipmentsList,
 } from "@Pages";
 
 const Routing: FC = () => (
@@ -55,6 +56,9 @@ const Routing: FC = () => (
         <Route path="/customer/:id" Component={CustomerDetail} />
         <Route path="/edit-customer/auth/:id" Component={EditUserAuth} />
         <Route path="/edit-customer/:id" Component={EditUserBasics} />
+
+        {/* Shipments */}
+        <Route path="/shipments" Component={ShipmentsList} />
     </Routes>
 );
 
