@@ -38,7 +38,7 @@ const DesktopNavGroup: FC<NavGroupProps> = ({ name, items }) => {
                 }
                 className={clsx(
                     "data-closed:-translate-y-1 duration-200 ease-in-out data-closed:opacity-0",
-                    "rounded-xl mt-3 p-3 w-full text-sm/6 shadow shadow-gray-400",
+                    "rounded-xl mt-3 p-3 w-full text-sm/6 shadow shadow-gray-400 bg-white",
                     "lg:w-[var(--lg-width)] lg:columns-[var(--lg-cols)]"
                 )}
             >

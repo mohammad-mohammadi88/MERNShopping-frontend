@@ -1,4 +1,6 @@
 import type { FC, ReactNode } from "react";
+
+import Header from "./Header";
 import Navbar from "./Navbar";
 
 interface Props {
@@ -8,6 +10,7 @@ interface Props {
 const Layout: FC<Props> = ({ children }) => (
     <>
         <Navbar />
+        <Header />
         {children}
     </>
 );
