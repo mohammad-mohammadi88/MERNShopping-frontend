@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --primary: #287dfe;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-primary: var(--primary);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    /* background: var(--background); */
+    /* color: var(--foreground); */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hamburger {
+    @apply top-1/2 block -mt-0.5;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    @apply absolute w-5 h-0.5 duration-150 rounded-sm bg-black;
+}
+
+.hamburger::before,
+.hamburger::after {
+    @apply block content-[""];
+}
+
+.hamburger::before {
+    @apply top-2.5;
+}
+
+.hamburger::after {
+    @apply bottom-2.5;
+}
+
+.vlmenu > li > a:hover {
+    @apply text-primary;
+}
