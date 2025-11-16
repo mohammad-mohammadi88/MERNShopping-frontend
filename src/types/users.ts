@@ -5,17 +5,24 @@ export type UserAddress = ID &
         zipCode?: string | undefined;
     };
 
-export interface User extends ID, TimeStamp {
+interface BasicUser {
     firstName: string;
     lastName: string;
+    mobile: string;
+}
+export interface User extends ID, TimeStamp, BasicUser {
     email: string;
     totalOrders: number;
     addresses: UserAddress[];
     isAdmin: boolean;
-    mobile: string;
 }
 
 export interface LoginData {
+    email: string;
+    password: string;
+}
+
+export interface RegisterData extends LoginData, BasicUser {
     email: string;
     password: string;
 }
@@ -28,19 +35,11 @@ interface Auth {
     };
 }
 
-export interface UpdateUserBasics {
-    firstName: string;
-    lastName: string;
-    mobile: string;
+export interface UpdateUserBasics extends BasicUser {
     isAdmin: boolean;
     addresses: UserAddress[];
 }
 
 export interface UpdateUserData extends Partial<UpdateUserBasics> {
     auth?: Auth;
-}
-
-export interface UserAuthLogic {
-    email: string;
-    password: string;
 }

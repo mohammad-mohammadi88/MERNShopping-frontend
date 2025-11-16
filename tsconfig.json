@@ -22,7 +22,8 @@
         "paths": {
             "@/*": ["src/*"],
             "@Images": ["public/img/index.ts"],
-            "@Api": ["src/api/index.ts"],
+            "@ServerApi": ["src/api/server/index.ts"],
+            "@ClientApi": ["src/api/client/index.ts"],
             "@Constants": ["src/constants/index.ts"],
             "@Types": ["src/types/index.ts"],
             "@Components": ["src/Components/index.ts"],
