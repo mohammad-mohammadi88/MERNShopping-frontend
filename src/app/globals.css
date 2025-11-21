@@ -22,34 +22,20 @@
 }
 
 body {
+    background-color: rgb(238, 238, 238);
     /* background: var(--background); */
     /* color: var(--foreground); */
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.hamburger {
-    @apply top-1/2 block -mt-0.5;
+header {
+    background-image: url("../../public/img/header.jpg");
+    @apply bg-cover w-screen h-[33.333vh] md:h-[50vh];
 }
 
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-    @apply absolute w-5 h-0.5 duration-150 rounded-sm bg-black;
+.cart {
+    @apply w-full hover:scale-105 duration-200 px-4 sm:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5;
 }
-
-.hamburger::before,
-.hamburger::after {
-    @apply block content-[""];
-}
-
-.hamburger::before {
-    @apply top-2.5;
-}
-
-.hamburger::after {
-    @apply bottom-2.5;
-}
-
-.vlmenu > li > a:hover {
-    @apply text-primary;
+.cart-inner {
+    @apply rounded-2xl bg-white flex flex-col space-y-3 shadow-xl p-3;
 }

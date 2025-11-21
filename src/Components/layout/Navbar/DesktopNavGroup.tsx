@@ -1,3 +1,4 @@
+"use client";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import clsx from "clsx";
@@ -16,7 +17,7 @@ const handleCols = (itemsLength: number) => Math.ceil(itemsLength / 8);
 const DesktopNavGroup: FC<NavGroupProps> = ({ name, items }) => {
     const cols = handleCols(items.length);
     return (
-        <Popover>
+        <Popover className="z-100">
             <PopoverButton
                 className={clsx(
                     "outline-none data-hover:text-primary data-active:text-primary",
@@ -42,9 +43,17 @@ const DesktopNavGroup: FC<NavGroupProps> = ({ name, items }) => {
                     "lg:w-[var(--lg-width)] lg:columns-[var(--lg-cols)]"
                 )}
             >
-                {items.map((item) => (
-                    <NavItemLink key={item.name + item.href} {...item} />
-                ))}
+                {({ close }) => (
+                    <>
+                        {items.map((item) => (
+                            <NavItemLink
+                                close={close}
+                                key={item.name + item.href}
+                                {...item}
+                            />
+                        ))}
+                    </>
+                )}
             </PopoverPanel>
         </Popover>
     );

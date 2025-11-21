@@ -56,7 +56,7 @@ const navItems = (categories: Category[] | string): NavGroup[] => [
                 name: "insurance",
             },
             {
-                href: "/",
+                href: "/payment",
                 name: "job",
             },
             {
@@ -98,7 +98,7 @@ const navItems = (categories: Category[] | string): NavGroup[] => [
             typeof categories === "string"
                 ? [{ name: categories, href: "" }]
                 : categories.map(({ _id, title: name }) => ({
-                      href: ("?q=" + _id) as any,
+                      href: `/?q=${_id}`,
                       name,
                   })),
     },

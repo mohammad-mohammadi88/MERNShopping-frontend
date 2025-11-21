@@ -9,10 +9,14 @@ export interface NavItem {
     Icon?: ReactNode;
 }
 
-const NavItemLink: FC<NavItem> = ({ href, name, Icon }) => (
+interface Props extends NavItem {
+    close: () => void;
+}
+const NavItemLink: FC<Props> = ({ href, name, Icon, close }) => (
     <Link
         key={href + name}
-        className="flex items-center capitalize rounded-lg px-3 py-2 transition hover:bg-primary font-semibold text-black hover:text-white duration-150 "
+        onClick={close}
+        className="flex items-center capitalize rounded-lg px-3 py-2 transition hover:bg-primary font-semibold text-black hover:text-white duration-150 z-10000"
         href={href}
     >
         {Icon}

@@ -6,5 +6,4 @@ export * from "./orders";
 export * from "./payments";
 export * from "./products";
 export * from "./shipments";
-export * from "./Sidebar";
 export * from "./users";

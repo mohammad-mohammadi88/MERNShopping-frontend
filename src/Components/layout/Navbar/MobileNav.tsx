@@ -1,13 +1,14 @@
 "use client";
+import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import clsx from "clsx";
 import { FC, useState } from "react";
 
-import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { NavItemsProps } from "./DesktopNav";
 import MobileNavGroup from "./MobileNavGroup";
 
 const MobileNav: FC<NavItemsProps> = ({ navItems }) => {
     const [openSidebar, setOpenSidebar] = useState<boolean>(false);
+    const closeNavbar = () => setOpenSidebar(false);
 
     return (
         <div className="lg:hidden">
@@ -23,14 +24,12 @@ const MobileNav: FC<NavItemsProps> = ({ navItems }) => {
                     openSidebar ? "z-1000 bottom-0" : "-bottom-full"
                 )}
             >
-                <button
-                    onClick={() => setOpenSidebar(false)}
-                    className="cursor-pointer p-5"
-                >
+                <button onClick={closeNavbar} className="cursor-pointer p-5">
                     <XMarkIcon height={30} width={30} />
                 </button>
                 {navItems.map((item, i, arr) => (
                     <MobileNavGroup
+                        closeNavbar={closeNavbar}
                         isLast={i === arr.length - 1}
                         {...item}
                         key={item.name}

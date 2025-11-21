@@ -12,8 +12,9 @@ import NavItemLink from "./NavItemLink";
 
 interface Props extends NavGroupProps {
     isLast: boolean;
+    closeNavbar: () => void;
 }
-const MobileNavGroup: FC<Props> = ({ items, name, isLast }) => (
+const MobileNavGroup: FC<Props> = ({ items, name, isLast, closeNavbar }) => (
     <Disclosure
         as="div"
         className={clsx("p-2", !isLast && "border-b border-b-gray-400")}
@@ -29,9 +30,20 @@ const MobileNavGroup: FC<Props> = ({ items, name, isLast }) => (
             <ChevronDownIcon className="size-5 duration-150 group-data-open:-rotate-180" />
         </DisclosureButton>
         <DisclosurePanel className="mt-2 text-sm/5 text-white/50 pl-2">
-            {items.map((item) => (
-                <NavItemLink key={item.name + item.href} {...item} />
-            ))}
+            {({ close }) => (
+                <>
+                    {items.map((item) => (
+                        <NavItemLink
+                            close={() => {
+                                closeNavbar();
+                                close();
+                            }}
+                            key={item.name + item.href}
+                            {...item}
+                        />
+                    ))}
+                </>
+            )}
         </DisclosurePanel>
     </Disclosure>
 );
