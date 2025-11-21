@@ -1,14 +1,13 @@
 "use client";
 import clsx from "clsx";
-import { useMemo, useState } from "react";
+import { FC, useState } from "react";
 
-import navItems from "@/constants/navItems";
 import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import { NavItemsProps } from "./DesktopNav";
 import MobileNavGroup from "./MobileNavGroup";
 
-const MobileNav = () => {
+const MobileNav: FC<NavItemsProps> = ({ navItems }) => {
     const [openSidebar, setOpenSidebar] = useState<boolean>(false);
-    const navItemsList = useMemo(navItems, []);
 
     return (
         <div className="lg:hidden">
@@ -30,7 +29,7 @@ const MobileNav = () => {
                 >
                     <XMarkIcon height={30} width={30} />
                 </button>
-                {navItemsList.map((item, i, arr) => (
+                {navItems.map((item, i, arr) => (
                     <MobileNavGroup
                         isLast={i === arr.length - 1}
                         {...item}

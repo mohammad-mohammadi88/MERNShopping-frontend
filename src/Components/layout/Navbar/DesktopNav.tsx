@@ -1,9 +1,13 @@
-import navItems from "@/constants/navItems";
-import DesktopNavGroup from "./DesktopNavGroup";
+import { FC } from "react";
 
-const DesktopNav = () => (
+import DesktopNavGroup, { NavGroupProps } from "./DesktopNavGroup";
+
+export interface NavItemsProps {
+    navItems: NavGroupProps[];
+}
+const DesktopNav: FC<NavItemsProps> = ({ navItems }) => (
     <div className="lg:flex hidden">
-        {navItems().map((item) => (
+        {navItems.map((item) => (
             <DesktopNavGroup key={item.name} {...item} />
         ))}
     </div>

@@ -1,5 +1,5 @@
 import type { ApiListQueries, GetDataWithPagination, Product } from "@Types";
-import endpointGenerator from "../endpoint";
+import endpointGenerator from "./endpoint";
 import serverFetch from "./server";
 
 const { endpoint, addQueries, addParam } = endpointGenerator("categories");

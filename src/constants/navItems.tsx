@@ -1,7 +1,13 @@
-import { NavGroupProps } from "@Components";
 import { Cog8ToothIcon, RectangleStackIcon } from "@heroicons/react/24/outline";
 
-export default (): NavGroupProps[] => [
+import { NavGroupProps, NavItem } from "@Components";
+import { Category } from "@Types";
+import { FC } from "react";
+
+interface NavGroup extends Omit<NavGroupProps, "items"> {
+    items: (Omit<NavItem, "Icon"> & { Icon?: FC<{ className: string }> })[];
+}
+const navItems = (categories: Category[] | string): NavGroup[] => [
     {
         name: "home",
         items: [
@@ -86,4 +92,30 @@ export default (): NavGroupProps[] => [
             },
         ],
     },
+    {
+        name: "Categories",
+        items:
+            typeof categories === "string"
+                ? [{ name: categories, href: "" }]
+                : categories.map(({ _id, title: name }) => ({
+                      href: ("?q=" + _id) as any,
+                      name,
+                  })),
+    },
 ];
+
+const formater = (items: NavGroup[]): NavGroupProps[] =>
+    items.map(({ name, items }) => ({
+        name,
+        items: items.map(({ href, name, ...Item }) => {
+            const obj: NavItem = {
+                href,
+                name,
+            };
+            if (Item.Icon) obj.Icon = <Item.Icon className="size-6" />;
+            return obj;
+        }),
+    }));
+
+export default (categories: Category[] | string) =>
+    formater(navItems(categories));
