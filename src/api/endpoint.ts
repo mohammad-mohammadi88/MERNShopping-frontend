@@ -15,10 +15,12 @@ const queryGenerator = (queries: Record<string, any>) =>
         .map(([key, value]) => key + "=" + value)
         .join("&");
 
+export const addQueries =
+    (endpoint: string) => (queries: Record<string, any>) =>
+        `${endpoint}?${queryGenerator(queries)}`;
 const endpointGenerator: EndpointGenerator = (endpoint) => ({
     endpoint,
     addParam: (param: string) => `${endpoint}/${param}`,
-    addQueries: (queries: Record<string, any>) =>
-        `${endpoint}?${queryGenerator(queries)}`,
+    addQueries: addQueries(endpoint),
 });
 export default endpointGenerator;

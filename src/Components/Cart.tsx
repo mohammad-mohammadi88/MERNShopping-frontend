@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { FC } from "react";
+import type { FC, Ref } from "react";
 
 import { Product } from "@Types";
 
@@ -11,7 +11,10 @@ const Color = ({ backgroundColor }: ColorProps) => (
     <div style={{ backgroundColor }} className="size-5 rounded-full" />
 );
 
-const Cart: FC<Product> = ({
+interface Props extends Product {
+    ref: Ref<HTMLDivElement> | null;
+}
+const Cart: FC<Props> = ({
     _id,
     price,
     salePrice,
@@ -19,14 +22,15 @@ const Cart: FC<Product> = ({
     title,
     thumbnail,
     colors,
+    ref,
 }) => (
     <Link href={`/product/${_id}`} className="cart">
-        <div className="cart-inner">
+        <div className="cart-inner" ref={ref}>
             <Image
                 width={300}
                 height={200}
                 src={thumbnail}
-                className="w-full rounded-xl h-72"
+                className="w-full rounded-xl h-72 sm:h-60"
                 alt={title + " image"}
             />
             <div className="space-y-2 text-lg text-gray-900 font-semibold">

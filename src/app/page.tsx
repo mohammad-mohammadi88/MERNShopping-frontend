@@ -1,6 +1,7 @@
 import type { Metadata, NextPage } from "next";
 
-import { Cart, Header, SearchFields } from "@Components";
+import { QueryProvider } from "@/reactQuery";
+import { Header, InfiniteScroll, SearchFields } from "@Components";
 import { serverCategories, serverProducts } from "@ServerApi";
 
 export const metadata: Metadata = {
@@ -13,9 +14,10 @@ interface Props {
 }
 const Index: NextPage<Props> = async ({ searchParams }) => {
     const { q: query = "" } = await searchParams;
-    console.log("🚀 ~ Index ~ query:", query);
 
     const { ok, statusText, data } = await serverProducts.getProducts({
+        perPage: 2,
+        page: 1,
         query,
     });
     const categories = await serverCategories.getAllCategories();
@@ -27,20 +29,19 @@ const Index: NextPage<Props> = async ({ searchParams }) => {
                 </p>
             </div>
         );
-    data.data.pop();
     return (
         <>
             <Header />
-            <main className="container mx-auto mt-15">
+            <main className="container mx-auto mt-15" id="courses">
                 <SearchFields
                     categories={
                         categories.ok ? categories.data.data : undefined
                     }
                 />
                 <div className="flex-wrap mt-5 flex space-y-8">
-                    {data.data.map((product) => (
-                        <Cart key={product._id} {...product} />
-                    ))}
+                    <QueryProvider>
+                        <InfiniteScroll initialProducts={data} />
+                    </QueryProvider>
                 </div>
             </main>
         </>
