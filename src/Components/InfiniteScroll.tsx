@@ -26,14 +26,15 @@ const getNextPageParam: GetNextPageParamFunction<any, ProductsList | string> = (
         : undefined;
 
 const InfiniteScroll: FC<Props> = ({ initialProducts }) => {
-    const { q: query = "" } = useSearchParams() as { q?: string };
+    const query = useSearchParams().get("q")?.trim() || "";
+
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
         useInfiniteQuery({
             initialData: {
                 pageParams: [1],
                 pages: [initialProducts],
             },
-            queryKey: ["products"],
+            queryKey: ["products", "query", query],
             queryFn: ({ pageParam: page }): Promise<any> =>
                 clientProducts
                     .getProducts({ query, page, perPage })
@@ -64,20 +65,26 @@ const InfiniteScroll: FC<Props> = ({ initialProducts }) => {
     const filteredPages = data.pages.filter((page) => typeof page === "object");
     return (
         <>
+            {filteredPages[0].data.length === 0 && (
+                <p className="py-4 text-center text-red-500 font-bold text-3xl">{`There is not product ${
+                    query === "" ? "available" : "with this query"
+                }`}</p>
+            )}
             {filteredPages.map(
                 ({ data }, i, pages) =>
                     typeof data === "object" &&
-                    data?.map((product, j, products) => {
-                        const isLastItem =
-                            i === pages.length - 1 && j === products.length - 1;
-                        return (
-                            <Cart
-                                {...product}
-                                key={product._id}
-                                ref={isLastItem ? lastItemRef : null}
-                            />
-                        );
-                    })
+                    data?.map((product, j, products) => (
+                        <Cart
+                            {...product}
+                            key={product._id}
+                            ref={
+                                i === pages.length - 1 &&
+                                j === products.length - 1
+                                    ? lastItemRef
+                                    : null
+                            }
+                        />
+                    ))
             )}
             {isFetchingNextPage && <Loading />}
         </>

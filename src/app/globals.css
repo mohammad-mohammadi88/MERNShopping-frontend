@@ -22,9 +22,7 @@
 }
 
 body {
-    background-color: rgb(238, 238, 238);
-    /* background: var(--background); */
-    /* color: var(--foreground); */
+    background-color: #eeeeee;
     font-family: Arial, Helvetica, sans-serif;
 }
 

@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FC } from "react";
 
 import navItems from "@/constants/navItems";
 import { logo_dark } from "@Images";
-import { serverCategories } from "@ServerApi";
+import { NavbarAndFooterProps } from "../Footer";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 
-const Navbar = async () => {
-    const { ok, statusText, data } = await serverCategories.getAllCategories();
-    const categories = !ok ? data || statusText : data.data;
+const Navbar: FC<NavbarAndFooterProps> = async ({ categories }) => {
     const navItemsList = navItems(categories);
     return (
         <nav className="container px-20 py-4 flex justify-between mx-auto">
