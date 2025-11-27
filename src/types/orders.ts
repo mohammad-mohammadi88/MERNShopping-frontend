@@ -13,6 +13,10 @@ export interface OrderProduct extends ID {
     count: number;
 }
 
+export interface CartOrderProduct
+    extends Pick<OrderProduct, "color" | "count"> {
+    product: string;
+}
 export interface Order extends ID {
     products: OrderProduct[];
     user: User;
@@ -21,6 +25,11 @@ export interface Order extends ID {
     status: OrdersStatusValues;
     finalPrice: number;
     totalPrice: number;
+}
+export interface CartOrder {
+    products: CartOrderProduct[];
+    couponCode: string | null;
+    deliveryAddress?: UserAddress;
 }
 
 export interface FullOrder extends Omit<Order, "user"> {

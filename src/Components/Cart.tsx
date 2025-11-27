@@ -7,7 +7,7 @@ import { Product } from "@Types";
 interface ColorProps {
     backgroundColor: `#${string}`;
 }
-const Color = ({ backgroundColor }: ColorProps) => (
+const ShowColor = ({ backgroundColor }: ColorProps) => (
     <div style={{ backgroundColor }} className="size-5 rounded-full" />
 );
 
@@ -48,7 +48,7 @@ const Cart: FC<Props> = ({
                     </div>
                     <div className="flex space-x-1">
                         {colors.slice(0, 3).map(({ color, _id }) => (
-                            <Color key={_id} backgroundColor={color} />
+                            <ShowColor key={_id} backgroundColor={color} />
                         ))}
                     </div>
                 </div>

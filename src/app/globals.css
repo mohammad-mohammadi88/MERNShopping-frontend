@@ -37,3 +37,21 @@ header {
 .cart-inner {
     @apply rounded-2xl bg-white flex flex-col space-y-3 shadow-xl p-3;
 }
+.text-error {
+    @apply py-4 text-center text-red-500 font-bold text-3xl;
+}
+.chevron {
+    @apply pointer-events-auto rounded-full not-disabled:cursor-pointer bg-gray-500 h-12 w-12 text-white px-3 py-1 disabled:opacity-50;
+}
+.scroll-container {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    scrollbar-color: transparent;
+}

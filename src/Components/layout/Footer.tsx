@@ -46,7 +46,7 @@ const Footer: FC<NavbarAndFooterProps> = ({ categories }) => (
                 </p>
             </div>
         </div>
-        <h5 className="border-t pt-2 text-center">
+        <h5 className="border-t py-2 text-xl font-bold text-center">
             Provided By Mohammad Mohammadi
         </h5>
     </footer>

@@ -1,18 +1,12 @@
 "use client";
 
-import { Comment, UserAddress } from "@Types";
+import { Comment, FormProductColor, UserAddress } from "@Types";
 import apiClient from "./client";
 
 const endpoint = "orders";
 interface OrderProduct {
     product: string;
-    color?:
-        | {
-              title: string;
-              color: string;
-              priceEffect: any;
-          }
-        | undefined;
+    color?: FormProductColor | undefined;
     count?: number | undefined;
 }
 interface NewOrder {

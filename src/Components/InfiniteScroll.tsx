@@ -15,6 +15,7 @@ import Loading from "./Loading";
 type ProductsList = GetDataWithPagination<Product>;
 interface Props {
     initialProducts: ProductsList;
+    initialQuery?: string;
 }
 
 const perPage = 2;
@@ -25,8 +26,8 @@ const getNextPageParam: GetNextPageParamFunction<any, ProductsList | string> = (
         ? data.currentPage + 1
         : undefined;
 
-const InfiniteScroll: FC<Props> = ({ initialProducts }) => {
-    const query = useSearchParams().get("q")?.trim() || "";
+const InfiniteScroll: FC<Props> = ({ initialProducts, initialQuery }) => {
+    const query = initialQuery || useSearchParams().get("q")?.trim() || "";
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
         useInfiniteQuery({
@@ -51,11 +52,10 @@ const InfiniteScroll: FC<Props> = ({ initialProducts }) => {
             if (isFetchingNextPage) return;
             if (observer.current) observer.current.disconnect();
 
-            observer.current = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting && hasNextPage) {
-                    fetchNextPage();
-                }
-            });
+            observer.current = new IntersectionObserver(
+                (entries) =>
+                    entries[0].isIntersecting && hasNextPage && fetchNextPage()
+            );
 
             if (node) observer.current.observe(node);
         },
@@ -66,7 +66,7 @@ const InfiniteScroll: FC<Props> = ({ initialProducts }) => {
     return (
         <>
             {filteredPages[0].data.length === 0 && (
-                <p className="py-4 text-center text-red-500 font-bold text-3xl">{`There is not product ${
+                <p className="text-errorn">{`There is not product ${
                     query === "" ? "available" : "with this query"
                 }`}</p>
             )}
