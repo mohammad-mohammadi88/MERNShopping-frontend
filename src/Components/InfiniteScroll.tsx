@@ -9,7 +9,7 @@ import { useCallback, useRef, type FC } from "react";
 
 import { clientProducts } from "@ClientApi";
 import { GetDataWithPagination, Product } from "@Types";
-import Cart from "./Cart";
+import Card from "./Card";
 import Loading from "./Loading";
 
 type ProductsList = GetDataWithPagination<Product>;
@@ -74,7 +74,7 @@ const InfiniteScroll: FC<Props> = ({ initialProducts, initialQuery }) => {
                 ({ data }, i, pages) =>
                     typeof data === "object" &&
                     data?.map((product, j, products) => (
-                        <Cart
+                        <Card
                             {...product}
                             key={product._id}
                             ref={

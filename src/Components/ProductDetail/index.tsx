@@ -21,7 +21,13 @@ const ProductDetail: FC<Product> = ({
             </div>
             <div className="w-full space-y-2 md:w-1/2 lg:w-2/3">
                 <ShowProductBasics {...info} />
-                <AddToOrder _id={_id} colors={colors} />
+                <AddToOrder
+                    {...info}
+                    thumbnail={thumbnail}
+                    productCategory={info.productCategory.title}
+                    _id={_id}
+                    colors={colors}
+                />
             </div>
         </div>
         <ShowAttrs attrs={attrs} />

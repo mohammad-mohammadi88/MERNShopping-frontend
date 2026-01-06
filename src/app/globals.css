@@ -31,10 +31,14 @@ header {
     @apply bg-cover w-screen h-[33.333vh] md:h-[50vh];
 }
 
-.cart {
+.card-product {
+    @apply w-full flex-wrap p-7 md:p-4 bg-white my-8 rounded-2xl flex shadow-xl;
+}
+
+.card {
     @apply w-full hover:scale-105 duration-200 px-4 sm:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5;
 }
-.cart-inner {
+.card-inner {
     @apply rounded-2xl bg-white flex flex-col space-y-3 shadow-xl p-3;
 }
 .text-error {

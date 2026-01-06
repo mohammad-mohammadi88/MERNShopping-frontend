@@ -3,29 +3,22 @@ import Link from "next/link";
 import type { FC, Ref } from "react";
 
 import { Product } from "@Types";
-
-interface ColorProps {
-    backgroundColor: `#${string}`;
-}
-const ShowColor = ({ backgroundColor }: ColorProps) => (
-    <div style={{ backgroundColor }} className="size-5 rounded-full" />
-);
+import { ShowColor, ShowPrice } from ".";
 
 interface Props extends Product {
     ref: Ref<HTMLDivElement> | null;
 }
-const Cart: FC<Props> = ({
+const Card: FC<Props> = ({
     _id,
-    price,
-    salePrice,
     productCategory: { title: categoryTitle },
     title,
     thumbnail,
     colors,
     ref,
+    ...pricing
 }) => (
-    <Link href={`/product/${_id}`} className="cart">
-        <div className="cart-inner" ref={ref}>
+    <Link href={`/product/${_id}`} className="card">
+        <div className="card-inner" ref={ref}>
             <Image
                 width={300}
                 height={200}
@@ -37,15 +30,7 @@ const Cart: FC<Props> = ({
                 <p>{title}</p>
                 <p>Category: {categoryTitle}</p>
                 <div className="flex justify-between">
-                    <div className="flex space-x-2">
-                        {salePrice !== price && (
-                            <div className="flex space-x-2 items-center">
-                                <del>{price}$</del>
-                                <strong>-&gt;</strong>
-                            </div>
-                        )}
-                        <p>{salePrice}$</p>
-                    </div>
+                    <ShowPrice {...pricing} />
                     <div className="flex space-x-1">
                         {colors.slice(0, 3).map(({ color, _id }) => (
                             <ShowColor key={_id} backgroundColor={color} />
@@ -56,4 +41,4 @@ const Cart: FC<Props> = ({
         </div>
     </Link>
 );
-export default Cart;
+export default Card;

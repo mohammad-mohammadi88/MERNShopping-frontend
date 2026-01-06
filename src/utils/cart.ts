@@ -1,7 +1,10 @@
+"use client";
+
 import { CartOrder, CartOrderProduct } from "@Types";
 
 const cartName = "orderCart";
 
+// initials
 const initialCart: CartOrder = {
     couponCode: null,
     products: [],
@@ -12,6 +15,7 @@ const getOrder = (): CartOrder =>
 const setOrder = (newOrder: CartOrder) =>
     localStorage.setItem(cartName, JSON.stringify(newOrder));
 
+// products
 const addProduct = (newProduct: CartOrderProduct) => {
     const order = getOrder();
     order.products.push(newProduct);
@@ -24,12 +28,24 @@ const removeProduct = (index: number) => {
     setOrder(order);
 };
 
+// couponCode
+const addCoupon = (couponCode:string) => setOrder({ ...getOrder(), couponCode })
+
+// cart
 const deleteCart = () => setOrder(initialCart);
+
+const getFormattedCart = () => {
+    const order = getOrder();
+    order.products.map((product) => ({...product, product: product.product._id }));
+    return order;
+}
 
 const orderCart = {
     getOrder,
     addProduct,
     removeProduct,
     deleteCart,
+    addCoupon,
+    getFormattedCart
 };
 export default orderCart;

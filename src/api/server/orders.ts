@@ -5,6 +5,9 @@ const endpoint = (id: string) => "orders/" + id;
 
 const getSingleOrder = (id: string) => serverFetch<Order>(endpoint(id));
 
+const getSelfOrders = (id: string) => serverFetch<Order[]>(endpoint("self"));
+
 export default {
     getSingleOrder,
+    getSelfOrders,
 };

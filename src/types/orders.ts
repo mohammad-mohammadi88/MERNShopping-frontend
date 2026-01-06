@@ -6,7 +6,7 @@ export interface OrderProduct extends ID {
     color?:
         | {
               title: string;
-              color: string;
+              color: `#${string}`;
               priceEffect: any;
           }
         | undefined;
@@ -15,7 +15,12 @@ export interface OrderProduct extends ID {
 
 export interface CartOrderProduct
     extends Pick<OrderProduct, "color" | "count"> {
-    product: string;
+    product: Pick<
+        Product,
+        "price" | "_id" | "thumbnail" | "title" | "salePrice"
+    > & {
+        productCategory: string;
+    };
 }
 export interface Order extends ID {
     products: OrderProduct[];

@@ -1,4 +1,5 @@
 export { default as clientComments } from "./comments";
+export { default as clientcCupons } from "./coupons";
 export { default as clientOrders } from "./orders";
 export { default as clientPayments } from "./payments";
 export { default as clientProducts } from "./products";

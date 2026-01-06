@@ -1,10 +1,10 @@
 "use client";
 
+import clsx from "clsx";
 import { useState, type FC } from "react";
 
 import orderCart from "@/utils/cart";
-import { ProductColor, type Product } from "@Types";
-import clsx from "clsx";
+import { CartOrderProduct, ProductColor, type Product } from "@Types";
 
 interface ColorProps {
     isSelected: boolean;
@@ -26,9 +26,9 @@ const ShowColor: FC<ColorProps> = ({
     </div>
 );
 
-type Props = Pick<Product, "_id" | "colors">;
+type Props = Pick<Product, "_id" | "colors"> & CartOrderProduct["product"];
 
-const AddToOrder: FC<Props> = ({ colors, _id: product }) => {
+const AddToOrder: FC<Props> = ({ colors, ...product }) => {
     const [selectedColor, setSelectedColor] = useState<
         ProductColor | undefined
     >(colors[0]);
